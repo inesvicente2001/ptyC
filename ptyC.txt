@@ -1,0 +1,54 @@
+ptyC
+
+Declarações
+Int x         = 1
+Boolean x     = TRUE
+String x      = "asv"
+Array x       = [1,2,4,5]
+Tuplo x       = (1,2)
+Lista x       = [1,2,"h",4]
+
+instruções
+Atribuição  x = 1;
+Leitura     x = y;
+Escrita     x = 3;
+
+
+
+Seleção
+
+SE (y == 5) { ... }
+SENAO { ... }
+
+ESCOLHE (y) {
+CASO (5) { ... }
+CASO (7) { ... }
+CASO () { ... }
+}
+
+Repetição
+
+ENQ (y > 5) { ... }
+
+REPETIR { ... } ATE (r < 4)
+
+PARA (i = 0; 1 < 4) { ... }
+
+
+Expressões
++
+-
+*
+/
+%
+^
+[]
+cons
+snoc
+in
+head
+tail
+
+
+
+Funções

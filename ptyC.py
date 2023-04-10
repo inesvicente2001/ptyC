@@ -123,7 +123,7 @@ CONS: "cons"
 SNOC: "snoc"
 HEAD: "head"
 TAIL: "tail"
-FUNC: /(?!head$|tail$|cons$|snoc$)([a-z]+[\w\d_]*)+/
+FUNC: /(?!head[ (]|tail[ (]|cons[ (]|snoc[ (])([a-z]+[\w\d_]*)+/
 DEF: "DEF "
 RETORNA: "RETORNA "
 %import common.WS

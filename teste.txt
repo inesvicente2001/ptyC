@@ -11,12 +11,12 @@ ESCOLHE (u) {
     CASO () {j=0;}
 }
 
-DEF head(o,k,k,ki){ENQ (5 IN p) {  }
+DEF headh(o,k,k,ki){ENQ (5 IN p) {  }
 
 REPETIR { j=0; } ATE (r < 4)
 
 PARA (i = 0; 1 < 4) { k[8] = 9 + jd; }}
 
-head(8,9);
+head(p);
 
 c = [h,fun(),k];

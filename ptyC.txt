@@ -32,7 +32,7 @@ ENQ (y > 5) { ... }
 
 REPETIR { ... } ATE (r < 4)
 
-PARA (i = 0; 1 < 4) { ... }
+PARA (i EM l) { ... }
 
 
 Expressões

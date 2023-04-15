@@ -60,8 +60,9 @@ enquanto: ENQ PA logica PF CHAVA start CHAVF
 
 repetir: REPETIR CHAVA start CHAVF ATE PA logica PF
 
-para: PARA PA atribsimples PV logica PF CHAVA start CHAVF
-atribsimples: VAR IGUAL NUM
+para: PARA PA var EM varlista PF CHAVA start CHAVF
+varlista: var
+         |lista
 
 chamadafuncao: funcao PV
 
@@ -119,6 +120,7 @@ ENQ: "ENQ"
 REPETIR: "REPETIR"
 ATE: "ATE"
 PARA: "PARA"
+EM: " EM "
 CONS: "cons"
 SNOC: "snoc"
 HEAD: "head"

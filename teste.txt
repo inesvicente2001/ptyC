@@ -11,11 +11,13 @@ ESCOLHE (u) {
     CASO () {j=0;}
 }
 
-DEF headg(o,k,k,ki){ENQ (5 IN p) {  }
+DEF headg(o,k,k,ki) {
+    ENQ (5 IN p) {  }
 
-REPETIR { j=0; } ATE (r < 4)
+    REPETIR { j=0; } ATE (r < 4)
 
-PARA (i EM [1,2,"r"]) { k[8] = 9 + jd; }}
+    PARA (i EM [1,2,"r"]) { k[8] = 9 + jd; }
+}
 
 head(p);
 

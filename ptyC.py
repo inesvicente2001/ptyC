@@ -133,8 +133,8 @@ RETORNA: "RETORNA "
 '''
 
 frase = open("teste.txt", "r").read()
-#print(frase)
 p = Lark(grammar)
 
-
 parse_tree = p.parse(frase)
+
+pydot__tree_to_png(parse_tree, "tree.png")

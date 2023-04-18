@@ -3,4 +3,5 @@
 - adiconar comentários
 - start --> statement
 - EM e IN
-- TIPO para def de funç
+- TIPO para def de funçao
+- imports?

@@ -1,3 +1,6 @@
+IMPORTA {en_i-de.lm}
+IMPORTA {en_i-delm}
+
 SE (v == 0 E h < p OU z-u>v ) {
     x =p*8+0-8/y[9];
 } SENAO {i[6]=0;}
@@ -11,12 +14,14 @@ ESCOLHE (u) {
     CASO () {j=0;}
 }
 
-DEF headg(o,k,k,ki) {
-    ENQ (5 IN p) {  }
+:- ola -:
+
+DEF Tuplo headg(o,k,k,ki) {
+    ENQ (5 EM p) {  }
 
     REPETIR { j=0; } ATE (r < 4)
 
-    PARA (i EM [1,2,"r"]) { k[8] = 9 + jd; }
+    PARA (i DE [1,2,"r"]) { k[8] = 9 + jd; }
 }
 
 head(p);

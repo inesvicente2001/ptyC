@@ -4,13 +4,15 @@ from lark.tree import pydot__tree_to_png
 from lark.visitors import Interpreter
 
 grammar = '''
-start: (declaracao|atribuicao|selecao|repeticao|chamadafuncao|deffuncao)*
-startfunc: (declaracao|atribuicao|selecao|repeticao|chamadafuncao)*
+program: statement*
+statement: declaracao|atribuicao|selecao|repeticao|chamadafuncao|deffuncao|importar|comentario
+body: statementbody*
+statementbody: declaracao|atribuicao|selecao|repeticao|chamadafuncao|comentario
 
-declaracao: TIPO ((VAR PV)|atribuicao)
+declaracao: TIPO ((VAR ";")|atribuicao)
 
-atribuicao: var IGUAL objeto PV
-var: VAR (PRA (atomo) PRF)?
+atribuicao: var "=" objeto ";"
+var: VAR ("[" (expressao) "]")?
 objeto: expressao
        |STRING
        |condicao
@@ -19,12 +21,12 @@ objeto: expressao
        |lista
        |funcao
 
-array: PRA (NUM (VIR NUM)*)? PRF
-      |PRA (STRING (VIR STRING)*)? PRF
+array: "[" (NUM ("," NUM)*)? "]"
+      |"[" (STRING ("," STRING)*)? "]"
 
-tuplo: PA ((objeto) (VIR objeto)*)? PF
+tuplo: "(" ((objeto) ("," objeto)*)? ")"
 
-lista: PRA ((objeto) (VIR objeto)*)? PRF
+lista: "[" ((objeto) ("," objeto)*)? "]"
 
 expressao: termo
           |expressao MAIS termo
@@ -41,30 +43,32 @@ atomo: NUM
 selecao: se
         |casos
 
-se: SE PA logica PF CHAVA start CHAVF senao?
-logica: condicao (LOGICO condicao)*
+se: "SE" "(" logica ")" "{" body "}" senao?
+logica: condicao (logico condicao)*
 condicao: (expressao (SINAL expressao)?)
          |BOOL
-         |expressao IN VAR
-senao: SENAO CHAVA start CHAVF
+         |expressao " EM " VAR
+logico: E
+       |OU
+senao: "SENAO" "{" body "}"
 
-casos: ESCOLHE PA var PF CHAVA caso* casofinal CHAVF
-caso: (CASO PA (NUM|STRING) PF CHAVA start CHAVF)*
-casofinal: CASO PA PF CHAVA start CHAVF
+casos: "ESCOLHE" "(" var ")" "{" caso* casofinal "}"
+caso: ("CASO" "(" (NUM|STRING) ")" "{" body "}")*
+casofinal: "CASO" "(" ")" "{" body "}"
 
 repeticao: enquanto
           |repetir
           |para
 
-enquanto: ENQ PA logica PF CHAVA start CHAVF
+enquanto: "ENQ" "(" logica ")" "{" body "}"
 
-repetir: REPETIR CHAVA start CHAVF ATE PA logica PF
+repetir: "REPETIR" "{" body "}" "ATE" "(" logica ")"
 
-para: PARA PA var EM varlista PF CHAVA start CHAVF
+para: "PARA" "(" var " DE " varlista ")" "{" body "}"
 varlista: var
          |lista
 
-chamadafuncao: funcao PV
+chamadafuncao: funcao ";"
 
 funcao: cons
        |snoc
@@ -72,68 +76,50 @@ funcao: cons
        |tail
        |func
 
-cons: CONS PA argumentosc PF
-argumentosc: objeto VIR argumentosh
+cons: "cons" "(" argumentosc ")"
+argumentosc: objeto "," argumentosh
 
-snoc: SNOC PA argumentosc PF
+snoc: "snoc" "(" argumentosc ")"
 
-head: HEAD PA argumentosh PF
+head: "head" "(" argumentosh ")"
 argumentosh: VAR
             |lista
 
-tail: TAIL PA argumentosh PF
+tail: "tail" "(" argumentosh ")"
 
-func: FUNC PA argumentos PF
-argumentos: (objeto (VIR objeto)*)?
+func: FUNC "(" argumentos ")"
+argumentos: (objeto ("," objeto)*)?
 
-deffuncao: DEF FUNC PA argumentos PF CHAVA startfunc retorna? CHAVF
-retorna: RETORNA objeto
+deffuncao: "DEF " TIPO FUNC "(" argumentos ")" "{" body retorna? "}"
+retorna: "RETORNA " objeto
+
+importar: "IMPORTA" "{" IMPORTADO "}"
+
+comentario: ":-" TEXTO "-:"
 
 TIPO: "Int"|"Boolean"|"String"|"Array"|"Tuplo"|"Lista"
 VAR: /[a-z]+[\w\d_]*/
-PV: ";"
-IGUAL: "="
 NUM: "0".."9"+
-PRA: "["
-PRF: "]"
-VIR: ","
 MAIS: "+"
 MENOS: "-"
 VEZES: "*"
 DIVIDIR: "/"
 RESTO: "%"
 ELEVADO: "^"
-SE: "SE"
-PA: "("
-PF: ")"
-CHAVA: "{"
-CHAVF: "}"
-LOGICO: " E "|" OU "
+E: " E "
+OU: " OU "
 SINAL: "=="|"<"|"<="|">"|">="|"!="
 BOOL: "TRUE"|"FALSE"
-IN: " IN "
-SENAO: "SENAO"
-ESCOLHE: "ESCOLHE"
-CASO: "CASO"
 STRING: /"[^"]*"/
-ENQ: "ENQ"
-REPETIR: "REPETIR"
-ATE: "ATE"
-PARA: "PARA"
-EM: " EM "
-CONS: "cons"
-SNOC: "snoc"
-HEAD: "head"
-TAIL: "tail"
 FUNC: /(?!head[ (]|tail[ (]|cons[ (]|snoc[ (])([a-z]+[\w\d_]*)+/
-DEF: "DEF "
-RETORNA: "RETORNA "
+IMPORTADO: /[\w\d\.\-_]+/
+TEXTO: /[^-]+|(-[^:])+/
 %import common.WS
 %ignore WS
 '''
 
 frase = open("teste.txt", "r").read()
-p = Lark(grammar)
+p = Lark(grammar, start="program")
 
 parse_tree = p.parse(frase)
 

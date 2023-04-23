@@ -1,6 +1,5 @@
 {
-  "workbench.colorTheme": "Dark+",
-  "editor.tokenColorCustomizations": {
+  "colorCodes": {
     "comments": "#6A9955",
     "keywords": "#C586C0",
     "numbers": "#B5CEA8",
@@ -13,50 +12,6 @@
     "operators": "#D4D4D4",
     "classProperties": "#9CDCFE",
     "classMethods": "#DCDCAA",
-    "tags": "#569CD6",
-    "textMateRules": [
-      {
-        "scope": "source.c comment",
-        "settings": {
-          "foreground": "#6A9955"
-        }
-      },
-      {
-        "scope": "source.c keyword.control",
-        "settings": {
-          "foreground": "#C586C0"
-        }
-      },
-      {
-        "scope": "source.c constant.numeric",
-        "settings": {
-          "foreground": "#B5CEA8"
-        }
-      },
-      {
-        "scope": "source.c string.quoted.double",
-        "settings": {
-          "foreground": "#CE9178"
-        }
-      },
-      {
-        "scope": "entity.name.function",
-        "settings": {
-          "foreground": "#DCDCAA"
-        }
-      },
-      {
-        "scope": "variable.other",
-        "settings": {
-          "foreground": "#9CDCFE"
-        }
-      },
-      {
-        "scope": "entity.name.tag",
-        "settings": {
-          "foreground": "#569CD6"
-        }
-      }
-    ]
+    "tags": "#569CD6"
   }
 }

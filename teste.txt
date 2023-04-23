@@ -4,26 +4,3 @@ IMPORTA {en_i-delm}
 SE (v == 0 E h < p OU z-u>v ) {
     x =p*8+0-8/y[9];
 } SENAO {i[6]=0;}
-Int r;
- g = [8,3];
-
-ESCOLHE (u) {
-    CASO (8) {j=0;}
-    CASO (4) {a=0;}
-    CASO (7) {j=u;}
-    CASO () {j=0;}
-}
-
-:- ola -:
-
-DEF Tuplo headg(o,k,k,ki) {
-    ENQ (5 EM p) {  }
-
-    REPETIR { j=0; } ATE (r < 4)
-
-    PARA (i DE [1,2,"r"]) { k[8] = 9 + jd; }
-}
-
-head(p);
-
-c = [h,fun(),k];

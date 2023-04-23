@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html>
 <style>
+
+    .container {
+        background-color: #555;
+        border: solid 1px black;
+        border-radius: 10px;
+        color: white;
+    }
+
     .error {
         position: relative;
         display: inline-block;
@@ -45,42 +53,44 @@
 
 <body>
     <h2>Análise de código</h2>
-    <pre><code>
-        <p class="code">
-            int z;
-        </p>
-        <p class="code">
-            if(<div class="error">cond<span class="errortext">Vari ́avel n~ao inicializada</span></div>){
-        </p>
-        <p class="code">
-                if(<div class="error">y<span class="errortext">Vari ́avel n~ao inicializada</span></div>) {
-        </p>
-        <p class="code">
-                    if(<div class="error">z<span class="errortext">Vari ́avel n~ao inicializada</span></div>) {
-        </p>
-        <p class="code">
-                        z=1;k=3}
-        </p>
-        <p class="code">
-                if(k) {
-        </p>
-        <p class="code">
-                    k=2; z=9; x=5;}
-        </p>
-        <p class="code">
+    <div class="container">
+        <pre><code>
+            <p class="code">
+                int z;
+            </p>
+            <p class="code">
+                if(<div class="error">cond<span class="errortext">Vari ́avel n~ao inicializada</span></div>){
+            </p>
+            <p class="code">
+                    if(<div class="error">y<span class="errortext">Vari ́avel n~ao inicializada</span></div>) {
+            </p>
+            <p class="code">
+                        if(<div class="error">z<span class="errortext">Vari ́avel n~ao inicializada</span></div>) {
+            </p>
+            <p class="code">
+                            z=1;k=3}
+            </p>
+            <p class="code">
+                    if(k) {
+            </p>
+            <p class="code">
+                        k=2; z=9; x=5;}
+            </p>
+            <p class="code">
+                    }
+            </p>
+            <p class="code">
                 }
-        </p>
-        <p class="code">
-            }
-        </p>
-        <p class="code">
-            int x;
-        </p>
-        <p class="code">
-            x=3;
-        </p>
+            </p>
+            <p class="code">
+                int x;
+            </p>
+            <p class="code">
+                x=3;
+            </p>
 
-    </code></pre>
+        </code></pre>
+    </div>
 </body>
 
 </html>

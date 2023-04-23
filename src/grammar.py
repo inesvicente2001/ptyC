@@ -42,7 +42,7 @@ se: "SE" "(" logica ")" "{" body "}" senao?
 logica: condicao (logico condicao)*
 condicao: (expressao (SINAL expressao)?)
          |BOOL
-         |expressao " EM " VAR
+         |expressao EM VAR
 logico: E
        |OU
 senao: "SENAO" "{" body "}"
@@ -109,6 +109,7 @@ STRING: /"[^"]*"/
 FUNC: /(?!head[ (]|tail[ (]|cons[ (]|snoc[ (])([a-z]+[\w\d_]*)+/
 IMPORTADO: /[\w\d\.\-_]+/
 TEXTO: /[^-]+|(-[^:])+/
+EM: " EM "
 %import common.WS
 %ignore WS
 '''

@@ -1,7 +1,12 @@
 # ptyC
 
-- adiconar comentários
-- start --> statement
-- EM e IN
-- TIPO para def de funçao
-- imports?
+- add Documentation to the grammar
+
+- testar mudança no " EM "
+
+
+- run:
+
+```
+python3 src/ptyC.py
+```

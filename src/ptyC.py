@@ -49,15 +49,15 @@ class MyInterpreter(Interpreter):
 
     def cons(self,cons):
         # cons: "cons" "(" argumentosc ")"
-        cons = []
+        cs = []
         for c in cons.children:
             if(type(c) == Tree):
-                cons.append({c.data: self.visit(c)})
+                cs.append({c.data: self.visit(c)})
             else:
                 if (type(c) == Token):
-                    cons.append({c.type: c})
+                    cs.append({c.type: c})
 
-        return cons
+        return cs
 
     def argumentosc(self,argumentosc):
         # argumentosc: objeto "," argumentosh
@@ -73,39 +73,39 @@ class MyInterpreter(Interpreter):
 
     def snoc(self,snoc):
         # snoc: "snoc" "(" argumentosc ")"
-        snoc = []
+        sc = []
         for s in snoc.children:
             if(type(s) == Tree):
-                snoc.append({s.data: self.visit(s)})
+                sc.append({s.data: self.visit(s)})
             else:
                 if (type(s) == Token):
-                    snoc.append({s.type: s})
+                    sc.append({s.type: s})
 
-        return snoc
+        return sc
 
     def head(self,head):
         # head: "head" "(" argumentosh ")"
-        head = []
+        hd = []
         for h in head.children:
             if(type(h) == Tree):
-                head.append({h.data: self.visit(h)})
+                hd.append({h.data: self.visit(h)})
             else:
                 if (type(h) == Token):
-                    head.append({h.type: h})
+                    hd.append({h.type: h})
 
-        return head
+        return hd
 
     def tail(self,tail):
         # tail: "tail" "(" argumentosh ")"
-        tail = []
+        tl = []
         for t in tail.children:
             if(type(t) == Tree):
-                tail.append({t.data: self.visit(t)})
+                tl.append({t.data: self.visit(t)})
             else:
                 if (type(t) == Token):
-                    tail.append({t.type: t})
+                    tl.append({t.type: t})
 
-        return tail
+        return tl
 
     def argumentosh(self,argumentosh):
         # argumentosh: VAR
@@ -358,7 +358,16 @@ class MyInterpreter(Interpreter):
         Discard
 
     def chamadafuncao(self,chamadafuncao):
-        Discard
+        # chamadafuncao: funcao ";"
+        cfunc = []
+        for cf in chamadafuncao.children:
+            if(type(cf) == Tree):
+                cfunc.append({cf.data: self.visit(cf)})
+            else:
+                if (type(cf) == Token):
+                    cfunc.append({cf.type: cf})
+        return cfunc
+        
 
     def deffuncao(self,deffuncao):
         Discard
@@ -368,7 +377,10 @@ class MyInterpreter(Interpreter):
         return importar.children[0].value
 
     def comentario(self,comentario):
-        Discard
+        # comentario: ":-" TEXTO "-:"
+        return comentario.children[0].value
+        
+
 
 frase = open("teste.txt", "r").read()
 
@@ -381,10 +393,10 @@ parse_tree = p.parse(frase)
 
 data = MyInterpreter().visit(parse_tree)
 
-print("data: ", data)
+#print("data: ", data)
 
 # data in json file
 with open('tree.json', 'w') as outfile:
-    json.dump(data, outfile, indent=2)
+    json.dump(data, outfile, indent=2, ensure_ascii=False)
 
 pydot__tree_to_png(parse_tree, "tree.png")

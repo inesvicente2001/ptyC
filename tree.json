@@ -200,6 +200,9 @@
           ],
           "body": [
             {
+              "comentario": "comment "
+            },
+            {
               "atribuicao": [
                 {
                   "var": [
@@ -400,6 +403,173 @@
           ]
         }
       }
+    },
+    {
+      "declaracao": [
+        {
+          "TIPO": "Int"
+        },
+        {
+          "VAR": "r"
+        }
+      ]
+    },
+    {
+      "atribuicao": [
+        {
+          "var": [
+            {
+              "VAR": "g"
+            }
+          ]
+        },
+        {
+          "objeto": [
+            {
+              "array": [
+                {
+                  "NUM": "8"
+                },
+                {
+                  "NUM": "3"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "comentario": " isto é um comentario\ncom enters "
+    },
+    {
+      "chamadafuncao": [
+        {
+          "funcao": [
+            {
+              "head": [
+                {
+                  "argumentosh": [
+                    {
+                      "VAR": "p"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chamadafuncao": [
+        {
+          "funcao": [
+            {
+              "tail": [
+                {
+                  "argumentosh": [
+                    {
+                      "VAR": "s"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "atribuicao": [
+        {
+          "var": [
+            {
+              "VAR": "c"
+            }
+          ]
+        },
+        {
+          "objeto": [
+            {
+              "lista": [
+                {
+                  "objeto": [
+                    {
+                      "expressao": [
+                        {
+                          "termo": [
+                            {
+                              "fator": [
+                                {
+                                  "atomo": [
+                                    {
+                                      "var": [
+                                        {
+                                          "VAR": "h"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "objeto": [
+                    {
+                      "funcao": [
+                        {
+                          "func": [
+                            {
+                              "FUNC": "fun"
+                            },
+                            {
+                              "argumentos": []
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "objeto": [
+                    {
+                      "expressao": [
+                        {
+                          "termo": [
+                            {
+                              "fator": [
+                                {
+                                  "atomo": [
+                                    {
+                                      "var": [
+                                        {
+                                          "VAR": "k"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }

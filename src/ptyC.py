@@ -265,6 +265,61 @@ class MyInterpreter(Interpreter):
         return bod
 
 
+    def casos(self,casos):
+        # casos: "ESCOLHE" "(" var ")" "{" caso* casofinal "}"
+        cas = {}
+        for c in casos.children:
+            cas[c.data.value] = self.visit(c)
+        return cas
+
+    def caso(self,caso):
+        # caso: ("CASO" "(" (NUM|STRING) ")" "{" body "}")*
+        cas = []
+        for c in caso.children:
+            if(type(c) == Tree):
+                cas.append({c.data: self.visit(c)})
+            else:
+                if (type(c) == Token):
+                    cas.append({c.type: c})
+        return cas
+
+
+    def casofinal(self,casofinal):
+        # casofinal: "CASO" "(" ")" "{" body "}"
+        casf = []
+        for cf in casofinal.children:
+            if(type(cf) == Tree):
+                casf.append({cf.data: self.visit(cf)})
+            else:
+                if (type(cf) == Token):
+                    casf.append({cf.type: cf})
+        return casf
+        
+
+    def deffuncao(self,deffuncao):
+        # deffuncao: "DEF " TIPO FUNC "(" argumentos ")" "{" body retorna? "}"
+        fun = []
+        for df in deffuncao.children:
+            if(type(df) == Tree):
+                fun.append({df.data: self.visit(df)})
+            else:
+                if (type(df) == Token):
+                    fun.append({df.type: df})
+        return fun
+
+
+    def retorna(self,retorna):
+        # retorna: "RETORNA " objeto ";"
+        ret = []
+        for r in retorna.children:
+            if(type(r) == Tree):
+                ret.append({r.data: self.visit(r)})
+            else:
+                if (type(r) == Token):
+                    ret.append({r.type: r})
+
+        return ret
+
 
 
     def statementbody(self,statementbody):
@@ -285,7 +340,7 @@ class MyInterpreter(Interpreter):
             else:
                 if (type(c) == Token):
                     cond.append({c.type: c})
-        return {condicao.data.value: cond}
+        return cond
 
 
 
@@ -351,12 +406,6 @@ class MyInterpreter(Interpreter):
         return sen
 
 
-    
-        
-
-    def repeticao(self,repeticao):
-        Discard
-
     def chamadafuncao(self,chamadafuncao):
         # chamadafuncao: funcao ";"
         cfunc = []
@@ -368,9 +417,6 @@ class MyInterpreter(Interpreter):
                     cfunc.append({cf.type: cf})
         return cfunc
         
-
-    def deffuncao(self,deffuncao):
-        Discard
 
     def importar(self,importar):
         # importar: "IMPORTA" "{" IMPORTADO "}"

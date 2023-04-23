@@ -16,3 +16,21 @@ head(p);
 tail(s);
 
 c = [h,fun(),k];
+
+
+DEF Tuplo headg(o,k,k,ki) {
+    ENQ (5 EM p) {  }
+
+    REPETIR { j=0; } ATE (r < 4)
+
+    PARA (i DE [1,2,"r"]) { k[8] = 9 + jd; }
+
+    RETORNA FALSO;
+}
+
+ESCOLHE (u) {
+    CASO (8) {j=0;}
+    CASO (4) {a=0;}
+    CASO (7) {j=u;}
+    CASO () {j=0;}
+}

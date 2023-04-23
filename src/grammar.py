@@ -86,7 +86,7 @@ func: FUNC "(" argumentos ")"
 argumentos: (objeto ("," objeto)*)?
 
 deffuncao: "DEF " TIPO FUNC "(" argumentos ")" "{" body retorna? "}"
-retorna: "RETORNA " objeto
+retorna: "RETORNA " objeto ";"
 
 importar: "IMPORTA" "{" IMPORTADO "}"
 
@@ -104,7 +104,7 @@ ELEVADO: "^"
 E: " E "
 OU: " OU "
 SINAL: "=="|"<"|"<="|">"|">="|"!="
-BOOL: "TRUE"|"FALSE"
+BOOL: "VERDADE"|"FALSO"
 STRING: /"[^"]*"/
 FUNC: /(?!head[ (]|tail[ (]|cons[ (]|snoc[ (])([a-z]+[\w\d_]*)+/
 IMPORTADO: /[\w\d\.\-_]+/

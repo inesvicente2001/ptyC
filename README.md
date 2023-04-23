@@ -8,8 +8,19 @@
 python3 src/ptyC.py
 ```
 
+-----------
+
+
+- see structure : `{}` or `[]` in some cases : imo, those who are statments as `{}` an the ones that are expressions and other things as `[]` 
+
+
 
 ------------
+
+- think about the possible otimizations : ifs, muls by 0, add 1, etc
+
+
+------------------
 
 
 - [x] program
@@ -33,9 +44,9 @@ python3 src/ptyC.py
 - [x] condicao
 - [x] logico
 - [x] senao
-- [] casos
-- [] caso
-- [] casofinal
+- [] casos (***REVER : ASPETO ESTRANHO***)
+- [] caso (***REVER : ASPETO ESTRANHO***)
+- [] casofinal (***REVER : ASPETO ESTRANHO***)
 - [] repeticao
 - [] enquanto
 - [] repetir
@@ -51,7 +62,7 @@ python3 src/ptyC.py
 - [x] tail
 - [x] func
 - [x] argumentos
-- [] deffuncao
-- [] retorna
+- [x] deffuncao
+- [x] retorna
 - [x] importar
 - [x] comentario

@@ -44,14 +44,14 @@ python3 src/ptyC.py
 - [x] condicao
 - [x] logico
 - [x] senao
-- [] casos (***REVER : ASPETO ESTRANHO***)
-- [] caso (***REVER : ASPETO ESTRANHO***)
-- [] casofinal (***REVER : ASPETO ESTRANHO***)
-- [] repeticao
-- [] enquanto
-- [] repetir
-- [] para
-- [] varlista
+- [x] casos (***REVER : ASPETO ESTRANHO***)
+- [x] caso (***REVER : ASPETO ESTRANHO***)
+- [x] casofinal (***REVER : ASPETO ESTRANHO***)
+- [x] repeticao
+- [x] enquanto
+- [x] repetir
+- [x] para
+- [x] varlista
 - [x] chamadafuncao
 - [x] funcao
 - [x] cons

@@ -267,9 +267,10 @@ class MyInterpreter(Interpreter):
 
     def casos(self,casos):
         # casos: "ESCOLHE" "(" var ")" "{" caso* casofinal "}"
-        cas = {}
+        cas = []
+        # ver aqui como percorrer , de forma a guardar dados de forma mais concisa
         for c in casos.children:
-            cas[c.data.value] = self.visit(c)
+            cas.append({c.data : self.visit(c)})
         return cas
 
     def caso(self,caso):
@@ -307,6 +308,66 @@ class MyInterpreter(Interpreter):
                     fun.append({df.type: df})
         return fun
 
+
+    def repeticao(self, repeticao):
+        # repeticao: enquanto
+        #  |repetir
+        #  |para
+        rep = {}
+        for r in repeticao.children:
+            rep[repeticao.data.value] = self.visit(r)
+        return rep
+
+    
+
+    def enquanto(self,enquanto):
+        # enquanto: "ENQ" "(" logica ")" "{" body "}"
+        enq = []
+        for e in enquanto.children:
+            if(type(e) == Tree):
+                enq.append({e.data: self.visit(e)})
+            else:
+                if (type(e) == Token):
+                    enq.append({e.type: e})
+
+        return enq
+
+    def repetir(self,repetir):
+        # repetir: "REPETIR" "{" body "}" "ATE" "(" logica ")"
+        rep = []
+        for r in repetir.children:
+            if(type(r) == Tree):
+                rep.append({r.data: self.visit(r)})
+            else:
+                if (type(r) == Token):
+                    rep.append({r.type: r})
+
+        return rep
+
+    def para(self,para):
+        # para: "PARA" "(" var " DE " varlista ")" "{" body "}"
+        par = []
+        for p in para.children:
+            if(type(p) == Tree):
+                par.append({p.data: self.visit(p)})
+            else:
+                if (type(p) == Token):
+                    par.append({p.type: p})
+
+        return par
+
+    def varlista(self,varlista):
+        # varlista : var
+        #           |lista
+        vl = []
+        for v in varlista.children:
+            if(type(v) == Tree):
+                vl.append({v.data: self.visit(v)})
+            else:
+                if (type(v) == Token):
+                    vl.append({v.type: v})
+
+        return vl
 
     def retorna(self,retorna):
         # retorna: "RETORNA " objeto ";"
@@ -428,7 +489,7 @@ class MyInterpreter(Interpreter):
         
 
 
-frase = open("teste.txt", "r").read()
+frase = open("casos.txt", "r").read()
 
 p = Lark(grammar, start="program")
 

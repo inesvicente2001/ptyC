@@ -1,0 +1,3 @@
+ENQ (5 EM p) { j=0; }
+REPETIR { j=0; } ATE (r < 4)
+PARA (i DE [1,2,"r"]) { k[8] = 9 + jd; }

@@ -3,11 +3,13 @@ from lark.tree import pydot__tree_to_png
 from grammar import grammar
 import json
 from ptyCInterpreter import PtyCInterpreter
+import os
+
+APP_PATH = os.path.dirname(os.path.abspath(__file__))
+CONFIG_PATH = os.path.join(APP_PATH, "../testes/casos.ptyC")
 
 
-
-
-frase = open("ciclos.txt", "r").read()
+frase = open(CONFIG_PATH, "r").read()
 
 p = Lark(grammar, start="program")
 

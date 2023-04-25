@@ -25,44 +25,44 @@ python3 src/ptyC.py
 
 - [x] program
 - [x] statement
-- [x] body
-- [x] statementbody
-- [x] declaracao
-- [x] atribuicao
-- [x] var
-- [x] objeto
-- [x] array     
-- [x] tuplo
-- [x] lista
-- [x] expressao
-- [x] termo
-- [x] fator
-- [x] atomo
-- [x] selecao
-- [x] se
-- [x] logica
-- [x] condicao
-- [x] logico
-- [x] senao
-- [x] casos (***REVER : ASPETO ESTRANHO***)
-- [x] caso (***REVER : ASPETO ESTRANHO***)
-- [x] casofinal (***REVER : ASPETO ESTRANHO***)
+- [] body
+- [] statementbody
+- [] declaracao
+- [] atribuicao
+- [] var
+- [] objeto
+- [] array     
+- [] tuplo
+- [] lista
+- [] expressao
+- [] termo
+- [] fator
+- [] atomo
+- [] selecao
+- [] se
+- [] logica
+- [] condicao
+- [] logico
+- [] senao
+- [] casos (***REVER : ASPETO ESTRANHO***)
+- [] caso (***REVER : ASPETO ESTRANHO***)
+- [] casofinal (***REVER : ASPETO ESTRANHO***)
 - [x] repeticao
 - [x] enquanto
 - [x] repetir
 - [x] para
-- [x] varlista
-- [x] chamadafuncao
-- [x] funcao
-- [x] cons
-- [x] argumentosc
-- [x] snoc
-- [x] head
-- [x] argumentosh
-- [x] tail
-- [x] func
-- [x] argumentos
-- [x] deffuncao
-- [x] retorna
+- [] varlista
+- [] chamadafuncao
+- [] funcao
+- [] cons
+- [] argumentosc
+- [] snoc
+- [] head
+- [] argumentosh
+- [] tail
+- [] func
+- [] argumentos
+- [] deffuncao
+- [] retorna
 - [x] importar
 - [x] comentario

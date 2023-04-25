@@ -1,0 +1,10 @@
+ESCOLHE (u) {
+    CASO ("HHHHH") {
+        :- nao comento -:
+        a[8+j]="kkkk";
+        j=1;
+    }
+    CASO (4) {a=0;}
+    CASO (7) {j=u;}
+    CASO () {j=0;}
+}

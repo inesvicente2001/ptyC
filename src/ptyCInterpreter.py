@@ -27,11 +27,10 @@ class PtyCInterpreter(Interpreter):
 
     def funcao(self,funcao):
         # funcao: cons
-        #       |snoc
-        #       |head
-        #       |tail
-        #       |func
-
+        #        |snoc
+        #        |head
+        #        |tail
+        #        |func
         func = []
         for f in funcao.children:
             if(type(f) == Tree):
@@ -264,7 +263,6 @@ class PtyCInterpreter(Interpreter):
     def casos(self,casos):
         # casos: "ESCOLHE" "(" var ")" "{" caso* casofinal "}"
         cas = []
-        # ver aqui como percorrer , de forma a guardar dados de forma mais concisa
         for c in casos.children:
             cas.append({c.data : self.visit(c)})
         return cas
@@ -307,14 +305,12 @@ class PtyCInterpreter(Interpreter):
 
     def repeticao(self, repeticao):
         # repeticao: enquanto
-        #  |repetir
-        #  |para
+        #           |repetir
+        #           |para
         rep = {}
         for r in repeticao.children:
-            rep[repeticao.data.value] = self.visit(r)
+            rep[r.data.value] = self.visit(r)
         return rep
-
-    
 
     def enquanto(self,enquanto):
         # enquanto: "ENQ" "(" logica ")" "{" body "}"
@@ -481,4 +477,5 @@ class PtyCInterpreter(Interpreter):
 
     def comentario(self,comentario):
         # comentario: ":-" TEXTO "-:"
-        return comentario.children[0].value
+        comment = comentario.children[0].value.split('\n')
+        return comment

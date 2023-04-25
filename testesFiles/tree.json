@@ -1,0 +1,258 @@
+{
+  "programa": [
+    {
+      "selecao": {
+        "casos": [
+          {
+            "var": [
+              {
+                "VAR": "u"
+              }
+            ]
+          },
+          {
+            "caso": [
+              {
+                "STRING": "\"HHHHH\""
+              },
+              {
+                "body": [
+                  {
+                    "comentario": [
+                      " nao comento "
+                    ]
+                  },
+                  {
+                    "atribuicao": [
+                      {
+                        "var": [
+                          {
+                            "VAR": "a"
+                          },
+                          {
+                            "expressao": [
+                              {
+                                "expressao": [
+                                  {
+                                    "termo": [
+                                      {
+                                        "fator": [
+                                          {
+                                            "atomo": [
+                                              {
+                                                "NUM": "8"
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "MAIS": "+"
+                              },
+                              {
+                                "termo": [
+                                  {
+                                    "fator": [
+                                      {
+                                        "atomo": [
+                                          {
+                                            "var": [
+                                              {
+                                                "VAR": "j"
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "objeto": [
+                          {
+                            "STRING": "\"kkkk\""
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "atribuicao": [
+                      {
+                        "var": [
+                          {
+                            "VAR": "j"
+                          }
+                        ]
+                      },
+                      {
+                        "objeto": [
+                          {
+                            "expressao": [
+                              {
+                                "termo": [
+                                  {
+                                    "fator": [
+                                      {
+                                        "atomo": [
+                                          {
+                                            "NUM": "1"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "NUM": "4"
+              },
+              {
+                "body": [
+                  {
+                    "atribuicao": [
+                      {
+                        "var": [
+                          {
+                            "VAR": "a"
+                          }
+                        ]
+                      },
+                      {
+                        "objeto": [
+                          {
+                            "expressao": [
+                              {
+                                "termo": [
+                                  {
+                                    "fator": [
+                                      {
+                                        "atomo": [
+                                          {
+                                            "NUM": "0"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "NUM": "7"
+              },
+              {
+                "body": [
+                  {
+                    "atribuicao": [
+                      {
+                        "var": [
+                          {
+                            "VAR": "j"
+                          }
+                        ]
+                      },
+                      {
+                        "objeto": [
+                          {
+                            "expressao": [
+                              {
+                                "termo": [
+                                  {
+                                    "fator": [
+                                      {
+                                        "atomo": [
+                                          {
+                                            "var": [
+                                              {
+                                                "VAR": "u"
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "casofinal": [
+              {
+                "body": [
+                  {
+                    "atribuicao": [
+                      {
+                        "var": [
+                          {
+                            "VAR": "j"
+                          }
+                        ]
+                      },
+                      {
+                        "objeto": [
+                          {
+                            "expressao": [
+                              {
+                                "termo": [
+                                  {
+                                    "fator": [
+                                      {
+                                        "atomo": [
+                                          {
+                                            "NUM": "0"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,6 +1,0 @@
-ESCOLHE (u) {
-    CASO (8) {j=0;}
-    CASO (4) {a=0;}
-    CASO (7) {j=u;}
-    CASO () {j=0;}
-}

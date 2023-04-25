@@ -1,17 +1,21 @@
 {
   "colorCodes": {
-    "comments": "#6A9955",
-    "keywords": "#C586C0",
-    "numbers": "#B5CEA8",
-    "strings": "#CE9178",
-    "functions": "#DCDCAA",
-    "variables": "#9CDCFE",
-    "parameters": "#D4D4D4",
-    "imports": "#9CDCFE",
-    "preprocessor": "#4EC9B0",
-    "operators": "#D4D4D4",
-    "classProperties": "#9CDCFE",
-    "classMethods": "#DCDCAA",
-    "tags": "#569CD6"
+    "normalTextColor": "#FFFFFF",
+    "backgroundColor": "#555555",
+    "languageElements" : {
+      "comments": "#6A9955",
+      "keywords": "#C586C0",
+      "numbers": "#B5CEA8",
+      "strings": "#CE9178",
+      "functions": "#DCDCAA",
+      "variables": "#9CDCFE",
+      "parameters": "#D4D4D4",
+      "imports": "#9CDCFE",
+      "preprocessor": "#4EC9B0",
+      "operators": "#D4D4D4",
+      "classProperties": "#9CDCFE",
+      "classMethods": "#DCDCAA",
+      "tags": "#569CD6"
+    }
   }
 }

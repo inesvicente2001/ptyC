@@ -1,45 +1,201 @@
 {
   "programa": [
     {
-      "selecao": {
-        "casos": [
+      "repeticao": {
+        "repeticao": [
+          {
+            "logica": [
+              [
+                {
+                  "expressao": [
+                    {
+                      "termo": [
+                        {
+                          "fator": [
+                            {
+                              "atomo": [
+                                {
+                                  "NUM": "5"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "EM": " EM "
+                },
+                {
+                  "VAR": "p"
+                }
+              ]
+            ]
+          },
+          {
+            "body": [
+              {
+                "atribuicao": [
+                  {
+                    "var": [
+                      {
+                        "VAR": "j"
+                      }
+                    ]
+                  },
+                  {
+                    "objeto": [
+                      {
+                        "expressao": [
+                          {
+                            "termo": [
+                              {
+                                "fator": [
+                                  {
+                                    "atomo": [
+                                      {
+                                        "NUM": "0"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "repeticao": {
+        "repeticao": [
+          {
+            "body": [
+              {
+                "atribuicao": [
+                  {
+                    "var": [
+                      {
+                        "VAR": "j"
+                      }
+                    ]
+                  },
+                  {
+                    "objeto": [
+                      {
+                        "expressao": [
+                          {
+                            "termo": [
+                              {
+                                "fator": [
+                                  {
+                                    "atomo": [
+                                      {
+                                        "NUM": "0"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "logica": [
+              [
+                {
+                  "expressao": [
+                    {
+                      "termo": [
+                        {
+                          "fator": [
+                            {
+                              "atomo": [
+                                {
+                                  "var": [
+                                    {
+                                      "VAR": "r"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "SINAL": "<"
+                },
+                {
+                  "expressao": [
+                    {
+                      "termo": [
+                        {
+                          "fator": [
+                            {
+                              "atomo": [
+                                {
+                                  "NUM": "4"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "repeticao": {
+        "repeticao": [
           {
             "var": [
               {
-                "VAR": "u"
+                "VAR": "i"
               }
             ]
           },
           {
-            "caso": [
+            "varlista": [
               {
-                "NUM": "8"
-              },
-              {
-                "body": [
+                "lista": [
                   {
-                    "atribuicao": [
+                    "objeto": [
                       {
-                        "var": [
+                        "expressao": [
                           {
-                            "VAR": "j"
-                          }
-                        ]
-                      },
-                      {
-                        "objeto": [
-                          {
-                            "expressao": [
+                            "termo": [
                               {
-                                "termo": [
+                                "fator": [
                                   {
-                                    "fator": [
+                                    "atomo": [
                                       {
-                                        "atomo": [
-                                          {
-                                            "NUM": "0"
-                                          }
-                                        ]
+                                        "NUM": "1"
                                       }
                                     ]
                                   }
@@ -50,37 +206,19 @@
                         ]
                       }
                     ]
-                  }
-                ]
-              },
-              {
-                "NUM": "4"
-              },
-              {
-                "body": [
+                  },
                   {
-                    "atribuicao": [
+                    "objeto": [
                       {
-                        "var": [
+                        "expressao": [
                           {
-                            "VAR": "a"
-                          }
-                        ]
-                      },
-                      {
-                        "objeto": [
-                          {
-                            "expressao": [
+                            "termo": [
                               {
-                                "termo": [
+                                "fator": [
                                   {
-                                    "fator": [
+                                    "atomo": [
                                       {
-                                        "atomo": [
-                                          {
-                                            "NUM": "0"
-                                          }
-                                        ]
+                                        "NUM": "2"
                                       }
                                     ]
                                   }
@@ -91,49 +229,11 @@
                         ]
                       }
                     ]
-                  }
-                ]
-              },
-              {
-                "NUM": "7"
-              },
-              {
-                "body": [
+                  },
                   {
-                    "atribuicao": [
+                    "objeto": [
                       {
-                        "var": [
-                          {
-                            "VAR": "j"
-                          }
-                        ]
-                      },
-                      {
-                        "objeto": [
-                          {
-                            "expressao": [
-                              {
-                                "termo": [
-                                  {
-                                    "fator": [
-                                      {
-                                        "atomo": [
-                                          {
-                                            "var": [
-                                              {
-                                                "VAR": "u"
-                                              }
-                                            ]
-                                          }
-                                        ]
-                                      }
-                                    ]
-                                  }
-                                ]
-                              }
-                            ]
-                          }
-                        ]
+                        "STRING": "\"r\""
                       }
                     ]
                   }
@@ -142,20 +242,39 @@
             ]
           },
           {
-            "casofinal": [
+            "body": [
               {
-                "body": [
+                "atribuicao": [
                   {
-                    "atribuicao": [
+                    "var": [
                       {
-                        "var": [
-                          {
-                            "VAR": "j"
-                          }
-                        ]
+                        "VAR": "k"
                       },
                       {
-                        "objeto": [
+                        "expressao": [
+                          {
+                            "termo": [
+                              {
+                                "fator": [
+                                  {
+                                    "atomo": [
+                                      {
+                                        "NUM": "8"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "objeto": [
+                      {
+                        "expressao": [
                           {
                             "expressao": [
                               {
@@ -165,7 +284,29 @@
                                       {
                                         "atomo": [
                                           {
-                                            "NUM": "0"
+                                            "NUM": "9"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "MAIS": "+"
+                          },
+                          {
+                            "termo": [
+                              {
+                                "fator": [
+                                  {
+                                    "atomo": [
+                                      {
+                                        "var": [
+                                          {
+                                            "VAR": "jd"
                                           }
                                         ]
                                       }

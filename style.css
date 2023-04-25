@@ -1,0 +1,102 @@
+
+    <style>
+        .container {
+            background-color: #555555;
+            border: solid 1px black;
+            border-radius: 10px;
+            color: #FFFFFF;
+        }
+
+        .error {
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px dotted black;
+            color: red;
+        }
+        .code {
+            position: relative;
+            display: inline-block;
+        }
+        .error .errortext {
+            visibility: hidden;
+            width: 200px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 0;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -40px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .error .errortext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 20%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #555 transparent transparent transparent;
+        }
+        .error:hover .errortext {
+            visibility: visible;
+            opacity: 1;
+        }
+    
+        .comments {
+            color: #6A9955;
+        }
+        
+        .keywords {
+            color: #C586C0;
+        }
+        
+        .numbers {
+            color: #B5CEA8;
+        }
+        
+        .strings {
+            color: #CE9178;
+        }
+        
+        .functions {
+            color: #DCDCAA;
+        }
+        
+        .variables {
+            color: #9CDCFE;
+        }
+        
+        .parameters {
+            color: #D4D4D4;
+        }
+        
+        .imports {
+            color: #9CDCFE;
+        }
+        
+        .preprocessor {
+            color: #4EC9B0;
+        }
+        
+        .operators {
+            color: #D4D4D4;
+        }
+        
+        .classProperties {
+            color: #9CDCFE;
+        }
+        
+        .classMethods {
+            color: #DCDCAA;
+        }
+        
+        .tags {
+            color: #569CD6;
+        }
+        </style>

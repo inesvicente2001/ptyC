@@ -6,10 +6,12 @@ from ptyCInterpreter import PtyCInterpreter
 import os
 
 APP_PATH = os.path.dirname(os.path.abspath(__file__))
-CONFIG_PATH = os.path.join(APP_PATH, "../testes/casos.ptyC")
+CONFIG_PATH = os.path.join(APP_PATH, "../testes/testeBig.ptyC")
 
 
 frase = open(CONFIG_PATH, "r").read()
+
+
 
 p = Lark(grammar, start="program")
 

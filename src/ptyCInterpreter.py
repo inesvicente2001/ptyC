@@ -1,11 +1,21 @@
 from lark import Discard
 from lark import Lark,Token,Tree
 from lark.visitors import Interpreter
+import json
 
 class PtyCInterpreter(Interpreter):
     def __init__(self):
         self.programa = {}
         self.info = {}
+        self.info["variaveis"] = {}
+        self.info["instrucoes"] = {}
+        self.info["aninhamentos"] = 0
+        self.is_variable = False
+        self.variavel_atual = ""
+        self.is_expression = False
+        self.expression = ""
+        self.is_list = False
+        self.list_value = ""
     
 
     def program(self,program):
@@ -14,6 +24,8 @@ class PtyCInterpreter(Interpreter):
         for statement in program.children:
             stat = self.visit(statement)
             self.programa["programa"].append(stat)
+        with open('info.json', 'w') as outfile:
+            json.dump(self.info, outfile, indent=2, ensure_ascii=False)
 
         return self.programa
 
@@ -142,35 +154,115 @@ class PtyCInterpreter(Interpreter):
     def declaracao(self,declaracao):
         # declaracao: TIPO ((VAR ";")|atribuicao)
         dec = []
+        self.is_variable = True
+        tipo_atual = ""
         for d in declaracao.children:
             if(type(d) == Tree):
                 dec.append({d.data: self.visit(d)})
+                self.info["variaveis"][self.variavel_atual]["tipo_da_variavel"] = tipo_atual
+                self.info["variaveis"][self.variavel_atual]["foi_declarada"] = True
+                if self.is_list:
+                    self.is_list = False
+
             else:
                 if (type(d) == Token):
+                    if d.type == "TIPO":
+                        tipo_atual = d.value
+                    elif d.type == "VAR":
+                        variaveis = self.info["variaveis"]
+                        if d.value in variaveis:
+                            variaveis[d.value]["foi_redeclarada"] = True
+                            variaveis[d.value]["tipo_da_variavel"] = tipo_atual
+                        else:
+                            var_info = {
+                                "foi_declarada" : True,
+                                "foi_inicializada": False,
+                                "foi_utilizada": False,
+                                "foi_redeclarada": False,
+                                "tipo_da_variavel": tipo_atual,
+                                "valores": []  
+                            }
+                            variaveis[d.value] = var_info
+                        self.info["variaveis"] = variaveis
                     dec.append({d.type: d})
-
+        self.is_variable = False
         return dec
 
     def atribuicao(self,atribuicao):
         # atribuicao: var "=" objeto ";"
+        self.is_variable = True
         atrib = []
+
         for a in atribuicao.children:
             if(type(a) == Tree):
-                atrib.append({a.data: self.visit(a)})
+                if a.data == "var":
+  
+                    self.variavel_atual = a.children[0]
+                    atrib.append({a.data: self.visit(a)})
+                    if a.children[0] not in self.info["variaveis"] and self.is_list == False:
+                        self.info["variaveis"][a.children[0]] = {
+                            "foi_declarada" : False,
+                            "foi_inicializada": True,
+                            "foi_utilizada": False,
+                            "foi_redeclarada": False,
+                            "tipo_da_variavel": "",
+                            "valores": []
+                        }
+                    if self.is_list:
+                        self.info["variaveis"][self.variavel_atual]["foi_inicializada"] = True
+                    self.is_list = False
+                elif a.data == "objeto":
+                    atrib.append({a.data: self.visit(a)})
             else:
                 if (type(a) == Token):
                     atrib.append({a.type: a})
+        self.is_variable = False
 
         return atrib
 
     def var(self,var):
         # var: VAR ("[" (expressao) "]")?
         variable = []
+        first = False
+        if len(var.children) > 1 and self.is_list == False:
+            self.is_list = True
+            first = True
         for v in var.children:
+
             if(type(v) == Tree):
                 variable.append({v.data: self.visit(v)})
+                variable_name = str(self.variavel_atual) +  "[" + str(self.list_value) + "]"
+                if variable_name in self.info["variaveis"]:
+                    self.info["variaveis"][variable_name]["foi_utilizada"] = True
+                else:
+                    self.info["variaveis"][variable_name] = {
+                        "foi_declarada" : False,
+                        "foi_inicializada": False,
+                        "foi_utilizada": False,
+                        "foi_redeclarada": False,
+                        "tipo_da_variavel": "",
+                        "valores": []
+                    }
+                self.list_value = ""
+                self.variavel_atual = variable_name
+
             else:
                 if (type(v) == Token):
+                    if self.is_list == False:
+                        if v.value not  in self.info["variaveis"]:
+                            self.info["variaveis"][v.value] = {
+                            "foi_declarada" : False,
+                            "foi_inicializada": False,
+                            "foi_utilizada": True,
+                            "foi_redeclarada": False,
+                            "tipo_da_variavel": "",
+                            "valores": []
+                            }
+                    else:
+                        if first == False:
+                            self.list_value += str(v.value)
+                        else:
+                            self.variavel_atual = str(v.value)
                     variable.append({v.type: v})
 
         return variable
@@ -187,8 +279,13 @@ class PtyCInterpreter(Interpreter):
         for o in objeto.children:
             if(type(o) == Tree):
                 obj.append({o.data: self.visit(o)})
+                if o.data == "expressao":
+                    self.info["variaveis"][self.variavel_atual]["valores"].append(self.expression)
+                    self.is_expression = False
+                    self.expression = ""
             else:
                 if (type(o) == Token):
+                    self.info["variaveis"][self.variavel_atual]["valores"].append(o.value)
                     obj.append({o.type: o})
 
         return obj
@@ -392,6 +489,15 @@ class PtyCInterpreter(Interpreter):
                 cond.append({c.data : self.visit(c)})
             else:
                 if (type(c) == Token):
+                    if (c.type == "VAR") and (c.value not in self.info["variaveis"]):
+                        self.info["variaveis"][c.value] = {
+                            "foi_declarada" : False,
+                            "foi_inicializada": False,
+                            "foi_utilizada": True,
+                            "foi_redeclarada": False,
+                            "tipo_da_variavel": "",
+                            "valores": []
+                            }
                     cond.append({c.type: c})
         return cond
 
@@ -406,11 +512,17 @@ class PtyCInterpreter(Interpreter):
         #           |expressao MAIS termo
         #           |expressao MENOS termo
         exp = []
+        if(len(expressao.children) > 1):
+            self.is_expression = True
         for e in expressao.children:
             if(type(e) == Tree):
                 exp.append({e.data: self.visit(e)})
             else:
                  if (type(e) == Token):
+                    if self.is_list:
+                        self.list_value += e.value
+                    else:
+                        self.expression += e.value
                     exp.append({e.type: e})
         return exp
 
@@ -419,11 +531,18 @@ class PtyCInterpreter(Interpreter):
         #       |termo VEZES fator
         #       |termo DIVIDIR fator
         ter = []
+
+        if(len(termo.children) > 1):
+            self.is_expression = True
         for t in termo.children:
             if(type(t) == Tree):
                 ter.append({t.data: self.visit(t)})
             else:
                 if (type(t) == Token):
+                    if self.is_list:
+                        self.list_value += t.value
+                    else:
+                        self.expression += t.value
                     ter.append({t.type: t})
         return ter
 
@@ -431,11 +550,18 @@ class PtyCInterpreter(Interpreter):
         # fator: atomo
         #       |fator ELEVADO atomo
         fat = []
+
+        if(len(fator.children) > 1):
+            self.is_expression = True
         for f in fator.children:
             if(type(f) == Tree):
                 fat.append({f.data: self.visit(f)})
             else:
                 if (type(f) == Token):
+                    if self.is_list:
+                        self.list_expression += f.value
+                    else:
+                        self.expression += f.value
                     fat.append({f.type: f})
         return fat
 
@@ -445,9 +571,23 @@ class PtyCInterpreter(Interpreter):
         ato = []
         for atomo in atomo.children:
             if(type(atomo) == Tree):
+                if atomo.data == "var":
+                    if atomo.children[0].value in self.info["variaveis"]:
+                        if self.info["variaveis"][atomo.children[0]]["foi_inicializada"] == True or self.info["variaveis"][atomo.children[0]]["foi_declarada"] == True:
+                            self.info["variaveis"][atomo.children[0]]["foi_utilizada"] = True
+                if self.is_expression == True:
+                    self.expression += atomo.children[0].value
                 ato.append({atomo.data: self.visit(atomo)})
             else:
                 if (type(atomo) == Token):
+                    if(self.is_list):
+                        self.list_value += str(atomo.value)
+                    else:
+                         if self.is_variable:
+                            if(not self.is_expression):
+                               self.info["variaveis"][self.variavel_atual]["valores"].append(atomo.value)
+                            else:
+                                self.expression += str(atomo.value)
                     ato.append({atomo.type: atomo})
         return ato
 

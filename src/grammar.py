@@ -4,7 +4,7 @@ statement: declaracao|atribuicao|selecao|repeticao|chamadafuncao|deffuncao|impor
 body: statementbody*
 statementbody: declaracao|atribuicao|selecao|repeticao|chamadafuncao|comentario
 
-declaracao: TIPO ((VAR ";")|atribuicao)
+declaracao: TIPO ((var ";")|atribuicao)
 
 atribuicao: var "=" objeto ";"
 var: VAR ("[" (expressao) "]")?

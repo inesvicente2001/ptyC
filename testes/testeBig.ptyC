@@ -1,6 +1,12 @@
 IMPORTA {en_i-de.lm}
 IMPORTA {en_i-delm}
 
+:- comentario 
+com multiplas linhas
+sc
+sss
+-:
+
 SE (v == 0 E h < p OU z-u>v ) {
     x =p*8+0-8/y[9];
 } SENAO {i[6]=0;}

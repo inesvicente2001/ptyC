@@ -1,0 +1,168 @@
+
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <title>ptyC(MUDAR TITULO)</title>
+        </head>
+        
+    <style>
+        .container {
+            background-color: #555555;
+            border: solid 1px black;
+            border-radius: 10px;
+            padding: 2em;
+            color: #FFFFFF;
+        }
+
+        .error {
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px dotted black;
+            color: red;
+        }
+        .code {
+            position: relative;
+            display: inline-block;
+        }
+        .error .errortext {
+            visibility: hidden;
+            width: 200px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 0;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -40px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .error .errortext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 20%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #555 transparent transparent transparent;
+        }
+        .error:hover .errortext {
+            visibility: visible;
+            opacity: 1;
+        }
+    
+        .comments {
+            position: relative;
+            display: inline-block;
+            color: #6A9955;
+        }
+        
+        .keywords {
+            position: relative;
+            display: inline-block;
+            color: #C586C0;
+        }
+        
+        .numbers {
+            position: relative;
+            display: inline-block;
+            color: #B5CEA8;
+        }
+        
+        .strings {
+            position: relative;
+            display: inline-block;
+            color: #CE9178;
+        }
+        
+        .functions {
+            position: relative;
+            display: inline-block;
+            color: #DCDCAA;
+        }
+        
+        .variables {
+            position: relative;
+            display: inline-block;
+            color: #9CDCFE;
+        }
+        
+        .parameters {
+            position: relative;
+            display: inline-block;
+            color: #D4D4D4;
+        }
+        
+        .imports {
+            position: relative;
+            display: inline-block;
+            color: #9CDCFE;
+        }
+        
+        .preprocessor {
+            position: relative;
+            display: inline-block;
+            color: #4EC9B0;
+        }
+        
+        .operators {
+            position: relative;
+            display: inline-block;
+            color: #D4D4D4;
+        }
+        
+        .classProperties {
+            position: relative;
+            display: inline-block;
+            color: #9CDCFE;
+        }
+        
+        .classMethods {
+            position: relative;
+            display: inline-block;
+            color: #DCDCAA;
+        }
+        
+        .tags {
+            position: relative;
+            display: inline-block;
+            color: #569CD6;
+        }
+        </style>
+        
+    <body>
+        <h2>Análise de código</h2>
+        <div class="container">
+            <p class="code">
+            <div class="tags">IMPORTA&nbsp</div><div class="preprocessor">en_i-de.lm</div>
+            </p>
+            <p class="code">
+            <div class="tags">IMPORTA&nbsp</div><div class="preprocessor">en_i-delm</div>
+            </p>
+                        <p class="code">
+                        <div class="comments">:-&nbsp</div><div class="comments">comentario </div>
+                        </p>
+                    <p class="code">
+                    <div class="comments">com multiplas linhas</div>
+                    </p>
+                    <p class="code">
+                    <div class="comments">sc</div>
+                    </p>
+                    <p class="code">
+                    <div class="comments">sss</div>
+                    </p>
+                    <p class="code">
+                    <div class="comments"></div><div class="comments">&nbsp-:</div>
+                    </p>
+                        <p class="code">
+                        <div class="comments">:-&nbsp</div><div class="comments"> ola </div><div class="comments">&nbsp-:</div>
+                        </p>
+        </div>
+    </body>
+    
+    </html>
+    

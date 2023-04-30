@@ -66,3 +66,19 @@ python3 src/ptyC.py
 - [] retorna
 - [x] importar
 - [x] comentario
+
+
+-------------------
+
+
+## HTML
+
+
+- declaracao[x]
+- atribuicao[x]
+- selecao[x] --> falta casos
+- repeticao[]
+- chamadafuncao[]
+- deffuncao[]
+- importar[x]
+- comentario[x]

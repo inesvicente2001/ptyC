@@ -1,0 +1,10 @@
+SE (v == 0 E FALSO OU z EM k ) {
+    :- comment -:
+    x =p*8+0-8/y[9];
+} SENAO {
+    i[6]=0; 
+    u = 0;
+    SE (FALSO){
+        u = 9;
+    } 
+}

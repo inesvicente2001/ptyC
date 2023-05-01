@@ -127,32 +127,6 @@
               {
                 "expressao": [
                   {
-                    "expressao": [
-                      {
-                        "termo": [
-                          {
-                            "fator": [
-                              {
-                                "atomo": [
-                                  {
-                                    "var": [
-                                      {
-                                        "VAR": "z"
-                                      }
-                                    ]
-                                  }
-                                ]
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "MENOS": "-"
-                  },
-                  {
                     "termo": [
                       {
                         "fator": [
@@ -161,7 +135,7 @@
                               {
                                 "var": [
                                   {
-                                    "VAR": "u"
+                                    "VAR": "z"
                                   }
                                 ]
                               }
@@ -578,6 +552,63 @@
       ]
     },
     {
+      "atribuicao": [
+        {
+          "var": [
+            {
+              "VAR": "x"
+            }
+          ]
+        },
+        {
+          "objeto": [
+            {
+              "expressao": [
+                {
+                  "termo": [
+                    {
+                      "fator": [
+                        {
+                          "atomo": [
+                            {
+                              "var": [
+                                {
+                                  "VAR": "y"
+                                },
+                                {
+                                  "expressao": [
+                                    {
+                                      "termo": [
+                                        {
+                                          "fator": [
+                                            {
+                                              "atomo": [
+                                                {
+                                                  "NUM": "9"
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "selecao": {
         "casos": [
           {
@@ -696,11 +727,7 @@
                                       {
                                         "atomo": [
                                           {
-                                            "var": [
-                                              {
-                                                "VAR": "u"
-                                              }
-                                            ]
+                                            "NUM": "99"
                                           }
                                         ]
                                       }
@@ -762,6 +789,20 @@
           }
         ]
       }
+    },
+    {
+      "declaracao": [
+        {
+          "TIPO": "Lista"
+        },
+        {
+          "var": [
+            {
+              "VAR": "u"
+            }
+          ]
+        }
+      ]
     },
     {
       "comentario": [

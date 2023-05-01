@@ -202,10 +202,11 @@ class PtyCInterpreter(Interpreter):
             else:
                 self.listinha += "),"
         elif self.is_expression:
-            if self.expression[-1] == ",":
-                self.expression = self.expression[:-1] +  "),"
-            else:
-                self.expression += "),"
+            if self.expression != "":
+                if self.expression[-1] == ",":
+                    self.expression = self.expression[:-1] +  "),"
+                else:
+                    self.expression += "),"
         elif self.is_tuplo:
             if self.tuplo_expression[-1] == ",":
                 self.tuplo_expression = self.tuplo_expression[:-1] +  "),"
@@ -314,13 +315,13 @@ class PtyCInterpreter(Interpreter):
             if(type(v) == Tree):
                 variable.append({v.data: self.visit(v)})
                 variable_name = str(self.variavel_atual[-1]) +  "[" + str(self.list_value) + "]"
-                if variable_name in self.info["variaveis"]:
-                    self.info["variaveis"][variable_name]["foi_utilizada"] = True
+                if self.variavel_atual[-1] in self.info["variaveis"]:
+                    self.info["variaveis"][self.variavel_atual[-1]]["foi_utilizada"] = True
                 else:
                     foi_utilizada = False
                     if self.is_objeto or self.is_lista or self.is_tuplo or self.expressao_counter > 0:
                         foi_utilizada = True
-                    self.info["variaveis"][variable_name] = {
+                    self.info["variaveis"][self.variavel_atual[-1]] = {
                         "foi_declarada" : False,
                         "foi_inicializada": False,
                         "foi_utilizada": foi_utilizada,
@@ -332,7 +333,7 @@ class PtyCInterpreter(Interpreter):
                     self.expression += variable_name
                     self.variavel_atual.pop()
                 else:
-                    self.variavel_atual.append(variable_name)
+                    self.variavel_atual.append(self.variavel_atual[-1])
 
                 self.list_value = ""
                 self.is_list = False
@@ -374,7 +375,7 @@ class PtyCInterpreter(Interpreter):
                         self.listinha += str(v.value) + ","
                     elif self.is_lista and self.is_list:
                         self.listinha += str(v.value) + "["
-                    if self.is_expressao and self.is_objeto:
+                    if self.is_expressao and self.is_objeto and self.variavel_atual[-1] in self.info["variaveis"]:
                         self.info["variaveis"][self.variavel_atual[-1]]["foi_inicializada"]= True
                     variable.append({v.type: v})
 

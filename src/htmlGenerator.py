@@ -46,6 +46,47 @@ def generateStyleCSS():
             border-bottom: 2px dotted white;
             color: red;
         }}
+
+
+        .warning {{
+            position: relative;
+            display: inline-block;
+            border-bottom: 2px dotted white;
+            color: #b6e0f7;
+        }}
+        .warning .warningtext {{
+            visibility: hidden;
+            width: fit-content;
+            background-color: #dddd2a;
+            border: solid 1.3px yellow;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -40px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }}
+        .warning .warningtext::after {{
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 20%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #555 transparent transparent transparent;
+        }}
+        .warning:hover .warningtext {{
+            visibility: visible;
+            opacity: 1;
+        }}
+
+
         .code {{
             position: relative;
             display: inline-block;
@@ -53,12 +94,13 @@ def generateStyleCSS():
         }}
         .error .errortext {{
             visibility: hidden;
-            width: 200px;
-            background-color: #555;
+            width: fit-content;
+            background-color: #c587c0;
+            border: solid 1.3px red;
             color: #fff;
             text-align: center;
             border-radius: 6px;
-            padding: 5px 0;
+            padding: 5px 5px;
             position: absolute;
             z-index: 1;
             bottom: 125%;
@@ -816,14 +858,7 @@ def generateVarHTML(variables,var,insideDec):
 
     html = """"""
 
-    if var[0]["VAR"] in variables:
-        if variables[var[0]["VAR"]]["foi_declarada"] == False:
-            html += f"""<div class="error">{var[0]["VAR"]}<span class="errortext">Variável não declarada</span>"""
-        else:
-            html += f"""<div class="variables">{var[0]["VAR"]}""" 
-    else:
-        print("Variavel nao esta na estrutura de dados",var[0]["VAR"])
-        html += f"""<div class="variables">{var[0]["VAR"]}""" 
+    html += f"""<div class="variables">{selector(variables,var[0],list(var[0].keys())[0])}""" 
 
 
     if len(var) > 1:
@@ -947,7 +982,18 @@ def selector(variables,line,type,factor=0,insideDec=False):
     elif type == "EM":
         body += f"""<div class="keywords">{line[type]}&nbsp</div>"""
     elif type == "VAR":
-        body += f"""<div class="variables">{line[type]}&nbsp</div>"""
+        #body += f"""<div class="variables">{line[type]}&nbsp</div>"""
+
+        if line[type] in variables:
+            if variables[line[type]]["foi_declarada"]==False:
+                body += f"""<div class="error">{line[type]}<span class="errortext">Variável não declarada!</span></div>"""
+            elif variables[line[type]]["foi_inicializada"]==False and variables[line[type]]["foi_utilizada"]==True:
+                body += f"""<div class="warning">{line[type]}<span class="warningtext">Variável não inicializada!</span></div>"""
+            else:
+                body += f"""<div class="variables">{line[type]}&nbsp</div>"""
+        else:
+            body += f"""<div class="variables">{line[type]}&nbsp</div>"""
+
     elif type == "body":
         body += generateBodyHTML(variables,line,factor)
     elif type == "senao":
@@ -1019,15 +1065,15 @@ def generateHTMLBody(code,variables):
 
 
 
-def htmlGenerator(code, infos):
+def htmlGenerator(code, variables):
     style = generateStyleCSS()
-    body = generateHTMLBody(code,infos)
+    body = generateHTMLBody(code,variables)
     html = generateHTML(body,style)
     return html
 
 
 if __name__ == '__main__':
-    CONFIG_TEST_PATH = os.path.join(APP_PATH, "../testesFiles/tree.json")
+    CONFIG_TEST_PATH = os.path.join(APP_PATH, "../tree.json")
     INFOS_PATH = os.path.join(APP_PATH, "../info.json")
     data = json.load(open(CONFIG_TEST_PATH, "r"))
     infos = json.load(open(INFOS_PATH, "r"))

@@ -7,19 +7,23 @@ sc
 sss
 -:
 
-SE (v == 0 E h < p OU z-u>v ) {
+SE (v == 0 E h < p OU z>v ) {
     x =p*8+0-8/y[9];
     funcaozinha(1,"hihi",9+5);
 } SENAO {i[6]=0;}
 Int r;
  g = [8,3];
 
+x = y[9];
+
 ESCOLHE (u) {
     CASO (8) {j=0;}
     CASO (4) {a=0;}
-    CASO (7) {j=u;}
+    CASO (7) {j=99;}
     CASO () {j=0;}
 }
+
+Lista u;
 
 :- ola -:
 

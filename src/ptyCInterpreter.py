@@ -53,10 +53,8 @@ class PtyCInterpreter(Interpreter):
         for statement in program.children:
             stat = self.visit(statement)
             self.programa["programa"].append(stat)
-        with open('info.json', 'w') as outfile:
-            json.dump(self.info, outfile, indent=2, ensure_ascii=False)
 
-        return self.programa
+        return self.programa, self.info
 
     def statement(self,statement):
         # statement: declaracao|atribuicao|selecao|repeticao|chamadafuncao|deffuncao|importar|comentario

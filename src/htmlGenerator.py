@@ -1072,17 +1072,4 @@ def htmlGenerator(code, variables):
     return html
 
 
-if __name__ == '__main__':
-    CONFIG_TEST_PATH = os.path.join(APP_PATH, "../tree.json")
-    INFOS_PATH = os.path.join(APP_PATH, "../info.json")
-    data = json.load(open(CONFIG_TEST_PATH, "r"))
-    infos = json.load(open(INFOS_PATH, "r"))
-    variables = infos["variaveis"]
-    code = data["programa"]
-    style = generateStyleCSS()
-    body = generateHTMLBody(code,variables)
-    html = generateHTML(body,style)
-    with open(os.path.join(APP_PATH, "../generatedHTML.html"), "w") as f:
-        f.write(html)
-        print("HTML file generated successfully!")
 

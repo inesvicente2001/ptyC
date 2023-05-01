@@ -40,14 +40,6 @@ def percorre (prog) :
     for p in prog :
         procurabody(p)
 
-def otimizacoes():
-    f = open('../testesFiles/tree.json', 'r+')
-    data = json.load(f)
-    f.close()
+def otimizacoes(code):
+    percorre(code["programa"])
     
-    percorre(data["programa"])
-    
-    f = open('../testesFiles/tree.json', 'w')
-    json.dump(data, f, indent=2, ensure_ascii=False)
-    
-    f.close()

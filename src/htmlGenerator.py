@@ -152,9 +152,9 @@ def generateCasosHTML(casos,factor):
         <span style="margin-left: {sizeIdentation}em;"></span>"""
     html += """
             <div class="keywords">ESCOLHE&nbsp</div>
-            <div class="comma">(</div>"""
+            <div class="symbols">(</div>"""
     html += selector(casos[0],"var",factor)
-    html += """<div class="comma">){</div></p>"""
+    html += """<div class="symbols">){</div></p>"""
 
     # caso
     html += selector(casos[1],"caso",factor+1)
@@ -171,7 +171,7 @@ def generateCasosHTML(casos,factor):
         <span style="margin-left: {sizeIdentation}em;"></span>"""
 
     html += """
-        <div class="comma">}</div>
+        <div class="symbols">}</div>
         </p>"""
 
 
@@ -191,8 +191,8 @@ def generateFinalCaseHTML(finalCase,factor):
         <span style="margin-left: {sizeIdentation}em;"></span>"""
     html += """
             <div class="keywords">CASO&nbsp</div>
-            <div class="comma">()</div>"""
-    html += """<div class="comma">{</div></p>"""
+            <div class="symbols">()</div>"""
+    html += """<div class="symbols">&nbsp{</div></p>"""
 
     html += selector(finalCase[0]["body"],"body",factor)
 
@@ -203,7 +203,7 @@ def generateFinalCaseHTML(finalCase,factor):
         html += f"""
         <span style="margin-left: {sizeIdentation}em;"></span>"""
     html += """
-            <div class="comma">}</div>
+            <div class="symbols">}</div>
             </p>"""
 
 
@@ -226,8 +226,8 @@ def generateCaseHTML(case,factor):
             <span style="margin-left: {sizeIdentation}em;"></span>"""
         html += f"""
                 <div class="keywords">CASO&nbsp</div>
-                <div class="comma">(</div>{selector(case[i],typeCase)}<div class="comma">)</div>"""
-        html += """<div class="comma">{</div></p>"""
+                <div class="symbols">(</div>{selector(case[i],typeCase)}<div class="symbols">)</div>"""
+        html += """<div class="symbols">&nbsp{</div></p>"""
 
         html += selector(case[i+1]["body"],"body",factor)
 
@@ -238,7 +238,7 @@ def generateCaseHTML(case,factor):
             html += f"""
             <span style="margin-left: {sizeIdentation}em;"></span>"""
         html += """
-                <div class="comma">}</div>
+                <div class="symbols">}</div>
                 </p>"""
 
 
@@ -258,9 +258,9 @@ def generateSeHTML(se,factor):
         <span style="margin-left: {sizeIdentation}em;"></span>"""
     html += """
             <div class="keywords">SE&nbsp</div>
-            <div class="comma">(</div>"""
+            <div class="symbols">(</div>"""
     html += selector(se,"logica",factor)
-    html += """<div class="comma">){</div></p>"""
+    html += """<div class="symbols">)&nbsp{</div></p>"""
 
     # body
     html += selector(se["body"],"body",factor)
@@ -275,7 +275,7 @@ def generateSeHTML(se,factor):
     # senao
     if "senao" in se:
         html += """
-            <div class="comma">}</div><div class="keywords">SENAO</div><div class="comma">{</div></p>"""
+            <div class="symbols">}</div><div class="keywords">SENAO</div><div class="symbols">&nbsp{</div></p>"""
         html += selector(se["senao"],"senao",factor)
 
         html += """
@@ -285,7 +285,7 @@ def generateSeHTML(se,factor):
             html += f"""
             <span style="margin-left: {sizeIdentation}em;"></span>"""
     html += """
-        <div class="comma">}</div>
+        <div class="symbols">}</div>
         </p>"""
             
 
@@ -373,9 +373,9 @@ def generateWhileHTML(content,factor):
         <span style="margin-left: {sizeIdentation}em;"></span>"""
     html += """
             <div class="keywords">ENQ&nbsp</div>
-            <div class="comma">(</div>"""
+            <div class="symbols">(</div>"""
     html += selector(content[0],"logica",factor)
-    html += """<div class="comma">){</div></p>"""
+    html += """<div class="symbols">)&nbsp{</div></p>"""
 
     # body
     html += selector(content[1]["body"],"body",factor)
@@ -389,7 +389,7 @@ def generateWhileHTML(content,factor):
             
 
     html += """
-        <div class="comma">}</div>
+        <div class="symbols">}</div>
         </p>"""
 
     return html
@@ -406,7 +406,7 @@ def generateForHTML(content,factor):
 
     html += """
             <div class="keywords">PARA&nbsp</div>
-            <div class="comma">(</div>"""
+            <div class="symbols">(</div>"""
     
     # var
     html += selector(content[0],"var",factor)
@@ -417,7 +417,7 @@ def generateForHTML(content,factor):
     typeVar = list(content[1].keys())[0]
     html += selector(content[1],typeVar,factor)
 
-    html += """<div class="comma">){</div></p>"""
+    html += """<div class="symbols">)&nbsp{</div></p>"""
 
     # body
     html += selector(content[2]["body"],"body",factor)
@@ -430,7 +430,7 @@ def generateForHTML(content,factor):
         <span style="margin-left: {sizeIdentation}em;"></span>"""
 
     html += """
-        <div class="comma">}</div>
+        <div class="symbols">}</div>
         </p>"""
 
 
@@ -458,7 +458,7 @@ def generateRepeatHTML(content,factor):
         <span style="margin-left: {sizeIdentation}em;"></span>"""
     html += """
             <div class="keywords">REPETIR&nbsp</div>
-            <div class="comma">{</div></p>"""
+            <div class="symbols">&nbsp{</div></p>"""
     # body
     html += selector(content[0]["body"],"body",factor)
     
@@ -466,11 +466,11 @@ def generateRepeatHTML(content,factor):
         sizeIdentation = factor*1.5
         html += f"""
         <span style="margin-left: {sizeIdentation}em;"></span>"""
-    html += """<div class="comma">}&nbsp<div class="keywords">ATE</div>&nbsp(</div>"""
+    html += """<div class="symbols">}&nbsp<div class="keywords">ATE</div>&nbsp(</div>"""
 
     # logica
     html += selector(content[1],"logica",factor)
-    html += """<div class="comma">)</div></p>"""
+    html += """<div class="symbols">)</div></p>"""
 
     html += """
             <p class="code">"""
@@ -531,7 +531,7 @@ def generateAssignmentHTML(assignment, factor, insideDec):
                 {selector(var,"var")}
                 <div class="operators">=&nbsp</div>
                 {selector(assigned,"objeto")}
-                <div class="comma">;</div>
+                <div class="symbols">;</div>
                 </p>
                 """
     else:
@@ -539,7 +539,7 @@ def generateAssignmentHTML(assignment, factor, insideDec):
                 {selector(var,"var")}
                 <div class="operators">=&nbsp</div>
                 {selector(assigned,"objeto")}
-                <div class="comma">;</div>
+                <div class="symbols">;</div>
                 </p>
                 """
         
@@ -549,54 +549,54 @@ def generateAssignmentHTML(assignment, factor, insideDec):
 
 def generateArrayHTML(array):
     html = """
-    <div class="comma">{</div>
+    <div class="symbols">&nbsp{</div>
     """
 
     if len(array) > 0:
         for element in array[0:-1]:
             html += f"""{selector(element,list(element.keys())[0])}"""
-            html += f"""<div class="comma">&nbsp,&nbsp</div>"""
+            html += f"""<div class="symbols">&nbsp,&nbsp</div>"""
 
         html += f"""{selector(array[-1],list(array[-1].keys())[0])}"""
 
     html += """
-    <div class="comma">}</div>
+    <div class="symbols">}</div>
     """
 
     return html
 
 def generateTupleHTML(tuple):
     html = """
-    <div class="comma">(</div>
+    <div class="symbols">(</div>
     """
 
     if len(tuple) > 0:
         for element in tuple[0:-1]:
             html += f"""{selector(element,list(element.keys())[0])}"""
-            html += f"""<div class="comma">&nbsp,&nbsp</div>"""
+            html += f"""<div class="symbols">&nbsp,&nbsp</div>"""
 
         html += f"""{selector(tuple[-1],list(tuple[-1].keys())[0])}"""
 
     html += """
-    <div class="comma">)</div>
+    <div class="symbols">)</div>
     """
 
     return html
 
 def generateListHTML(lst):
     html = """
-    <div class="comma">[</div>
+    <div class="symbols">[</div>
     """
 
     if len(lst) > 0:
         for element in lst[0:-1]:
             html += f"""{selector(element,list(element.keys())[0])}"""
-            html += f"""<div class="comma">&nbsp,&nbsp</div>"""
+            html += f"""<div class="symbols">&nbsp,&nbsp</div>"""
 
         html += f"""{selector(lst[-1],list(lst[-1].keys())[0])}"""
 
     html += """
-    <div class="comma">]</div>
+    <div class="symbols">]</div>
     """
 
     return html
@@ -625,18 +625,18 @@ def generateArgumentsHTML(argumentos):
     html = """"""
 
     html += """
-    <div class="comma">(</div>
+    <div class="symbols">(</div>
     """
 
     if len(argumentos) > 0:
         for argument in argumentos[0:-1]:
             html += selector(argument,list(argument.keys())[0])
-            html += f"""<div class="comma">&nbsp,&nbsp</div>"""
+            html += f"""<div class="symbols">&nbsp,&nbsp</div>"""
 
         html += selector(argumentos[-1],list(argumentos[-1].keys())[0])
 
     html += """
-    <div class="comma">)</div>
+    <div class="symbols">)</div>
     """
 
     return html
@@ -649,13 +649,13 @@ def generateConsHTML(cons):
 
     html += """
     <div class="functions">cons</div>
-    <div class="comma">(&nbsp</div>
+    <div class="symbols">(&nbsp</div>
     """
 
     html += selector(cons[0],list(cons[0].keys())[0])
 
     html += """
-    <div class="comma">)&nbsp</div>
+    <div class="symbols">)&nbsp</div>
     """
 
     return html
@@ -665,13 +665,13 @@ def generateSnocHTML(snoc):
 
     html += """
     <div class="functions">snoc</div>
-    <div class="comma">(&nbsp</div>
+    <div class="symbols">(&nbsp</div>
     """
 
     html += selector(snoc[0],list(snoc[0].keys())[0])
 
     html += """
-    <div class="comma">)&nbsp</div>
+    <div class="symbols">)&nbsp</div>
     """
 
     return html
@@ -681,13 +681,13 @@ def generateHeadHTML(head):
 
     html = """
     <div class="functions">head</div>
-    <div class="comma">(&nbsp</div>
+    <div class="symbols">(&nbsp</div>
     """
 
     html += selector(head[0],list(head[0].keys())[0])
 
     html += """
-    <div class="comma">)&nbsp</div>
+    <div class="symbols">)&nbsp</div>
     """
 
     return html
@@ -697,13 +697,13 @@ def generateTailHTML(tail):
 
     html = """
     <div class="functions">tail</div>
-    <div class="comma">(&nbsp</div>
+    <div class="symbols">(&nbsp</div>
     """
 
     html += selector(tail[0],list(tail[0].keys())[0])
 
     html += """
-    <div class="comma">)&nbsp</div>
+    <div class="symbols">)&nbsp</div>
     """
 
 
@@ -724,7 +724,7 @@ def generateArgSCHTML(args):
     html += selector(args[0],list(args[0].keys())[0])
 
     html += """
-    <div class="comma">&nbsp,&nbsp</div>
+    <div class="symbols">&nbsp,&nbsp</div>
     """
 
     html += selector(args[1],list(args[1].keys())[0])
@@ -747,7 +747,7 @@ def generateFunctionDefHTML(functionDef,factor):
     html += selector(functionDef[2],list(functionDef[2].keys())[0])
 
     html += """
-            <div class="comma">{</div>
+            <div class="symbols">&nbsp{</div>
             </p>
             """
     
@@ -765,12 +765,12 @@ def generateFunctionDefHTML(functionDef,factor):
         html += selector(functionDef[4],list(functionDef[4].keys())[0])
 
         html += """
-            <div class="comma">;</div>
+            <div class="symbols">;</div>
             </p>"""
 
     html += """
             <p class="code">
-            <div class="comma">}</div>
+            <div class="symbols">}</div>
             </p>"""    
 
 
@@ -799,7 +799,7 @@ def generateFunctionCallHTML(functionCall,factor):
     html += f"""{selector(functionCall[0],list(functionCall[0].keys())[0])}"""
 
     html += """
-            <div class="comma">;</div>
+            <div class="symbols">;</div>
             </p>"""
 
     return html
@@ -814,7 +814,7 @@ def generateVarHTML(var,insideDec):
         html += f"""<div class="classMethods">[&nbsp</div><div class="operators">{selector(expression,"expressao")}</div><div class="classMethods">]</div>"""
 
     if insideDec:
-        html += """<div class="comma">;</div>"""
+        html += """<div class="symbols">;</div>"""
 
 
     html += """&nbsp</div>"""
@@ -964,7 +964,7 @@ def selector(line,type,factor=0,insideDec=False):
     elif type == "argumentos":
         body += generateArgumentsHTML(line[type])
     elif type == "FUNC":
-        body += f"""<div class="functions">{line[type]}&nbsp</div>"""
+        body += f"""<div class="functions">{line[type]}</div>"""
     elif type == "argumentosc":
         body += generateArgSCHTML(line[type])
     elif type == "argumentosh":
@@ -1000,7 +1000,7 @@ def generateHTMLBody(code):
 
 
 if __name__ == '__main__':
-    CONFIG_TEST_PATH = os.path.join(APP_PATH, "../tree.json")
+    CONFIG_TEST_PATH = os.path.join(APP_PATH, "../testesFiles/tree.json")
     data = json.load(open(CONFIG_TEST_PATH, "r"))
     code = data["programa"]
     style = generateStyleCSS()

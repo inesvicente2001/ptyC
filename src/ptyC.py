@@ -7,7 +7,7 @@ import os
 from otimizacoes import otimizacoes
 
 APP_PATH = os.path.dirname(os.path.abspath(__file__))
-CONFIG_PATH = os.path.join(APP_PATH, "../testes/se.ptyC")
+CONFIG_PATH = os.path.join(APP_PATH, "../testes/otimizacoes.ptyC")
 
 
 frase = open(CONFIG_PATH, "r").read()
@@ -25,10 +25,13 @@ data = PtyCInterpreter().visit(parse_tree)
 
 #print("data: ", data)
 
+
+# otimizacoes
+otimizacoes(data)
+
+
 # data in json file
-with open('../testesFiles/tree.json', 'w') as outfile:
+with open('testesFiles/tree.json', 'w') as outfile:
     json.dump(data, outfile, indent=2, ensure_ascii=False)
 
 pydot__tree_to_png(parse_tree, "../tree.png")
-
-otimizacoes()

@@ -39,32 +39,32 @@ python3 src/ptyC.py
 - [x] termo
 - [x] fator
 - [x] atomo
-- [] selecao
+- [x] selecao
 - [x] se
 - [x] logica
 - [x] condicao
 - [x] logico
 - [x] senao
-- [] casos (***REVER : ASPETO ESTRANHO***)
-- [] caso (***REVER : ASPETO ESTRANHO***)
-- [] casofinal (***REVER : ASPETO ESTRANHO***)
+- [x] casos 
+- [x] caso 
+- [x] casofinal 
 - [x] repeticao
 - [x] enquanto
 - [x] repetir
 - [x] para
-- [] varlista
-- [] chamadafuncao
-- [] funcao
-- [] cons
-- [] argumentosc
-- [] snoc
-- [] head
-- [] argumentosh
-- [] tail
-- [] func
-- [] argumentos
-- [] deffuncao
-- [] retorna
+- [x] varlista
+- [x] chamadafuncao
+- [x] funcao
+- [x] cons
+- [x] argumentosc
+- [x] snoc
+- [x] head
+- [x] argumentosh
+- [x] tail
+- [x] func
+- [x] argumentos
+- [x] deffuncao
+- [x] retorna
 - [x] importar
 - [x] comentario
 

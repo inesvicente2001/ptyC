@@ -9,6 +9,7 @@ sss
 
 SE (v == 0 E h < p OU z-u>v ) {
     x =p*8+0-8/y[9];
+    funcaozinha(1,"hihi",9+5);
 } SENAO {i[6]=0;}
 Int r;
  g = [8,3];
@@ -23,15 +24,22 @@ ESCOLHE (u) {
 :- ola -:
 
 DEF Tuplo headg(o,k,k,ki) {
-    ENQ (5 EM p) {  }
+    ENQ (5 EM p) { funcaozinha(1,"hihi",9+5); }
 
     REPETIR { j=0; } ATE (r < 4)
 
     PARA (i DE [1,2,"r"]) { k[8] = 9 + jd; }
 }
 
+
+DEF Lista retorno() {
+    RETORNA (h,[8,9,8]);
+}
+
 head(p);
+
+Array a = {};
 
 tail(s);
 
-c = [h,fun(),k];
+c = [h,fun(),ui(8,"33") ,tail([8,9]),head(u), cons(8,[9,8]),snoc(7+7,u) ,k];

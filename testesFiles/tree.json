@@ -1,36 +1,1164 @@
 {
   "programa": [
     {
+      "importar": "en_i-de.lm"
+    },
+    {
+      "importar": "en_i-delm"
+    },
+    {
       "selecao": {
-        "casos": [
-          {
-            "var": [
+        "se": {
+          "logica": [
+            [
               {
-                "VAR": "u"
-              }
-            ]
-          },
-          {
-            "caso": [
-              {
-                "STRING": "\"HHHHH\""
+                "expressao": [
+                  {
+                    "termo": [
+                      {
+                        "fator": [
+                          {
+                            "atomo": [
+                              {
+                                "var": [
+                                  {
+                                    "VAR": "v"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
               },
               {
-                "body": [
+                "SINAL": "=="
+              },
+              {
+                "expressao": [
                   {
-                    "comentario": [
-                      " nao comento "
+                    "termo": [
+                      {
+                        "fator": [
+                          {
+                            "atomo": [
+                              {
+                                "NUM": "0"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            {
+              "logico": " E "
+            },
+            [
+              {
+                "expressao": [
+                  {
+                    "termo": [
+                      {
+                        "fator": [
+                          {
+                            "atomo": [
+                              {
+                                "var": [
+                                  {
+                                    "VAR": "h"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "SINAL": "<"
+              },
+              {
+                "expressao": [
+                  {
+                    "termo": [
+                      {
+                        "fator": [
+                          {
+                            "atomo": [
+                              {
+                                "var": [
+                                  {
+                                    "VAR": "p"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            {
+              "logico": " OU "
+            },
+            [
+              {
+                "expressao": [
+                  {
+                    "expressao": [
+                      {
+                        "termo": [
+                          {
+                            "fator": [
+                              {
+                                "atomo": [
+                                  {
+                                    "var": [
+                                      {
+                                        "VAR": "z"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
                     ]
                   },
                   {
-                    "atribuicao": [
+                    "MENOS": "-"
+                  },
+                  {
+                    "termo": [
                       {
-                        "var": [
+                        "fator": [
                           {
-                            "VAR": "a"
+                            "atomo": [
+                              {
+                                "var": [
+                                  {
+                                    "VAR": "u"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "SINAL": ">"
+              },
+              {
+                "expressao": [
+                  {
+                    "termo": [
+                      {
+                        "fator": [
+                          {
+                            "atomo": [
+                              {
+                                "var": [
+                                  {
+                                    "VAR": "v"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          ],
+          "body": [
+            {
+              "comentario": [
+                " comment "
+              ]
+            },
+            {
+              "atribuicao": [
+                {
+                  "var": [
+                    {
+                      "VAR": "x"
+                    }
+                  ]
+                },
+                {
+                  "objeto": [
+                    {
+                      "expressao": [
+                        {
+                          "expressao": [
+                            {
+                              "expressao": [
+                                {
+                                  "termo": [
+                                    {
+                                      "termo": [
+                                        {
+                                          "fator": [
+                                            {
+                                              "atomo": [
+                                                {
+                                                  "var": [
+                                                    {
+                                                      "VAR": "p"
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "VEZES": "*"
+                                    },
+                                    {
+                                      "fator": [
+                                        {
+                                          "atomo": [
+                                            {
+                                              "NUM": "8"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "MAIS": "+"
+                            },
+                            {
+                              "termo": [
+                                {
+                                  "fator": [
+                                    {
+                                      "atomo": [
+                                        {
+                                          "NUM": "0"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "MENOS": "-"
+                        },
+                        {
+                          "termo": [
+                            {
+                              "termo": [
+                                {
+                                  "fator": [
+                                    {
+                                      "atomo": [
+                                        {
+                                          "NUM": "8"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "DIVIDIR": "/"
+                            },
+                            {
+                              "fator": [
+                                {
+                                  "atomo": [
+                                    {
+                                      "var": [
+                                        {
+                                          "VAR": "y"
+                                        },
+                                        {
+                                          "expressao": [
+                                            {
+                                              "termo": [
+                                                {
+                                                  "fator": [
+                                                    {
+                                                      "atomo": [
+                                                        {
+                                                          "NUM": "9"
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "repeticao": {
+                "repetir": [
+                  {
+                    "body": [
+                      {
+                        "selecao": {
+                          "se": {
+                            "logica": [
+                              [
+                                {
+                                  "expressao": [
+                                    {
+                                      "termo": [
+                                        {
+                                          "fator": [
+                                            {
+                                              "atomo": [
+                                                {
+                                                  "var": [
+                                                    {
+                                                      "VAR": "v"
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "SINAL": "=="
+                                },
+                                {
+                                  "expressao": [
+                                    {
+                                      "termo": [
+                                        {
+                                          "fator": [
+                                            {
+                                              "atomo": [
+                                                {
+                                                  "NUM": "0"
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ],
+                              {
+                                "logico": " E "
+                              },
+                              [
+                                {
+                                  "expressao": [
+                                    {
+                                      "termo": [
+                                        {
+                                          "fator": [
+                                            {
+                                              "atomo": [
+                                                {
+                                                  "var": [
+                                                    {
+                                                      "VAR": "h"
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            ],
+                            "body": [
+                              {
+                                "selecao": {
+                                  "se": {
+                                    "logica": [
+                                      [
+                                        {
+                                          "expressao": [
+                                            {
+                                              "termo": [
+                                                {
+                                                  "fator": [
+                                                    {
+                                                      "atomo": [
+                                                        {
+                                                          "var": [
+                                                            {
+                                                              "VAR": "u"
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    ],
+                                    "body": [
+                                      {
+                                        "atribuicao": [
+                                          {
+                                            "var": [
+                                              {
+                                                "VAR": "x"
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "objeto": [
+                                              {
+                                                "expressao": [
+                                                  {
+                                                    "expressao": [
+                                                      {
+                                                        "expressao": [
+                                                          {
+                                                            "termo": [
+                                                              {
+                                                                "termo": [
+                                                                  {
+                                                                    "fator": [
+                                                                      {
+                                                                        "atomo": [
+                                                                          {
+                                                                            "var": [
+                                                                              {
+                                                                                "VAR": "p"
+                                                                              }
+                                                                            ]
+                                                                          }
+                                                                        ]
+                                                                      }
+                                                                    ]
+                                                                  }
+                                                                ]
+                                                              },
+                                                              {
+                                                                "VEZES": "*"
+                                                              },
+                                                              {
+                                                                "fator": [
+                                                                  {
+                                                                    "atomo": [
+                                                                      {
+                                                                        "NUM": "8"
+                                                                      }
+                                                                    ]
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        ]
+                                                      },
+                                                      {
+                                                        "MAIS": "+"
+                                                      },
+                                                      {
+                                                        "termo": [
+                                                          {
+                                                            "fator": [
+                                                              {
+                                                                "atomo": [
+                                                                  {
+                                                                    "NUM": "0"
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "MENOS": "-"
+                                                  },
+                                                  {
+                                                    "termo": [
+                                                      {
+                                                        "termo": [
+                                                          {
+                                                            "fator": [
+                                                              {
+                                                                "atomo": [
+                                                                  {
+                                                                    "NUM": "8"
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        ]
+                                                      },
+                                                      {
+                                                        "DIVIDIR": "/"
+                                                      },
+                                                      {
+                                                        "fator": [
+                                                          {
+                                                            "atomo": [
+                                                              {
+                                                                "var": [
+                                                                  {
+                                                                    "VAR": "y"
+                                                                  },
+                                                                  {
+                                                                    "expressao": [
+                                                                      {
+                                                                        "termo": [
+                                                                          {
+                                                                            "fator": [
+                                                                              {
+                                                                                "atomo": [
+                                                                                  {
+                                                                                    "NUM": "9"
+                                                                                  }
+                                                                                ]
+                                                                              }
+                                                                            ]
+                                                                          }
+                                                                        ]
+                                                                      }
+                                                                    ]
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ],
+                                    "senao": [
+                                      [
+                                        {
+                                          "atribuicao": [
+                                            {
+                                              "var": [
+                                                {
+                                                  "VAR": "u"
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "objeto": [
+                                                {
+                                                  "expressao": [
+                                                    {
+                                                      "termo": [
+                                                        {
+                                                          "fator": [
+                                                            {
+                                                              "atomo": [
+                                                                {
+                                                                  "NUM": "0"
+                                                                }
+                                                              ]
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    ]
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "logica": [
+                      [
+                        {
+                          "expressao": [
+                            {
+                              "termo": [
+                                {
+                                  "fator": [
+                                    {
+                                      "atomo": [
+                                        {
+                                          "var": [
+                                            {
+                                              "VAR": "r"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "SINAL": "<"
+                        },
+                        {
+                          "expressao": [
+                            {
+                              "termo": [
+                                {
+                                  "fator": [
+                                    {
+                                      "atomo": [
+                                        {
+                                          "NUM": "4"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "declaracao": [
+        {
+          "TIPO": "Int"
+        },
+        {
+          "var": [
+            {
+              "VAR": "r"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "atribuicao": [
+        {
+          "var": [
+            {
+              "VAR": "g"
+            }
+          ]
+        },
+        {
+          "objeto": [
+            {
+              "lista": [
+                {
+                  "objeto": [
+                    {
+                      "expressao": [
+                        {
+                          "termo": [
+                            {
+                              "fator": [
+                                {
+                                  "atomo": [
+                                    {
+                                      "NUM": "8"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "objeto": [
+                    {
+                      "expressao": [
+                        {
+                          "termo": [
+                            {
+                              "fator": [
+                                {
+                                  "atomo": [
+                                    {
+                                      "NUM": "3"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "comentario": [
+        " isto é um comentario",
+        "com enters "
+      ]
+    },
+    {
+      "chamadafuncao": [
+        {
+          "funcao": [
+            {
+              "head": [
+                {
+                  "argumentosh": [
+                    {
+                      "VAR": "p"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chamadafuncao": [
+        {
+          "funcao": [
+            {
+              "tail": [
+                {
+                  "argumentosh": [
+                    {
+                      "VAR": "s"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "atribuicao": [
+        {
+          "var": [
+            {
+              "VAR": "c"
+            }
+          ]
+        },
+        {
+          "objeto": [
+            {
+              "lista": [
+                {
+                  "objeto": [
+                    {
+                      "expressao": [
+                        {
+                          "termo": [
+                            {
+                              "fator": [
+                                {
+                                  "atomo": [
+                                    {
+                                      "var": [
+                                        {
+                                          "VAR": "h"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "objeto": [
+                    {
+                      "funcao": [
+                        {
+                          "func": [
+                            {
+                              "FUNC": "fun"
+                            },
+                            {
+                              "argumentos": []
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "objeto": [
+                    {
+                      "expressao": [
+                        {
+                          "termo": [
+                            {
+                              "fator": [
+                                {
+                                  "atomo": [
+                                    {
+                                      "var": [
+                                        {
+                                          "VAR": "k"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "deffuncao": [
+        {
+          "TIPO": "Tuplo"
+        },
+        {
+          "FUNC": "headg"
+        },
+        {
+          "argumentos": [
+            {
+              "objeto": [
+                {
+                  "expressao": [
+                    {
+                      "termo": [
+                        {
+                          "fator": [
+                            {
+                              "atomo": [
+                                {
+                                  "var": [
+                                    {
+                                      "VAR": "o"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "objeto": [
+                {
+                  "expressao": [
+                    {
+                      "termo": [
+                        {
+                          "fator": [
+                            {
+                              "atomo": [
+                                {
+                                  "var": [
+                                    {
+                                      "VAR": "k"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "objeto": [
+                {
+                  "expressao": [
+                    {
+                      "termo": [
+                        {
+                          "fator": [
+                            {
+                              "atomo": [
+                                {
+                                  "var": [
+                                    {
+                                      "VAR": "k"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "objeto": [
+                {
+                  "expressao": [
+                    {
+                      "termo": [
+                        {
+                          "fator": [
+                            {
+                              "atomo": [
+                                {
+                                  "var": [
+                                    {
+                                      "VAR": "ki"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "body": [
+            {
+              "repeticao": {
+                "enquanto": [
+                  {
+                    "logica": [
+                      [
+                        {
+                          "expressao": [
+                            {
+                              "termo": [
+                                {
+                                  "fator": [
+                                    {
+                                      "atomo": [
+                                        {
+                                          "NUM": "5"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "EM": " EM "
+                        },
+                        {
+                          "VAR": "p"
+                        }
+                      ]
+                    ]
+                  },
+                  {
+                    "body": []
+                  }
+                ]
+              }
+            },
+            {
+              "repeticao": {
+                "para": [
+                  {
+                    "var": [
+                      {
+                        "VAR": "i"
+                      }
+                    ]
+                  },
+                  {
+                    "varlista": [
+                      {
+                        "lista": [
+                          {
+                            "objeto": [
+                              {
+                                "expressao": [
+                                  {
+                                    "termo": [
+                                      {
+                                        "fator": [
+                                          {
+                                            "atomo": [
+                                              {
+                                                "NUM": "1"
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
                           },
                           {
-                            "expressao": [
+                            "objeto": [
+                              {
+                                "expressao": [
+                                  {
+                                    "termo": [
+                                      {
+                                        "fator": [
+                                          {
+                                            "atomo": [
+                                              {
+                                                "NUM": "2"
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "objeto": [
+                              {
+                                "STRING": "\"r\""
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "body": [
+                      {
+                        "atribuicao": [
+                          {
+                            "var": [
+                              {
+                                "VAR": "k"
+                              },
                               {
                                 "expressao": [
                                   {
@@ -49,20 +1177,47 @@
                                     ]
                                   }
                                 ]
-                              },
+                              }
+                            ]
+                          },
+                          {
+                            "objeto": [
                               {
-                                "MAIS": "+"
-                              },
-                              {
-                                "termo": [
+                                "expressao": [
                                   {
-                                    "fator": [
+                                    "expressao": [
                                       {
-                                        "atomo": [
+                                        "termo": [
                                           {
-                                            "var": [
+                                            "fator": [
                                               {
-                                                "VAR": "j"
+                                                "atomo": [
+                                                  {
+                                                    "NUM": "9"
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "MAIS": "+"
+                                  },
+                                  {
+                                    "termo": [
+                                      {
+                                        "fator": [
+                                          {
+                                            "atomo": [
+                                              {
+                                                "var": [
+                                                  {
+                                                    "VAR": "jd"
+                                                  }
+                                                ]
                                               }
                                             ]
                                           }
@@ -75,16 +1230,48 @@
                             ]
                           }
                         ]
-                      },
-                      {
-                        "objeto": [
-                          {
-                            "STRING": "\"kkkk\""
-                          }
-                        ]
                       }
                     ]
-                  },
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "retorna": [
+            {
+              "objeto": [
+                {
+                  "condicao": [
+                    {
+                      "BOOL": "FALSO"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "selecao": {
+        "casos": [
+          {
+            "var": [
+              {
+                "VAR": "u"
+              }
+            ]
+          },
+          {
+            "caso": [
+              {
+                "NUM": "8"
+              },
+              {
+                "body": [
                   {
                     "atribuicao": [
                       {
@@ -105,7 +1292,7 @@
                                       {
                                         "atomo": [
                                           {
-                                            "NUM": "1"
+                                            "NUM": "0"
                                           }
                                         ]
                                       }

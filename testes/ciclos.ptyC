@@ -1,1 +1,13 @@
-ENQ (5 EM p) { j=0; }
+ENQ (5 EM p) { j=0;
+    ENQ (5 EM p) { j=0; }
+}
+
+REPETIR { u = u * 2 + y; 
+REPETIR { u = u * 2 + y; } ATE (r < 5)} ATE (r < 4)
+
+PARA (i DE l) { i = "ola";
+PARA ( d DE ["U","V"]){
+    l = 7;
+    REPETIR { u = u * 2 + y; 
+REPETIR { u = u * 2 + y; } ATE (r < 5)} ATE (r < 4)
+} }

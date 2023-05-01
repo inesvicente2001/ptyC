@@ -7,10 +7,12 @@ import os
 from otimizacoes import otimizacoes
 
 APP_PATH = os.path.dirname(os.path.abspath(__file__))
-CONFIG_PATH = os.path.join(APP_PATH, "../testes/testeBig.ptyC")
+CONFIG_PATH = os.path.join(APP_PATH, "../testes/se.ptyC")
 
 
 frase = open(CONFIG_PATH, "r").read()
+
+
 
 p = Lark(grammar, start="program")
 

@@ -140,6 +140,110 @@ def generateCommentHTML(comment, factor):
     return html
     
 
+def generateCasosHTML(casos,factor):
+    html = """"""
+
+    # var
+    html += """
+            <p class="code">"""
+    if factor > 0:
+        sizeIdentation = factor*1.5
+        html += f"""
+        <span style="margin-left: {sizeIdentation}em;"></span>"""
+    html += """
+            <div class="keywords">ESCOLHE&nbsp</div>
+            <div class="comma">(</div>"""
+    html += selector(casos[0],"var",factor)
+    html += """<div class="comma">){</div></p>"""
+
+    # caso
+    html += selector(casos[1],"caso",factor+1)
+ 
+    # casofinal
+    html += selector(casos[2],"casofinal",factor+1)
+ 
+
+    html += """
+        <p class="code">"""
+    if factor > 0:
+        sizeIdentation = factor*1.5
+        html += f"""
+        <span style="margin-left: {sizeIdentation}em;"></span>"""
+
+    html += """
+        <div class="comma">}</div>
+        </p>"""
+
+
+
+    return html
+
+
+def generateFinalCaseHTML(finalCase,factor):
+    
+    html = """"""
+
+    html += """
+            <p class="code">"""
+    if factor > 0:
+        sizeIdentation = factor*1.5
+        html += f"""
+        <span style="margin-left: {sizeIdentation}em;"></span>"""
+    html += """
+            <div class="keywords">CASO&nbsp</div>
+            <div class="comma">()</div>"""
+    html += """<div class="comma">{</div></p>"""
+
+    html += selector(finalCase[0]["body"],"body",factor)
+
+    html += """
+            <p class="code">"""
+    if factor > 0:
+        sizeIdentation = factor*1.5
+        html += f"""
+        <span style="margin-left: {sizeIdentation}em;"></span>"""
+    html += """
+            <div class="comma">}</div>
+            </p>"""
+
+
+    return html
+
+
+def generateCaseHTML(case,factor):
+    
+    html = """"""
+
+    for i in range(0, len(case), 2):
+
+        typeCase = list(case[i].keys())[0]
+
+        html += """
+            <p class="code">"""
+        if factor > 0:
+            sizeIdentation = factor*1.5
+            html += f"""
+            <span style="margin-left: {sizeIdentation}em;"></span>"""
+        html += f"""
+                <div class="keywords">CASO&nbsp</div>
+                <div class="comma">(</div>{selector(case[i],typeCase)}<div class="comma">)</div>"""
+        html += """<div class="comma">{</div></p>"""
+
+        html += selector(case[i+1]["body"],"body",factor)
+
+        html += """
+                <p class="code">"""
+        if factor > 0:
+            sizeIdentation = factor*1.5
+            html += f"""
+            <span style="margin-left: {sizeIdentation}em;"></span>"""
+        html += """
+                <div class="comma">}</div>
+                </p>"""
+
+
+    return html
+
 
 def generateSeHTML(se,factor):
 
@@ -241,9 +345,137 @@ def generateSelectionHTML(selection, factor):
         if list(selection.keys())[0] == "se":
             html += generateSeHTML(selection["se"],factor)
         elif list(selection.keys())[0] == "casos":
-            pass
-    else:
+            html += generateCasosHTML(selection["casos"],factor)
+    else:    
         print("ERROR: Invalid selection type")
+
+    return html
+
+def generateRepetitionHTML(repetition,factor):
+    html = """"""
+
+    repetitionType = list(repetition.keys())[0]
+    
+    html += selector(repetition,repetitionType,factor)
+
+    return html
+
+
+def generateWhileHTML(content,factor):
+    html = """"""
+
+    # logica
+    html += """
+            <p class="code">"""
+    if factor > 0:
+        sizeIdentation = factor*1.5
+        html += f"""
+        <span style="margin-left: {sizeIdentation}em;"></span>"""
+    html += """
+            <div class="keywords">ENQ&nbsp</div>
+            <div class="comma">(</div>"""
+    html += selector(content[0],"logica",factor)
+    html += """<div class="comma">){</div></p>"""
+
+    # body
+    html += selector(content[1]["body"],"body",factor)
+
+    html += """
+            <p class="code">"""
+    if factor > 0:
+        sizeIdentation = factor*1.5
+        html += f"""
+        <span style="margin-left: {sizeIdentation}em;"></span>"""
+            
+
+    html += """
+        <div class="comma">}</div>
+        </p>"""
+
+    return html
+
+def generateForHTML(content,factor):
+    html = """"""
+
+    html += """
+            <p class="code">"""
+    if factor > 0:
+        sizeIdentation = factor*1.5
+        html += f"""
+        <span style="margin-left: {sizeIdentation}em;"></span>"""
+
+    html += """
+            <div class="keywords">PARA&nbsp</div>
+            <div class="comma">(</div>"""
+    
+    # var
+    html += selector(content[0],"var",factor)
+
+    html += """<div class="keywords">EM&nbsp</div>"""
+
+    # varlista
+    typeVar = list(content[1].keys())[0]
+    html += selector(content[1],typeVar,factor)
+
+    html += """<div class="comma">){</div></p>"""
+
+    # body
+    html += selector(content[2]["body"],"body",factor)
+
+    html += """
+            <p class="code">"""
+    if factor > 0:
+        sizeIdentation = factor*1.5
+        html += f"""
+        <span style="margin-left: {sizeIdentation}em;"></span>"""
+
+    html += """
+        <div class="comma">}</div>
+        </p>"""
+
+
+    return html
+
+
+def generateVarlistHTML(varlista):
+
+    html = """"""
+
+    typeVar = list(varlista[0].keys())[0]
+    html += selector(varlista[0],typeVar)
+
+    return html
+
+
+def generateRepeatHTML(content,factor):
+    html = """"""
+
+    html += """
+            <p class="code">"""
+    if factor > 0:
+        sizeIdentation = factor*1.5
+        html += f"""
+        <span style="margin-left: {sizeIdentation}em;"></span>"""
+    html += """
+            <div class="keywords">REPETIR&nbsp</div>
+            <div class="comma">{</div></p>"""
+    # body
+    html += selector(content[0]["body"],"body",factor)
+    
+    if factor > 0:
+        sizeIdentation = factor*1.5
+        html += f"""
+        <span style="margin-left: {sizeIdentation}em;"></span>"""
+    html += """<div class="comma">}&nbsp<div class="keywords">ATE</div>&nbsp(</div>"""
+
+    # logica
+    html += selector(content[1],"logica",factor)
+    html += """<div class="comma">)</div></p>"""
+
+    html += """
+            <p class="code">"""
+    
+            
 
     return html
 
@@ -265,7 +497,7 @@ def generateDeclarationHTML(declaration, factor):
         <span style="margin-left: {sizeIdentation}em;"></span>"""
 
     html += f"""
-            <div class="keywords">{type}&nbsp</div>
+            <div class="types">{type}&nbsp</div>
             """
     
     if list(declared.keys())[0] == "atribuicao":
@@ -320,11 +552,12 @@ def generateArrayHTML(array):
     <div class="comma">{</div>
     """
 
-    for element in array[0:-1]:
-        html += f"""{selector(element,list(element.keys())[0])}"""
-        html += f"""<div class="comma">&nbsp,&nbsp</div>"""
+    if len(array) > 0:
+        for element in array[0:-1]:
+            html += f"""{selector(element,list(element.keys())[0])}"""
+            html += f"""<div class="comma">&nbsp,&nbsp</div>"""
 
-    html += f"""{selector(array[-1],list(array[-1].keys())[0])}"""
+        html += f"""{selector(array[-1],list(array[-1].keys())[0])}"""
 
     html += """
     <div class="comma">}</div>
@@ -337,11 +570,12 @@ def generateTupleHTML(tuple):
     <div class="comma">(</div>
     """
 
-    for element in tuple[0:-1]:
-        html += f"""{selector(element,list(element.keys())[0])}"""
-        html += f"""<div class="comma">&nbsp,&nbsp</div>"""
+    if len(tuple) > 0:
+        for element in tuple[0:-1]:
+            html += f"""{selector(element,list(element.keys())[0])}"""
+            html += f"""<div class="comma">&nbsp,&nbsp</div>"""
 
-    html += f"""{selector(tuple[-1],list(tuple[-1].keys())[0])}"""
+        html += f"""{selector(tuple[-1],list(tuple[-1].keys())[0])}"""
 
     html += """
     <div class="comma">)</div>
@@ -354,11 +588,12 @@ def generateListHTML(lst):
     <div class="comma">[</div>
     """
 
-    for element in lst[0:-1]:
-        html += f"""{selector(element,list(element.keys())[0])}"""
-        html += f"""<div class="comma">&nbsp,&nbsp</div>"""
+    if len(lst) > 0:
+        for element in lst[0:-1]:
+            html += f"""{selector(element,list(element.keys())[0])}"""
+            html += f"""<div class="comma">&nbsp,&nbsp</div>"""
 
-    html += f"""{selector(lst[-1],list(lst[-1].keys())[0])}"""
+        html += f"""{selector(lst[-1],list(lst[-1].keys())[0])}"""
 
     html += """
     <div class="comma">]</div>
@@ -368,6 +603,204 @@ def generateListHTML(lst):
 
 def generateFunctionHTML(function):
     html = """"""
+
+    html += selector(function[0],list(function[0].keys())[0])
+
+    return html
+
+
+def generateFuncHTML(func):
+    html = """"""
+
+    # function name
+    html += selector(func[0],list(func[0].keys())[0])
+
+    # arguments
+    html += selector(func[1],list(func[1].keys())[0])
+
+    return html
+
+
+def generateArgumentsHTML(argumentos):
+    html = """"""
+
+    html += """
+    <div class="comma">(</div>
+    """
+
+    if len(argumentos) > 0:
+        for argument in argumentos[0:-1]:
+            html += selector(argument,list(argument.keys())[0])
+            html += f"""<div class="comma">&nbsp,&nbsp</div>"""
+
+        html += selector(argumentos[-1],list(argumentos[-1].keys())[0])
+
+    html += """
+    <div class="comma">)</div>
+    """
+
+    return html
+
+def generateConsHTML(cons):
+
+    
+
+    html = """"""
+
+    html += """
+    <div class="functions">cons</div>
+    <div class="comma">(&nbsp</div>
+    """
+
+    html += selector(cons[0],list(cons[0].keys())[0])
+
+    html += """
+    <div class="comma">)&nbsp</div>
+    """
+
+    return html
+
+def generateSnocHTML(snoc):
+    html = """"""
+
+    html += """
+    <div class="functions">snoc</div>
+    <div class="comma">(&nbsp</div>
+    """
+
+    html += selector(snoc[0],list(snoc[0].keys())[0])
+
+    html += """
+    <div class="comma">)&nbsp</div>
+    """
+
+    return html
+
+def generateHeadHTML(head):
+    html = """"""
+
+    html = """
+    <div class="functions">head</div>
+    <div class="comma">(&nbsp</div>
+    """
+
+    html += selector(head[0],list(head[0].keys())[0])
+
+    html += """
+    <div class="comma">)&nbsp</div>
+    """
+
+    return html
+
+def generateTailHTML(tail):
+    html = """"""
+
+    html = """
+    <div class="functions">tail</div>
+    <div class="comma">(&nbsp</div>
+    """
+
+    html += selector(tail[0],list(tail[0].keys())[0])
+
+    html += """
+    <div class="comma">)&nbsp</div>
+    """
+
+
+    return html
+
+def generateArgSHHTML(args):
+
+    html = """"""
+
+    html += selector(args[0],list(args[0].keys())[0])
+
+    return html
+
+def generateArgSCHTML(args):
+
+    html = """"""
+
+    html += selector(args[0],list(args[0].keys())[0])
+
+    html += """
+    <div class="comma">&nbsp,&nbsp</div>
+    """
+
+    html += selector(args[1],list(args[1].keys())[0])
+
+    return html
+
+
+def generateFunctionDefHTML(functionDef,factor):
+    html = """"""
+
+    html += """
+            <p class="code">"""
+
+    
+    html += f"""
+            <div class="keywords">DEF&nbsp</div>
+            {selector(functionDef[0],list(functionDef[0].keys())[0])}
+            {selector(functionDef[1],list(functionDef[1].keys())[0])}"""
+    
+    html += selector(functionDef[2],list(functionDef[2].keys())[0])
+
+    html += """
+            <div class="comma">{</div>
+            </p>
+            """
+    
+
+    html += selector(functionDef[3]["body"],list(functionDef[3].keys())[0],factor)
+
+    if len(functionDef) > 4:
+
+        html += f"""
+            <p class="code">
+            <span style="margin-left: {(factor+1)*1.5}em;"></span>
+            <div class="keywords">RETORNA&nbsp</div>
+            """
+        
+        html += selector(functionDef[4],list(functionDef[4].keys())[0])
+
+        html += """
+            <div class="comma">;</div>
+            </p>"""
+
+    html += """
+            <p class="code">
+            <div class="comma">}</div>
+            </p>"""    
+
+
+
+    return html
+
+
+def generateReturnHTML(returnValue):
+    html = """"""
+
+    html += selector(returnValue[0],list(returnValue[0].keys())[0])
+
+    return html
+
+def generateFunctionCallHTML(functionCall,factor):
+    html = """"""
+
+    html += """
+            <p class="code">"""
+    if factor > 0:
+        sizeIdentation = factor*1.5
+        html += f"""
+        <span style="margin-left: {sizeIdentation}em;"></span>"""
+
+
+    html += f"""{selector(functionCall[0],list(functionCall[0].keys())[0])}"""
+
+    html += """
+            <div class="comma">;</div>
+            </p>"""
 
     return html
 
@@ -500,6 +933,46 @@ def selector(line,type,factor=0,insideDec=False):
         body += generateBodyHTML(line,factor)
     elif type == "senao":
         body += generateSenaoHTML(line,factor)
+    elif type == "repeticao":
+        body += generateRepetitionHTML(line[type],factor)
+    elif type == "enquanto":
+        body += generateWhileHTML(line[type],factor)
+    elif type == "para":
+        body += generateForHTML(line[type],factor)
+    elif type == "repetir":
+        body += generateRepeatHTML(line[type],factor)
+    elif type == "varlista":
+        body += generateVarlistHTML(line[type])
+    elif type == "casofinal":
+        body += generateFinalCaseHTML(line[type],factor)
+    elif type == "caso":
+        body += generateCaseHTML(line[type],factor)
+    elif type == "deffuncao":
+        body += generateFunctionDefHTML(line[type],factor)
+    elif type == "chamadafuncao":
+        body += generateFunctionCallHTML(line[type],factor)
+    elif type == "func":
+        body += generateFuncHTML(line[type])
+    elif type == "cons":
+        body += generateConsHTML(line[type])
+    elif type == "snoc":
+        body += generateSnocHTML(line[type])
+    elif type == "head":
+        body += generateHeadHTML(line[type])
+    elif type == "tail":
+        body += generateTailHTML(line[type])
+    elif type == "argumentos":
+        body += generateArgumentsHTML(line[type])
+    elif type == "FUNC":
+        body += f"""<div class="functions">{line[type]}&nbsp</div>"""
+    elif type == "argumentosc":
+        body += generateArgSCHTML(line[type])
+    elif type == "argumentosh":
+        body += generateArgSHHTML(line[type])
+    elif type == "TIPO":
+        body += f"""<div class="types">{line[type]}&nbsp</div>"""
+    elif type == "retorna":
+        body += generateReturnHTML(line[type])
     else:
         print("ERROR::Invalid type -->", type)
 

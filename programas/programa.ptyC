@@ -1,0 +1,30 @@
+IMPORTA {pacote_a_importar}
+
+:- exemplo de programa -:
+
+Int v = 0;
+Int h = 2;
+Int x;
+Array s = {1,2,3,4,5};
+Int r;
+
+ESCOLHE (h) {
+    CASO (2) {r = 0 ;}
+    CASO (4) {r = s[2] + h ;}
+    CASO (7) {r = h ;}
+    CASO () {r = 0 ;}
+}
+
+
+DEF Boolean func1 (v, h, x, s) {
+    
+    SE (v == 0 E h < 4) {
+        x = v + 9 - s[3];
+    } SENAO {
+        x = 0;
+    }
+
+    RETORNA v > h ;
+}
+
+func1(v, h, x, s);

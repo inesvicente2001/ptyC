@@ -34,8 +34,6 @@ if __name__ == '__main__':
 
     otimizacoes(data)
 
-    print(info)
-
     html = htmlGenerator(data["programa"],info["variaveis"])
 
     OUTPUT_PATH = os.path.join(PAR_PATH,"output" ,args.output_file_name[0] + ".html")
@@ -44,6 +42,9 @@ if __name__ == '__main__':
         f.write(html)
 
 
+    print(info["instrucoes"])
+    print(info["imports"])
+    print(info["aninhamentos"])
 
 
 

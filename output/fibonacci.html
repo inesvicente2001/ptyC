@@ -1,0 +1,330 @@
+
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="utf-8">
+            <title>Analisador de Código Fonte</title>
+        </head>
+        
+    <style>
+        .container {
+            background-color: #555555;
+            border: solid 1px black;
+            border-radius: 10px;
+            padding: 2em;
+            color: #FFFFFF;
+        }
+
+        .normal {
+            position: relative;
+            display: inline-block;
+            border-bottom: none;
+        }
+
+        .error {
+            position: relative;
+            display: inline-block;
+            border-bottom: 2px dotted white;
+            color: red;
+        }
+
+
+        .warning {
+            position: relative;
+            display: inline-block;
+            border-bottom: 2px dotted white;
+            color: #b6e0f7;
+        }
+        .warning .warningtext {
+            visibility: hidden;
+            width: fit-content;
+            background-color: #dddd2a;
+            border: solid 1.3px yellow;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -40px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .warning .warningtext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 20%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #555 transparent transparent transparent;
+        }
+        .warning:hover .warningtext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+
+        .code {
+            position: relative;
+            display: inline-block;
+            margin: 0;
+        }
+        .error .errortext {
+            visibility: hidden;
+            width: fit-content;
+            background-color: #c587c0;
+            border: solid 1.3px red;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -40px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .error .errortext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 20%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #555 transparent transparent transparent;
+        }
+        .error:hover .errortext {
+            visibility: visible;
+            opacity: 1;
+        }
+    
+        .comments {
+            position: relative;
+            display: inline-block;
+            color: #6A9955;
+        }
+        
+        .keywords {
+            position: relative;
+            display: inline-block;
+            color: #C586C0;
+        }
+        
+        .numbers {
+            position: relative;
+            display: inline-block;
+            color: #B5CEA8;
+        }
+        
+        .strings {
+            position: relative;
+            display: inline-block;
+            color: #CE9178;
+        }
+        
+        .functions {
+            position: relative;
+            display: inline-block;
+            color: #DCDCAA;
+        }
+        
+        .variables {
+            position: relative;
+            display: inline-block;
+            color: #9CDCFE;
+        }
+        
+        .parameters {
+            position: relative;
+            display: inline-block;
+            color: #D4D4D4;
+        }
+        
+        .imports {
+            position: relative;
+            display: inline-block;
+            color: #9CDCFE;
+        }
+        
+        .preprocessor {
+            position: relative;
+            display: inline-block;
+            color: #4EC9B0;
+        }
+        
+        .operators {
+            position: relative;
+            display: inline-block;
+            color: #D4D4D4;
+        }
+        
+        .classProperties {
+            position: relative;
+            display: inline-block;
+            color: #9CDCFE;
+        }
+        
+        .classMethods {
+            position: relative;
+            display: inline-block;
+            color: #DCDCAA;
+        }
+        
+        .tags {
+            position: relative;
+            display: inline-block;
+            color: #569CD6;
+        }
+        
+        .types {
+            position: relative;
+            display: inline-block;
+            color: #61D2D2;
+        }
+        
+        .symbols {
+            position: relative;
+            display: inline-block;
+            color: #D4D4D4;
+        }
+        </style>
+        
+    <body>
+        <h2>Analisador de Código Fonte</h2>
+        <div class="container">
+            <p class="code">
+                <div class="comments">:-&nbsp</div><div class="comments">Program to display the Fibonacci sequence up to nth term </div><div class="comments">&nbsp-:</div>
+                </p><p class="code">
+            <div class="types">Int&nbsp</div>
+            
+                <div class="variables"><div class="variables">nterms&nbsp</div>&nbsp</div>
+                <div class="operators">=&nbsp</div>
+                <div class="numbers">6&nbsp</div>
+                <div class="symbols">;</div>
+                </p>
+                
+    </p>
+            <p class="code">
+                <div class="comments">:-&nbsp</div><div class="comments">first two terms </div><div class="comments">&nbsp-:</div>
+                </p><p class="code">
+            <div class="types">Int&nbsp</div>
+            
+                <div class="variables"><div class="variables">n1&nbsp</div>&nbsp</div>
+                <div class="operators">=&nbsp</div>
+                <div class="numbers">0&nbsp</div>
+                <div class="symbols">;</div>
+                </p>
+                
+    </p><p class="code">
+            <div class="types">Int&nbsp</div>
+            
+                <div class="variables"><div class="variables">n2&nbsp</div>&nbsp</div>
+                <div class="operators">=&nbsp</div>
+                <div class="numbers">1&nbsp</div>
+                <div class="symbols">;</div>
+                </p>
+                
+    </p><p class="code">
+            <div class="types">Int&nbsp</div>
+            
+                <div class="variables"><div class="variables">count&nbsp</div>&nbsp</div>
+                <div class="operators">=&nbsp</div>
+                <div class="numbers">0&nbsp</div>
+                <div class="symbols">;</div>
+                </p>
+                
+    </p><p class="code">
+            <div class="types">Int&nbsp</div>
+            <div class="variables"><div class="variables">nth&nbsp</div><div class="symbols">;</div>&nbsp</div>
+    </p><p class="code">
+            <div class="types">Lista&nbsp</div>
+            
+                <div class="variables"><div class="warning">fibo<span class="warningtext">Variável não inicializada!</span></div>&nbsp</div>
+                <div class="operators">=&nbsp</div>
+                
+    <div class="symbols">[</div>
+    
+    <div class="symbols">]</div>
+    
+                <div class="symbols">;</div>
+                </p>
+                
+    </p>
+            <p class="code">
+            <div class="keywords">SE&nbsp</div>
+            <div class="symbols">(</div><div class="variables"><div class="variables">nterms&nbsp</div>&nbsp</div><div class="operators">==&nbsp</div><div class="numbers">1&nbsp</div><div class="symbols">)&nbsp{</div></p>
+            <p class="code">
+        <span style="margin-left: 1.5em;"></span>
+    <div class="functions">cons</div>
+    <div class="symbols">(&nbsp</div>
+    <div class="variables"><div class="variables">n1&nbsp</div>&nbsp</div>
+    <div class="symbols">&nbsp,&nbsp</div>
+    <div class="warning">fibo<span class="warningtext">Variável não inicializada!</span></div>
+    <div class="symbols">)&nbsp</div>
+    
+            <div class="symbols">;</div>
+            </p>
+            <p class="code">
+            <div class="symbols">}</div><div class="keywords">SENAO</div><div class="symbols">&nbsp{</div></p>
+            <p class="code">
+        <span style="margin-left: 1.5em;"></span>
+            <div class="keywords">ENQ&nbsp</div>
+            <div class="symbols">(</div><div class="variables"><div class="variables">count&nbsp</div>&nbsp</div><div class="operators"><&nbsp</div><div class="variables"><div class="variables">nterms&nbsp</div>&nbsp</div><div class="symbols">)&nbsp{</div></p>
+            <p class="code">
+        <span style="margin-left: 3.0em;"></span>
+    <div class="functions">cons</div>
+    <div class="symbols">(&nbsp</div>
+    <div class="variables"><div class="variables">n1&nbsp</div>&nbsp</div>
+    <div class="symbols">&nbsp,&nbsp</div>
+    <div class="warning">fibo<span class="warningtext">Variável não inicializada!</span></div>
+    <div class="symbols">)&nbsp</div>
+    
+            <div class="symbols">;</div>
+            </p><p class="code">
+            <span style="margin-left: 3.0em;"></span>
+                <div class="variables"><div class="variables">nth&nbsp</div>&nbsp</div>
+                <div class="operators">=&nbsp</div>
+                <div class="variables"><div class="variables">n1&nbsp</div>&nbsp</div><div class="operators">&nbsp+&nbsp</div><div class="variables"><div class="variables">n2&nbsp</div>&nbsp</div>
+                <div class="symbols">;</div>
+                </p>
+                <p class="code">
+            <span style="margin-left: 3.0em;"></span>
+                <div class="variables"><div class="variables">n1&nbsp</div>&nbsp</div>
+                <div class="operators">=&nbsp</div>
+                <div class="variables"><div class="variables">n2&nbsp</div>&nbsp</div>
+                <div class="symbols">;</div>
+                </p>
+                <p class="code">
+            <span style="margin-left: 3.0em;"></span>
+                <div class="variables"><div class="variables">n2&nbsp</div>&nbsp</div>
+                <div class="operators">=&nbsp</div>
+                <div class="variables"><div class="variables">nth&nbsp</div>&nbsp</div>
+                <div class="symbols">;</div>
+                </p>
+                <p class="code">
+            <span style="margin-left: 3.0em;"></span>
+                <div class="variables"><div class="variables">count&nbsp</div>&nbsp</div>
+                <div class="operators">=&nbsp</div>
+                <div class="variables"><div class="variables">count&nbsp</div>&nbsp</div><div class="operators">&nbsp+&nbsp</div><div class="numbers">1&nbsp</div>
+                <div class="symbols">;</div>
+                </p>
+                
+            <p class="code">
+        <span style="margin-left: 1.5em;"></span>
+        <div class="symbols">}</div>
+        </p>
+            <p class="code">
+        <div class="symbols">}</div>
+        </p>
+        </div>
+    </body>
+    
+    </html>
+    

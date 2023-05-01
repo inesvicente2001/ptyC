@@ -1,0 +1,24 @@
+:- Program to display the Fibonacci sequence up to nth term -:
+
+Int nterms = 6;
+
+:- first two terms -:
+Int n1 = 0;
+Int n2 = 1;
+Int count = 0;
+Int nth;
+
+Lista fibo = [];
+
+SE (nterms == 1) {
+   cons(n1, fibo) ;
+}
+SENAO {
+   ENQ (count < nterms) {
+      cons(n1, fibo);
+      nth = n1 + n2;
+      n1 = n2;
+      n2 = nth;
+      count = count + 1;
+   }
+}

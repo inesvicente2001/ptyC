@@ -34,10 +34,16 @@ def generateStyleCSS():
             color: {stylingProperties["colorCodes"]["normalTextColor"]};
         }}
 
+        .normal {{
+            position: relative;
+            display: inline-block;
+            border-bottom: none;
+        }}
+
         .error {{
             position: relative;
             display: inline-block;
-            border-bottom: 1px dotted black;
+            border-bottom: 2px dotted white;
             color: red;
         }}
         .code {{
@@ -90,7 +96,8 @@ def generateHTML(body,style):
     <!DOCTYPE html>
     <html>
         <head>
-            <title>ptyC(MUDAR TITULO)</title>
+            <meta charset="utf-8">
+            <title>Analisador de Código Fonte</title>
         </head>
         {style}
         {body}
@@ -140,7 +147,7 @@ def generateCommentHTML(comment, factor):
     return html
     
 
-def generateCasosHTML(casos,factor):
+def generateCasosHTML(variables,casos,factor):
     html = """"""
 
     # var
@@ -153,14 +160,14 @@ def generateCasosHTML(casos,factor):
     html += """
             <div class="keywords">ESCOLHE&nbsp</div>
             <div class="symbols">(</div>"""
-    html += selector(casos[0],"var",factor)
+    html += selector(variables,casos[0],"var",factor)
     html += """<div class="symbols">){</div></p>"""
 
     # caso
-    html += selector(casos[1],"caso",factor+1)
+    html += selector(variables,casos[1],"caso",factor+1)
  
     # casofinal
-    html += selector(casos[2],"casofinal",factor+1)
+    html += selector(variables,casos[2],"casofinal",factor+1)
  
 
     html += """
@@ -179,7 +186,7 @@ def generateCasosHTML(casos,factor):
     return html
 
 
-def generateFinalCaseHTML(finalCase,factor):
+def generateFinalCaseHTML(variables,finalCase,factor):
     
     html = """"""
 
@@ -194,7 +201,7 @@ def generateFinalCaseHTML(finalCase,factor):
             <div class="symbols">()</div>"""
     html += """<div class="symbols">&nbsp{</div></p>"""
 
-    html += selector(finalCase[0]["body"],"body",factor)
+    html += selector(variables,finalCase[0]["body"],"body",factor)
 
     html += """
             <p class="code">"""
@@ -210,7 +217,7 @@ def generateFinalCaseHTML(finalCase,factor):
     return html
 
 
-def generateCaseHTML(case,factor):
+def generateCaseHTML(variables,case,factor):
     
     html = """"""
 
@@ -226,10 +233,10 @@ def generateCaseHTML(case,factor):
             <span style="margin-left: {sizeIdentation}em;"></span>"""
         html += f"""
                 <div class="keywords">CASO&nbsp</div>
-                <div class="symbols">(</div>{selector(case[i],typeCase)}<div class="symbols">)</div>"""
+                <div class="symbols">(</div>{selector(variables,case[i],typeCase)}<div class="symbols">)</div>"""
         html += """<div class="symbols">&nbsp{</div></p>"""
 
-        html += selector(case[i+1]["body"],"body",factor)
+        html += selector(variables,case[i+1]["body"],"body",factor)
 
         html += """
                 <p class="code">"""
@@ -245,7 +252,7 @@ def generateCaseHTML(case,factor):
     return html
 
 
-def generateSeHTML(se,factor):
+def generateSeHTML(variables,se,factor):
 
     html = """"""
 
@@ -259,11 +266,11 @@ def generateSeHTML(se,factor):
     html += """
             <div class="keywords">SE&nbsp</div>
             <div class="symbols">(</div>"""
-    html += selector(se,"logica",factor)
+    html += selector(variables,se,"logica",factor)
     html += """<div class="symbols">)&nbsp{</div></p>"""
 
     # body
-    html += selector(se["body"],"body",factor)
+    html += selector(variables,se["body"],"body",factor)
 
     html += """
             <p class="code">"""
@@ -276,7 +283,7 @@ def generateSeHTML(se,factor):
     if "senao" in se:
         html += """
             <div class="symbols">}</div><div class="keywords">SENAO</div><div class="symbols">&nbsp{</div></p>"""
-        html += selector(se["senao"],"senao",factor)
+        html += selector(variables,se["senao"],"senao",factor)
 
         html += """
             <p class="code">"""
@@ -292,23 +299,23 @@ def generateSeHTML(se,factor):
     return html
 
 
-def generateBodyHTML(body,factor):
+def generateBodyHTML(variables,body,factor):
     html = """"""
 
     for b in body:
-        html += selector(b,list(b.keys())[0],factor+1)
+        html += selector(variables,b,list(b.keys())[0],factor+1)
 
     return html
 
-def generateSenaoHTML(senao,factor):
+def generateSenaoHTML(variables,senao,factor):
     html = """"""
 
     for s in senao[0]:
-        html += selector(s,list(s.keys())[0],factor+1)
+        html += selector(variables,s,list(s.keys())[0],factor+1)
 
     return html
 
-def generateLogicHTML(logica):
+def generateLogicHTML(variables,logica):
 
     html = """"""
 
@@ -322,46 +329,46 @@ def generateLogicHTML(logica):
             # it is a condition
             aux = {}
             aux["condicao"] = l
-            html += selector(aux,"condicao")
+            html += selector(variables,aux,"condicao")
 
     return html
 
 
-def generateConditionHTML(condition):
+def generateConditionHTML(variables,condition):
 
     html = """"""
 
     for c in condition:
-        html += selector(c,list(c.keys())[0])
+        html += selector(variables,c,list(c.keys())[0])
 
     return html
 
 
 
-def generateSelectionHTML(selection, factor):
+def generateSelectionHTML(variables,selection, factor):
     html = """"""
 
     if type(selection) is dict:
         if list(selection.keys())[0] == "se":
-            html += generateSeHTML(selection["se"],factor)
+            html += generateSeHTML(variables,selection["se"],factor)
         elif list(selection.keys())[0] == "casos":
-            html += generateCasosHTML(selection["casos"],factor)
+            html += generateCasosHTML(variables,selection["casos"],factor)
     else:    
         print("ERROR: Invalid selection type")
 
     return html
 
-def generateRepetitionHTML(repetition,factor):
+def generateRepetitionHTML(variables,repetition,factor):
     html = """"""
 
     repetitionType = list(repetition.keys())[0]
     
-    html += selector(repetition,repetitionType,factor)
+    html += selector(variables,repetition,repetitionType,factor)
 
     return html
 
 
-def generateWhileHTML(content,factor):
+def generateWhileHTML(variables,content,factor):
     html = """"""
 
     # logica
@@ -374,11 +381,11 @@ def generateWhileHTML(content,factor):
     html += """
             <div class="keywords">ENQ&nbsp</div>
             <div class="symbols">(</div>"""
-    html += selector(content[0],"logica",factor)
+    html += selector(variables,content[0],"logica",factor)
     html += """<div class="symbols">)&nbsp{</div></p>"""
 
     # body
-    html += selector(content[1]["body"],"body",factor)
+    html += selector(variables,content[1]["body"],"body",factor)
 
     html += """
             <p class="code">"""
@@ -394,7 +401,7 @@ def generateWhileHTML(content,factor):
 
     return html
 
-def generateForHTML(content,factor):
+def generateForHTML(variables,content,factor):
     html = """"""
 
     html += """
@@ -409,18 +416,18 @@ def generateForHTML(content,factor):
             <div class="symbols">(</div>"""
     
     # var
-    html += selector(content[0],"var",factor)
+    html += selector(variables,content[0],"var",factor)
 
     html += """<div class="keywords">EM&nbsp</div>"""
 
     # varlista
     typeVar = list(content[1].keys())[0]
-    html += selector(content[1],typeVar,factor)
+    html += selector(variables,content[1],typeVar,factor)
 
     html += """<div class="symbols">)&nbsp{</div></p>"""
 
     # body
-    html += selector(content[2]["body"],"body",factor)
+    html += selector(variables,content[2]["body"],"body",factor)
 
     html += """
             <p class="code">"""
@@ -437,17 +444,17 @@ def generateForHTML(content,factor):
     return html
 
 
-def generateVarlistHTML(varlista):
+def generateVarlistHTML(variables,varlista):
 
     html = """"""
 
     typeVar = list(varlista[0].keys())[0]
-    html += selector(varlista[0],typeVar)
+    html += selector(variables,varlista[0],typeVar)
 
     return html
 
 
-def generateRepeatHTML(content,factor):
+def generateRepeatHTML(variables,content,factor):
     html = """"""
 
     html += """
@@ -460,7 +467,7 @@ def generateRepeatHTML(content,factor):
             <div class="keywords">REPETIR&nbsp</div>
             <div class="symbols">&nbsp{</div></p>"""
     # body
-    html += selector(content[0]["body"],"body",factor)
+    html += selector(variables,content[0]["body"],"body",factor)
     
     if factor > 0:
         sizeIdentation = factor*1.5
@@ -469,7 +476,7 @@ def generateRepeatHTML(content,factor):
     html += """<div class="symbols">}&nbsp<div class="keywords">ATE</div>&nbsp(</div>"""
 
     # logica
-    html += selector(content[1],"logica",factor)
+    html += selector(variables,content[1],"logica",factor)
     html += """<div class="symbols">)</div></p>"""
 
     html += """
@@ -480,7 +487,7 @@ def generateRepeatHTML(content,factor):
     return html
 
 
-def generateDeclarationHTML(declaration, factor):
+def generateDeclarationHTML(variables,declaration, factor):
     # get the type of declaration
     type = declaration[0]["TIPO"]
 
@@ -501,9 +508,9 @@ def generateDeclarationHTML(declaration, factor):
             """
     
     if list(declared.keys())[0] == "atribuicao":
-        html += selector(declared,"atribuicao", factor, True)
+        html += selector(variables,declared,"atribuicao", factor, True)
     elif list(declared.keys())[0] == "var":
-        html += selector(declared,"var", factor, True)
+        html += selector(variables,declared,"var", factor, True)
     
 
     html += f"""
@@ -512,7 +519,7 @@ def generateDeclarationHTML(declaration, factor):
     return html
 
 
-def generateAssignmentHTML(assignment, factor, insideDec):
+def generateAssignmentHTML(variables,assignment, factor, insideDec):
 
     var = assignment[0]
     assigned = assignment[1]
@@ -528,17 +535,17 @@ def generateAssignmentHTML(assignment, factor, insideDec):
             <span style="margin-left: {sizeIdentation}em;"></span>"""
 
         html += f"""
-                {selector(var,"var")}
+                {selector(variables,var,"var")}
                 <div class="operators">=&nbsp</div>
-                {selector(assigned,"objeto")}
+                {selector(variables,assigned,"objeto")}
                 <div class="symbols">;</div>
                 </p>
                 """
     else:
         html = f"""
-                {selector(var,"var")}
+                {selector(variables,var,"var")}
                 <div class="operators">=&nbsp</div>
-                {selector(assigned,"objeto")}
+                {selector(variables,assigned,"objeto")}
                 <div class="symbols">;</div>
                 </p>
                 """
@@ -547,17 +554,17 @@ def generateAssignmentHTML(assignment, factor, insideDec):
     return html
 
 
-def generateArrayHTML(array):
+def generateArrayHTML(variables,array):
     html = """
     <div class="symbols">&nbsp{</div>
     """
 
     if len(array) > 0:
         for element in array[0:-1]:
-            html += f"""{selector(element,list(element.keys())[0])}"""
+            html += f"""{selector(variables,element,list(element.keys())[0])}"""
             html += f"""<div class="symbols">&nbsp,&nbsp</div>"""
 
-        html += f"""{selector(array[-1],list(array[-1].keys())[0])}"""
+        html += f"""{selector(variables,array[-1],list(array[-1].keys())[0])}"""
 
     html += """
     <div class="symbols">}</div>
@@ -565,17 +572,17 @@ def generateArrayHTML(array):
 
     return html
 
-def generateTupleHTML(tuple):
+def generateTupleHTML(variables,tuple):
     html = """
     <div class="symbols">(</div>
     """
 
     if len(tuple) > 0:
         for element in tuple[0:-1]:
-            html += f"""{selector(element,list(element.keys())[0])}"""
+            html += f"""{selector(variables,element,list(element.keys())[0])}"""
             html += f"""<div class="symbols">&nbsp,&nbsp</div>"""
 
-        html += f"""{selector(tuple[-1],list(tuple[-1].keys())[0])}"""
+        html += f"""{selector(variables,tuple[-1],list(tuple[-1].keys())[0])}"""
 
     html += """
     <div class="symbols">)</div>
@@ -583,17 +590,17 @@ def generateTupleHTML(tuple):
 
     return html
 
-def generateListHTML(lst):
+def generateListHTML(variables,lst):
     html = """
     <div class="symbols">[</div>
     """
 
     if len(lst) > 0:
         for element in lst[0:-1]:
-            html += f"""{selector(element,list(element.keys())[0])}"""
+            html += f"""{selector(variables,element,list(element.keys())[0])}"""
             html += f"""<div class="symbols">&nbsp,&nbsp</div>"""
 
-        html += f"""{selector(lst[-1],list(lst[-1].keys())[0])}"""
+        html += f"""{selector(variables,lst[-1],list(lst[-1].keys())[0])}"""
 
     html += """
     <div class="symbols">]</div>
@@ -601,27 +608,27 @@ def generateListHTML(lst):
 
     return html
 
-def generateFunctionHTML(function):
+def generateFunctionHTML(variables,function):
     html = """"""
 
-    html += selector(function[0],list(function[0].keys())[0])
+    html += selector(variables,function[0],list(function[0].keys())[0])
 
     return html
 
 
-def generateFuncHTML(func):
+def generateFuncHTML(variables,func):
     html = """"""
 
     # function name
-    html += selector(func[0],list(func[0].keys())[0])
+    html += selector(variables,func[0],list(func[0].keys())[0])
 
     # arguments
-    html += selector(func[1],list(func[1].keys())[0])
+    html += selector(variables,func[1],list(func[1].keys())[0])
 
     return html
 
 
-def generateArgumentsHTML(argumentos):
+def generateArgumentsHTML(variables,argumentos):
     html = """"""
 
     html += """
@@ -630,10 +637,10 @@ def generateArgumentsHTML(argumentos):
 
     if len(argumentos) > 0:
         for argument in argumentos[0:-1]:
-            html += selector(argument,list(argument.keys())[0])
+            html += selector(variables,argument,list(argument.keys())[0])
             html += f"""<div class="symbols">&nbsp,&nbsp</div>"""
 
-        html += selector(argumentos[-1],list(argumentos[-1].keys())[0])
+        html += selector(variables,argumentos[-1],list(argumentos[-1].keys())[0])
 
     html += """
     <div class="symbols">)</div>
@@ -641,7 +648,7 @@ def generateArgumentsHTML(argumentos):
 
     return html
 
-def generateConsHTML(cons):
+def generateConsHTML(variables,cons):
 
     
 
@@ -652,7 +659,7 @@ def generateConsHTML(cons):
     <div class="symbols">(&nbsp</div>
     """
 
-    html += selector(cons[0],list(cons[0].keys())[0])
+    html += selector(variables,cons[0],list(cons[0].keys())[0])
 
     html += """
     <div class="symbols">)&nbsp</div>
@@ -660,7 +667,7 @@ def generateConsHTML(cons):
 
     return html
 
-def generateSnocHTML(snoc):
+def generateSnocHTML(variables,snoc):
     html = """"""
 
     html += """
@@ -668,7 +675,7 @@ def generateSnocHTML(snoc):
     <div class="symbols">(&nbsp</div>
     """
 
-    html += selector(snoc[0],list(snoc[0].keys())[0])
+    html += selector(variables,snoc[0],list(snoc[0].keys())[0])
 
     html += """
     <div class="symbols">)&nbsp</div>
@@ -676,7 +683,7 @@ def generateSnocHTML(snoc):
 
     return html
 
-def generateHeadHTML(head):
+def generateHeadHTML(variables,head):
     html = """"""
 
     html = """
@@ -684,7 +691,7 @@ def generateHeadHTML(head):
     <div class="symbols">(&nbsp</div>
     """
 
-    html += selector(head[0],list(head[0].keys())[0])
+    html += selector(variables,head[0],list(head[0].keys())[0])
 
     html += """
     <div class="symbols">)&nbsp</div>
@@ -692,7 +699,7 @@ def generateHeadHTML(head):
 
     return html
 
-def generateTailHTML(tail):
+def generateTailHTML(variables,tail):
     html = """"""
 
     html = """
@@ -700,7 +707,7 @@ def generateTailHTML(tail):
     <div class="symbols">(&nbsp</div>
     """
 
-    html += selector(tail[0],list(tail[0].keys())[0])
+    html += selector(variables,tail[0],list(tail[0].keys())[0])
 
     html += """
     <div class="symbols">)&nbsp</div>
@@ -709,30 +716,30 @@ def generateTailHTML(tail):
 
     return html
 
-def generateArgSHHTML(args):
+def generateArgSHHTML(variables,args):
 
     html = """"""
 
-    html += selector(args[0],list(args[0].keys())[0])
+    html += selector(variables,args[0],list(args[0].keys())[0])
 
     return html
 
-def generateArgSCHTML(args):
+def generateArgSCHTML(variables,args):
 
     html = """"""
 
-    html += selector(args[0],list(args[0].keys())[0])
+    html += selector(variables,args[0],list(args[0].keys())[0])
 
     html += """
     <div class="symbols">&nbsp,&nbsp</div>
     """
 
-    html += selector(args[1],list(args[1].keys())[0])
+    html += selector(variables,args[1],list(args[1].keys())[0])
 
     return html
 
 
-def generateFunctionDefHTML(functionDef,factor):
+def generateFunctionDefHTML(variables,functionDef,factor):
     html = """"""
 
     html += """
@@ -741,10 +748,10 @@ def generateFunctionDefHTML(functionDef,factor):
     
     html += f"""
             <div class="keywords">DEF&nbsp</div>
-            {selector(functionDef[0],list(functionDef[0].keys())[0])}
-            {selector(functionDef[1],list(functionDef[1].keys())[0])}"""
+            {selector(variables,functionDef[0],list(functionDef[0].keys())[0])}
+            {selector(variables,functionDef[1],list(functionDef[1].keys())[0])}"""
     
-    html += selector(functionDef[2],list(functionDef[2].keys())[0])
+    html += selector(variables,functionDef[2],list(functionDef[2].keys())[0])
 
     html += """
             <div class="symbols">&nbsp{</div>
@@ -752,7 +759,7 @@ def generateFunctionDefHTML(functionDef,factor):
             """
     
 
-    html += selector(functionDef[3]["body"],list(functionDef[3].keys())[0],factor)
+    html += selector(variables,functionDef[3]["body"],list(functionDef[3].keys())[0],factor)
 
     if len(functionDef) > 4:
 
@@ -762,7 +769,7 @@ def generateFunctionDefHTML(functionDef,factor):
             <div class="keywords">RETORNA&nbsp</div>
             """
         
-        html += selector(functionDef[4],list(functionDef[4].keys())[0])
+        html += selector(variables,functionDef[4],list(functionDef[4].keys())[0])
 
         html += """
             <div class="symbols">;</div>
@@ -778,14 +785,14 @@ def generateFunctionDefHTML(functionDef,factor):
     return html
 
 
-def generateReturnHTML(returnValue):
+def generateReturnHTML(variables,returnValue):
     html = """"""
 
-    html += selector(returnValue[0],list(returnValue[0].keys())[0])
+    html += selector(variables,returnValue[0],list(returnValue[0].keys())[0])
 
     return html
 
-def generateFunctionCallHTML(functionCall,factor):
+def generateFunctionCallHTML(variables,functionCall,factor):
     html = """"""
 
     html += """
@@ -796,7 +803,7 @@ def generateFunctionCallHTML(functionCall,factor):
         <span style="margin-left: {sizeIdentation}em;"></span>"""
 
 
-    html += f"""{selector(functionCall[0],list(functionCall[0].keys())[0])}"""
+    html += f"""{selector(variables,functionCall[0],list(functionCall[0].keys())[0])}"""
 
     html += """
             <div class="symbols">;</div>
@@ -805,13 +812,25 @@ def generateFunctionCallHTML(functionCall,factor):
     return html
 
 
-def generateVarHTML(var,insideDec):
+def generateVarHTML(variables,var,insideDec):
 
-    html = f"""<div class="variables">{var[0]["VAR"]}"""  
+    html = """"""
+
+    if var[0]["VAR"] in variables:
+        if variables[var[0]["VAR"]]["foi_declarada"] == False:
+            html += f"""<div class="error">{var[0]["VAR"]}<span class="errortext">Variável não declarada</span>"""
+        else:
+            html += f"""<div class="variables">{var[0]["VAR"]}""" 
+    else:
+        print("Variavel nao esta na estrutura de dados",var[0]["VAR"])
+        html += f"""<div class="variables">{var[0]["VAR"]}""" 
+
 
     if len(var) > 1:
         expression = var[1]
-        html += f"""<div class="classMethods">[&nbsp</div><div class="operators">{selector(expression,"expressao")}</div><div class="classMethods">]</div>"""
+        html += """<div class="operators">[&nbsp</div>"""
+        html += selector(variables,expression,"expressao")
+        html += """<div class="operators">]</div>"""
 
     if insideDec:
         html += """<div class="symbols">;</div>"""
@@ -822,105 +841,105 @@ def generateVarHTML(var,insideDec):
     return html
 
 
-def generateExpressionHTML(expression):
+def generateExpressionHTML(variables,expression):
     html = """"""
 
     if len(expression) > 1:
-        html += f"""{selector(expression[0],"expressao")}"""
+        html += f"""{selector(variables,expression[0],"expressao")}"""
         html += f"""<div class="operators">&nbsp{list(expression[1].values())[0]}&nbsp</div>"""
-        html += f"""{selector(expression[2],"termo")}"""
+        html += f"""{selector(variables,expression[2],"termo")}"""
     else:
-        html += f"""{selector(expression[0],"termo")}"""
+        html += f"""{selector(variables,expression[0],"termo")}"""
 
     return html
 
 
-def generateTermHTML(term):
+def generateTermHTML(variables,term):
     html = """"""
 
     if len(term) > 1:
-        html += f"""{selector(term[0],"termo")}"""
+        html += f"""{selector(variables,term[0],"termo")}"""
         html += f"""<div class="operators">&nbsp{list(term[1].values())[0]}&nbsp</div>"""
-        html += f"""{selector(term[2],"fator")}"""
+        html += f"""{selector(variables,term[2],"fator")}"""
     else:
-        html += f"""{selector(term[0],"fator")}"""
+        html += f"""{selector(variables,term[0],"fator")}"""
 
     return html
 
-def generateFactorHTML(factor):
+def generateFactorHTML(variables,factor):
     html = """"""
 
     if len(factor) > 1:
-        html += f"""{selector(factor[0],"fator")}"""
+        html += f"""{selector(variables,factor[0],"fator")}"""
         html += f"""<div class="operators">&nbsp{list(factor[1].values())[0]}&nbsp</div>"""
-        html += f"""{selector(factor[2],"atomo")}"""
+        html += f"""{selector(variables,factor[2],"atomo")}"""
     else:
-        html += f"""{selector(factor[0],"atomo")}"""
+        html += f"""{selector(variables,factor[0],"atomo")}"""
 
     return html
 
-def generateAtomHTML(atom):
+def generateAtomHTML(variables,atom):
     html = """"""
 
     atomType = list(atom[0].keys())[0]
     if atomType == "NUM":
         html += f"""<div class="numbers">{atom[0][atomType]}&nbsp</div>"""
     elif atomType == "var":
-        html += f"""{selector(atom[0],"var")}"""
+        html += f"""{selector(variables,atom[0],"var")}"""
 
     return html
 
 
-def generateObjectHTML(object):
+def generateObjectHTML(variables,object):
 
     content = object[0]
     content_type = list(content.keys())[0]
 
-    html = selector(content,content_type)
+    html = selector(variables,content,content_type)
 
     return html
 
 
-def selector(line,type,factor=0,insideDec=False):
+def selector(variables,line,type,factor=0,insideDec=False):
     body = """"""
     if type == "importar":
         body += generateImportHTML(line[type])
     elif type == "comentario":
         body += generateCommentHTML(line[type],factor)
     elif type == "selecao":
-        body += generateSelectionHTML(line[type],factor)
+        body += generateSelectionHTML(variables,line[type],factor)
     elif type == "declaracao":
-        body += generateDeclarationHTML(line[type],factor)
+        body += generateDeclarationHTML(variables,line[type],factor)
     elif type == "atribuicao":
-        body += generateAssignmentHTML(line[type],factor, insideDec)
+        body += generateAssignmentHTML(variables,line[type],factor, insideDec)
     elif type == "var":            
-        body += generateVarHTML(line[type],insideDec)
+        body += generateVarHTML(variables,line[type],insideDec)
     elif type == "expressao":
-        body += generateExpressionHTML(line[type])
+        body += generateExpressionHTML(variables,line[type])
     elif type == "termo":
-        body += generateTermHTML(line[type])
+        body += generateTermHTML(variables,line[type])
     elif type == "fator":
-        body += generateFactorHTML(line[type])
+        body += generateFactorHTML(variables,line[type])
     elif type == "atomo":
-        body += generateAtomHTML(line[type])
+        body += generateAtomHTML(variables,line[type])
     elif type == "objeto":
-        body += generateObjectHTML(line[type])
+        body += generateObjectHTML(variables,line[type])
     elif type == "STRING":
         body += f"""<div class="strings">{line[type]}</div>"""
     elif type == "NUM":
         body += f"""<div class="numbers">{line[type]}</div>"""
     elif type == "array":
-        body += generateArrayHTML(line[type])
+        body += generateArrayHTML(variables,line[type])
     elif type == "tuplo":
-        body += generateTupleHTML(line[type])
+        body += generateTupleHTML(variables,line[type])
     elif type == "lista":
-        body += generateListHTML(line[type])
+        body += generateListHTML(variables,line[type])
     elif type == "funcao":
-        body += generateFunctionHTML(line[type])
+        body += generateFunctionHTML(variables,line[type])
     elif type == "condicao":
-        body += generateConditionHTML(line[type])
+        body += generateConditionHTML(variables,line[type])
     elif type == "logica":
-        body += generateLogicHTML(line[type])
+        body += generateLogicHTML(variables,line[type])
     elif type == "SINAL":
         body += f"""<div class="operators">{line[type]}&nbsp</div>"""
     elif type == "BOOL":
@@ -930,66 +949,66 @@ def selector(line,type,factor=0,insideDec=False):
     elif type == "VAR":
         body += f"""<div class="variables">{line[type]}&nbsp</div>"""
     elif type == "body":
-        body += generateBodyHTML(line,factor)
+        body += generateBodyHTML(variables,line,factor)
     elif type == "senao":
-        body += generateSenaoHTML(line,factor)
+        body += generateSenaoHTML(variables,line,factor)
     elif type == "repeticao":
-        body += generateRepetitionHTML(line[type],factor)
+        body += generateRepetitionHTML(variables,line[type],factor)
     elif type == "enquanto":
-        body += generateWhileHTML(line[type],factor)
+        body += generateWhileHTML(variables,line[type],factor)
     elif type == "para":
-        body += generateForHTML(line[type],factor)
+        body += generateForHTML(variables,line[type],factor)
     elif type == "repetir":
-        body += generateRepeatHTML(line[type],factor)
+        body += generateRepeatHTML(variables,line[type],factor)
     elif type == "varlista":
-        body += generateVarlistHTML(line[type])
+        body += generateVarlistHTML(variables,line[type])
     elif type == "casofinal":
-        body += generateFinalCaseHTML(line[type],factor)
+        body += generateFinalCaseHTML(variables,line[type],factor)
     elif type == "caso":
-        body += generateCaseHTML(line[type],factor)
+        body += generateCaseHTML(variables,line[type],factor)
     elif type == "deffuncao":
-        body += generateFunctionDefHTML(line[type],factor)
+        body += generateFunctionDefHTML(variables,line[type],factor)
     elif type == "chamadafuncao":
-        body += generateFunctionCallHTML(line[type],factor)
+        body += generateFunctionCallHTML(variables,line[type],factor)
     elif type == "func":
-        body += generateFuncHTML(line[type])
+        body += generateFuncHTML(variables,line[type])
     elif type == "cons":
-        body += generateConsHTML(line[type])
+        body += generateConsHTML(variables,line[type])
     elif type == "snoc":
-        body += generateSnocHTML(line[type])
+        body += generateSnocHTML(variables,line[type])
     elif type == "head":
-        body += generateHeadHTML(line[type])
+        body += generateHeadHTML(variables,line[type])
     elif type == "tail":
-        body += generateTailHTML(line[type])
+        body += generateTailHTML(variables,line[type])
     elif type == "argumentos":
-        body += generateArgumentsHTML(line[type])
+        body += generateArgumentsHTML(variables,line[type])
     elif type == "FUNC":
         body += f"""<div class="functions">{line[type]}</div>"""
     elif type == "argumentosc":
-        body += generateArgSCHTML(line[type])
+        body += generateArgSCHTML(variables,line[type])
     elif type == "argumentosh":
-        body += generateArgSHHTML(line[type])
+        body += generateArgSHHTML(variables,line[type])
     elif type == "TIPO":
         body += f"""<div class="types">{line[type]}&nbsp</div>"""
     elif type == "retorna":
-        body += generateReturnHTML(line[type])
+        body += generateReturnHTML(variables,line[type])
     else:
         print("ERROR::Invalid type -->", type)
 
     return body
 
-def generateHTMLBody(code):
+def generateHTMLBody(code,variables):
 
     factor = 0
     
     body = f"""
     <body>
-        <h2>Análise de código</h2>
+        <h2>Analisador de Código Fonte</h2>
         <div class="container">"""
     
     for line in code:
         type = list(line.keys())[0]
-        body += selector(line,type,factor,False)
+        body += selector(variables,line,type,factor,False)
             
     body += """
         </div>
@@ -999,12 +1018,23 @@ def generateHTMLBody(code):
     return body
 
 
+
+def htmlGenerator(code, infos):
+    style = generateStyleCSS()
+    body = generateHTMLBody(code,infos)
+    html = generateHTML(body,style)
+    return html
+
+
 if __name__ == '__main__':
     CONFIG_TEST_PATH = os.path.join(APP_PATH, "../testesFiles/tree.json")
+    INFOS_PATH = os.path.join(APP_PATH, "../info.json")
     data = json.load(open(CONFIG_TEST_PATH, "r"))
+    infos = json.load(open(INFOS_PATH, "r"))
+    variables = infos["variaveis"]
     code = data["programa"]
     style = generateStyleCSS()
-    body = generateHTMLBody(code)
+    body = generateHTMLBody(code,variables)
     html = generateHTML(body,style)
     with open(os.path.join(APP_PATH, "../generatedHTML.html"), "w") as f:
         f.write(html)

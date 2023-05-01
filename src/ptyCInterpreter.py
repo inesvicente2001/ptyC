@@ -41,6 +41,8 @@ class PtyCInterpreter(Interpreter):
         self.is_varlista = False #para ver se estamos dentro de uma varlista
         self.is_expressao = False #para ver se estamos dentro de uma expressao
         self.expressao_counter = 0 #contador de expressoes
+        self.is_funcao = False #para ver se estamos dentro de uma funcao
+        self.funcao_expression = "" 
 
         self.ciclo_counter = 0 #contador de ciclos
         self.condicao_counter = 0 #contador de condicoes
@@ -72,6 +74,8 @@ class PtyCInterpreter(Interpreter):
         #        |head
         #        |tail
         #        |func
+        if self.is_atribuicao:
+            self.is_funcao = True
         func = []
         for f in funcao.children:
             if(type(f) == Tree):
@@ -79,6 +83,13 @@ class PtyCInterpreter(Interpreter):
             else:
                 if (type(f) == Token):
                     func.append({f.type: f})
+        if self.is_funcao:
+            if self.funcao_expression[-1] == ",":
+                self.funcao_expression = self.funcao_expression[:-1]
+            self.funcao_expression += ")"
+            if self.variavel_atual != []:
+                self.info["variaveis"][self.variavel_atual[-1]]["valores"].append(self.funcao_expression)
+            self.is_funcao = False
 
         return func
 
@@ -86,12 +97,25 @@ class PtyCInterpreter(Interpreter):
     def cons(self,cons):
         # cons: "cons" "(" argumentosc ")"
         cs = []
+        if self.is_lista:
+            self.listinha += "cons("
+        if self.is_expression:
+            self.expression += "cons("
+        if self.is_tuplo:
+            self.tuplo_expression += "cons("
         for c in cons.children:
             if(type(c) == Tree):
                 cs.append({c.data: self.visit(c)})
             else:
                 if (type(c) == Token):
                     cs.append({c.type: c})
+        
+        if self.is_lista:
+            self.listinha += "),"
+        if self.is_expression:
+            self.expression += "),"
+        if self.is_tuplo:
+            self.tuplo_expression += "),"
 
         return cs
 
@@ -122,12 +146,26 @@ class PtyCInterpreter(Interpreter):
     def snoc(self,snoc):
         # snoc: "snoc" "(" argumentosc ")"
         sc = []
+        if self.is_lista:
+            self.listinha += "snoc("
+        if self.is_expression:
+            self.expression += "snoc("
+        if self.is_tuplo:
+            self.tuplo_expression += "snoc("
+        
         for s in snoc.children:
             if(type(s) == Tree):
                 sc.append({s.data: self.visit(s)})
             else:
                 if (type(s) == Token):
                     sc.append({s.type: s})
+        
+        if self.is_lista:
+            self.listinha += "),"
+        if self.is_expression:
+            self.expression += "),"
+        if self.is_tuplo:
+            self.tuplo_expression += "),"
 
         return sc
 
@@ -146,12 +184,25 @@ class PtyCInterpreter(Interpreter):
     def tail(self,tail):
         # tail: "tail" "(" argumentosh ")"
         tl = []
+        if self.is_lista:
+            self.listinha += "tail("
+        if self.is_expression:
+            self.expression += "tail("
+        if self.is_tuplo:
+            self.tuplo_expression += "tail("
+        
         for t in tail.children:
             if(type(t) == Tree):
                 tl.append({t.data: self.visit(t)})
             else:
                 if (type(t) == Token):
                     tl.append({t.type: t})
+        if self.is_lista:
+            self.listinha += "),"
+        if self.is_expression:
+            self.expression += "),"
+        if self.is_tuplo:
+            self.tuplo_expression += "),"
 
         return tl
 
@@ -190,25 +241,32 @@ class PtyCInterpreter(Interpreter):
             self.expression += expressao 
         elif self.is_tuplo:
             self.tuplo_expression += expressao
+        
         for f in func.children:
             if(type(f) == Tree):
                 fun_.append({f.data: self.visit(f)})
             else:
                 if (type(f) == Token):
                     fun_.append({f.type: f})
+                    if self.is_funcao:
+                        self.funcao_expression += f.value + "("
         if self.is_lista:
             if self.listinha[-1] == ",":
                 self.listinha = self.listinha[:-1] + "),"
             else:
                 self.listinha += "),"
         elif self.is_expression:
-            if self.expression[-1] == ",":
-                self.expression = self.expression[:-1] +  "),"
-            else:
-                self.expression += "),"
+            if self.expression != "":
+                if self.expression[-1] == ",":
+                    self.expression = self.expression[:-1] +  "),"
+                else:
+                    self.expression += "),"
         elif self.is_tuplo:
             if self.tuplo_expression[-1] == ",":
                 self.tuplo_expression = self.tuplo_expression[:-1] +  "),"
+        elif self.is_funcao:
+            if self.funcao_expression[-1] == ",":
+                self.funcao_expression = self.funcao_expression[:-1] +  ")"
 
         return fun_
 
@@ -296,6 +354,10 @@ class PtyCInterpreter(Interpreter):
 
         self.is_variable = False
         self.is_atribuicao = False
+        self.expression = ""
+        self.listinha = ""
+        self.list_value = ""
+        self.tuplo_expression = ""
 
         return atrib
 
@@ -314,13 +376,13 @@ class PtyCInterpreter(Interpreter):
             if(type(v) == Tree):
                 variable.append({v.data: self.visit(v)})
                 variable_name = str(self.variavel_atual[-1]) +  "[" + str(self.list_value) + "]"
-                if variable_name in self.info["variaveis"]:
-                    self.info["variaveis"][variable_name]["foi_utilizada"] = True
+                if self.variavel_atual[-1] in self.info["variaveis"]:
+                    self.info["variaveis"][self.variavel_atual[-1]]["foi_utilizada"] = True
                 else:
                     foi_utilizada = False
                     if self.is_objeto or self.is_lista or self.is_tuplo or self.expressao_counter > 0:
                         foi_utilizada = True
-                    self.info["variaveis"][variable_name] = {
+                    self.info["variaveis"][self.variavel_atual[-1]] = {
                         "foi_declarada" : False,
                         "foi_inicializada": False,
                         "foi_utilizada": foi_utilizada,
@@ -332,7 +394,7 @@ class PtyCInterpreter(Interpreter):
                     self.expression += variable_name
                     self.variavel_atual.pop()
                 else:
-                    self.variavel_atual.append(variable_name)
+                    self.variavel_atual.append(self.variavel_atual[-1])
 
                 self.list_value = ""
                 self.is_list = False
@@ -366,7 +428,7 @@ class PtyCInterpreter(Interpreter):
                         else:
                             self.variavel_atual.append(str(v.value))
                     
-                    if self.is_objeto and self.is_list == False and self.is_expression == False and self.is_tuplo == False:
+                    if self.is_objeto and self.is_list == False and self.is_expression == False and self.is_tuplo == False and self.is_lista == False:
                         self.info["variaveis"][self.variavel_atual[-1]]["valores"].append(v.value)
                         if self.info["variaveis"][self.variavel_atual[-1]]["foi_inicializada"] == False:
                             self.info["variaveis"][self.variavel_atual[-1]]["foi_inicializada"] = True
@@ -374,8 +436,10 @@ class PtyCInterpreter(Interpreter):
                         self.listinha += str(v.value) + ","
                     elif self.is_lista and self.is_list:
                         self.listinha += str(v.value) + "["
-                    if self.is_expressao and self.is_objeto:
+                    if self.is_expressao and self.is_objeto and self.variavel_atual[-1] in self.info["variaveis"]:
                         self.info["variaveis"][self.variavel_atual[-1]]["foi_inicializada"]= True
+                    if self.is_funcao:
+                        self.funcao_expression += str(v.value)
                     variable.append({v.type: v})
 
         return variable
@@ -399,7 +463,7 @@ class PtyCInterpreter(Interpreter):
             
                 obj.append({o.data: self.visit(o)})
                 if o.data == "expressao":
-                    if self.expression != "":
+                    if self.expression != "" and not self.is_funcao:
                         self.info["variaveis"][self.variavel_atual[-1]]["valores"].append(self.expression)
 
                         if self.info["variaveis"][self.variavel_atual[-1]]["foi_inicializada"] == False:
@@ -413,9 +477,9 @@ class PtyCInterpreter(Interpreter):
                     elif self.is_tuplo:
                         self.tuplo_expression += str(o.value) + ","
                     else:
-                        if self.is_varlista == False:
+                        if self.is_varlista == False and self.variavel_atual != []:
                             self.info["variaveis"][self.variavel_atual[-1]]["valores"].append(o.value)
-                    if self.is_varlista == False:
+                    if self.is_varlista == False and self.variavel_atual != []:
                         if self.info["variaveis"][self.variavel_atual[-1]]["foi_inicializada"] == False:
                             self.info["variaveis"][self.variavel_atual[-1]]["foi_inicializada"] = True
                     obj.append({o.type: o})
@@ -451,9 +515,11 @@ class PtyCInterpreter(Interpreter):
                 "valores": []
 
             }
+        if self.is_funcao:
+            self.funcao_expression += self.listinha + ","
         if self.is_tuplo:
             self.tuplo_expression += self.listinha + ","
-        if self.is_loop == False:
+        if self.is_loop == False and self.is_funcao == False:
             self.info["variaveis"][self.variavel_atual[-1]]["valores"] = [self.listinha]  
             self.list_counter -= 1
             if self.list_counter == 0:
@@ -702,12 +768,26 @@ class PtyCInterpreter(Interpreter):
     def retorna(self,retorna):
         # retorna: "RETORNA " objeto ";"
         ret = []
+        self.is_lista = False
+        self.is_list = False
+        self.is_atribuicao = False
+        self.is_declaracao = False
+        self.is_funcao = False
+        self.is_expressao = False
+        self.is_loop = False
+        self.is_tuplo = False
+        self.is_expression = False
+        self.is_objeto = False
+        self.is_variable = False
+        self.is_varlista = False
         for r in retorna.children:
             if(type(r) == Tree):
                 ret.append({r.data: self.visit(r)})
             else:
                 if (type(r) == Token):
                     ret.append({r.type: r})
+        
+
 
         return ret
 
@@ -832,7 +912,7 @@ class PtyCInterpreter(Interpreter):
                         self.list_value += str(atomo.value)
                     else:
                          if self.is_variable:
-                            if(not self.is_expression):
+                            if(not self.is_expression and not self.is_funcao):
                                 self.info["variaveis"][self.variavel_atual[-1]]["valores"].append(atomo.value)
                                 if self.info["variaveis"][self.variavel_atual[-1]]["foi_inicializada"] == False:
                                     self.info["variaveis"][self.variavel_atual[-1]]["foi_inicializada"] = True
@@ -847,6 +927,9 @@ class PtyCInterpreter(Interpreter):
                             self.listinha += ","
                     if self.is_tuplo and self.is_lista == False:
                         self.tuplo_expression += atomo.value + ","
+                    if self.is_funcao:
+                        if self.is_lista == False:
+                            self.funcao_expression += atomo.value + ","
         return ato
 
     def senao(self,senao):

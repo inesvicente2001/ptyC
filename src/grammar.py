@@ -16,8 +16,8 @@ objeto: expressao
        |lista
        |funcao
 
-array: "[" (NUM ("," NUM)*)? "]"
-      |"[" (STRING ("," STRING)*)? "]"
+array: "{" (NUM ("," NUM)*)? "}"
+      |"{" (STRING ("," STRING)*)? "}"
 
 tuplo: "(" ((objeto) ("," objeto)*)? ")"
 

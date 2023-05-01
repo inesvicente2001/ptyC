@@ -1,8 +1,14 @@
 Int x = 4;
 
+x=5;
+
 Array y[12];
 String j;
 
 Tuplo c[3] = 45 * 4 + y;
 
 Lista j[5 * 3 + 5 / x];
+
+String s = "ola";
+
+u = 9 ^ 45;

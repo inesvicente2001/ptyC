@@ -486,6 +486,7 @@ class PtyCInterpreter(Interpreter):
             if self.expression[-1] == ",": 
                 self.expression = self.expression[:-1]
             self.is_expression += ")"
+        return tup
 
 
     def selecao(self,selecao):

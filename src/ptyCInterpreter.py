@@ -89,6 +89,7 @@ class PtyCInterpreter(Interpreter):
             self.funcao_expression += ")"
             if self.variavel_atual != []:
                 self.info["variaveis"][self.variavel_atual[-1]]["valores"].append(self.funcao_expression)
+                self.info["variaveis"][self.variavel_atual[-1]]["foi_inicializada"] = True
             self.is_funcao = False
 
         return func
@@ -479,6 +480,7 @@ class PtyCInterpreter(Interpreter):
                     else:
                         if self.is_varlista == False and self.variavel_atual != []:
                             self.info["variaveis"][self.variavel_atual[-1]]["valores"].append(o.value)
+                            self.info["variaveis"][self.variavel_atual[-1]]["foi_inicializada"] = True
                     if self.is_varlista == False and self.variavel_atual != []:
                         if self.info["variaveis"][self.variavel_atual[-1]]["foi_inicializada"] == False:
                             self.info["variaveis"][self.variavel_atual[-1]]["foi_inicializada"] = True
@@ -521,6 +523,7 @@ class PtyCInterpreter(Interpreter):
             self.tuplo_expression += self.listinha + ","
         if self.is_loop == False and self.is_funcao == False:
             self.info["variaveis"][self.variavel_atual[-1]]["valores"] = [self.listinha]  
+            self.info["variaveis"][self.variavel_atual[-1]]["foi_inicializada"] = True
             self.list_counter -= 1
             if self.list_counter == 0:
                 self.listinha = ""

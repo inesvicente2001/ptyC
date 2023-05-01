@@ -159,10 +159,6 @@ def generateSeHTML(se,factor):
     html += """<div class="comma">){</div></p>"""
 
     # body
-    if factor > 0:
-        sizeIdentation = factor*1.5
-        html += f"""
-        <span style="margin-left: {sizeIdentation}em;"></span>"""
     html += selector(se["body"],"body",factor)
 
     html += """
@@ -319,6 +315,63 @@ def generateAssignmentHTML(assignment, factor, insideDec):
     return html
 
 
+def generateArrayHTML(array):
+    html = """
+    <div class="comma">{</div>
+    """
+
+    for element in array[0:-1]:
+        html += f"""{selector(element,list(element.keys())[0])}"""
+        html += f"""<div class="comma">&nbsp,&nbsp</div>"""
+
+    html += f"""{selector(array[-1],list(array[-1].keys())[0])}"""
+
+    html += """
+    <div class="comma">}</div>
+    """
+
+    return html
+
+def generateTupleHTML(tuple):
+    html = """
+    <div class="comma">(</div>
+    """
+
+    for element in tuple[0:-1]:
+        html += f"""{selector(element,list(element.keys())[0])}"""
+        html += f"""<div class="comma">&nbsp,&nbsp</div>"""
+
+    html += f"""{selector(tuple[-1],list(tuple[-1].keys())[0])}"""
+
+    html += """
+    <div class="comma">)</div>
+    """
+
+    return html
+
+def generateListHTML(lst):
+    html = """
+    <div class="comma">[</div>
+    """
+
+    for element in lst[0:-1]:
+        html += f"""{selector(element,list(element.keys())[0])}"""
+        html += f"""<div class="comma">&nbsp,&nbsp</div>"""
+
+    html += f"""{selector(lst[-1],list(lst[-1].keys())[0])}"""
+
+    html += """
+    <div class="comma">]</div>
+    """
+
+    return html
+
+def generateFunctionHTML(function):
+    html = """"""
+
+    return html
+
+
 def generateVarHTML(var,insideDec):
 
     html = f"""<div class="variables">{var[0]["VAR"]}"""  
@@ -421,14 +474,16 @@ def selector(line,type,factor=0,insideDec=False):
         body += generateObjectHTML(line[type])
     elif type == "STRING":
         body += f"""<div class="strings">{line[type]}</div>"""
+    elif type == "NUM":
+        body += f"""<div class="numbers">{line[type]}</div>"""
     elif type == "array":
-        pass
+        body += generateArrayHTML(line[type])
     elif type == "tuplo":
-        pass
+        body += generateTupleHTML(line[type])
     elif type == "lista":
-        pass
+        body += generateListHTML(line[type])
     elif type == "funcao":
-        pass
+        body += generateFunctionHTML(line[type])
     elif type == "condicao":
         body += generateConditionHTML(line[type])
     elif type == "logica":

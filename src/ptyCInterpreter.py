@@ -359,6 +359,8 @@ class PtyCInterpreter(Interpreter):
                 if (type(t) == Token):
                     tup.append({t.type: t})
 
+        return tup
+
 
     def selecao(self,selecao):
         # selecao: se

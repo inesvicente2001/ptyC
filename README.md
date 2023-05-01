@@ -22,28 +22,29 @@ python3 src/ptyC.py
 
 ------------------
 
+## HTML
 
 - [x] program
 - [x] statement
-- [] body
-- [] statementbody
-- [] declaracao
-- [] atribuicao
-- [] var
-- [] objeto
-- [] array     
-- [] tuplo
-- [] lista
-- [] expressao
-- [] termo
-- [] fator
-- [] atomo
+- [x] body
+- [x] statementbody
+- [x] declaracao
+- [x] atribuicao
+- [x] var
+- [x] objeto
+- [x] array     
+- [x] tuplo
+- [x] lista
+- [x] expressao
+- [x] termo
+- [x] fator
+- [x] atomo
 - [] selecao
-- [] se
-- [] logica
-- [] condicao
-- [] logico
-- [] senao
+- [x] se
+- [x] logica
+- [x] condicao
+- [x] logico
+- [x] senao
 - [] casos (***REVER : ASPETO ESTRANHO***)
 - [] caso (***REVER : ASPETO ESTRANHO***)
 - [] casofinal (***REVER : ASPETO ESTRANHO***)
@@ -69,16 +70,3 @@ python3 src/ptyC.py
 
 
 -------------------
-
-
-## HTML
-
-
-- declaracao[x]
-- atribuicao[x]
-- selecao[x] --> falta casos
-- repeticao[]
-- chamadafuncao[]
-- deffuncao[]
-- importar[x]
-- comentario[x]

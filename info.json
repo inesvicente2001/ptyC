@@ -2,11 +2,13 @@
   "variaveis": {
     "v": {
       "foi_declarada": false,
-      "foi_inicializada": false,
+      "foi_inicializada": true,
       "foi_utilizada": true,
       "foi_redeclarada": false,
       "tipo_da_variavel": "",
-      "valores": []
+      "valores": [
+        "([8,9,8],"
+      ]
     },
     "h": {
       "foi_declarada": false,
@@ -32,52 +34,54 @@
       "tipo_da_variavel": "",
       "valores": []
     },
-    "u": {
-      "foi_declarada": false,
-      "foi_inicializada": false,
-      "foi_utilizada": true,
-      "foi_redeclarada": false,
-      "tipo_da_variavel": "",
-      "valores": []
-    },
     "x": {
       "foi_declarada": false,
-      "foi_inicializada": false,
-      "foi_utilizada": true,
-      "foi_redeclarada": false,
-      "tipo_da_variavel": "",
-      "valores": []
-    },
-    "y[9]": {
-      "foi_declarada": false,
-      "foi_inicializada": false,
-      "foi_utilizada": false,
-      "foi_redeclarada": false,
-      "tipo_da_variavel": "",
-      "valores": [
-        "z-uvp*8+0-8/y"
-      ]
-    },
-    "i[i6]": {
-      "foi_declarada": true,
       "foi_inicializada": true,
       "foi_utilizada": false,
       "foi_redeclarada": false,
-      "tipo_da_variavel": "Int",
+      "tipo_da_variavel": "",
       "valores": [
-        "0",
-        ""
+        "p*8+0-8/y[9]",
+        "y[9]"
       ]
     },
-    "r": {
+    "y": {
       "foi_declarada": false,
-      "foi_inicializada": false,
+      "foi_inicializada": true,
       "foi_utilizada": true,
       "foi_redeclarada": false,
       "tipo_da_variavel": "",
       "valores": []
     },
+    "i": {
+      "foi_declarada": false,
+      "foi_inicializada": true,
+      "foi_utilizada": false,
+      "foi_redeclarada": false,
+      "tipo_da_variavel": "",
+      "valores": [
+        "0"
+      ]
+    },
+    "r": {
+      "foi_declarada": true,
+      "foi_inicializada": false,
+      "foi_utilizada": true,
+      "foi_redeclarada": false,
+      "tipo_da_variavel": "Int",
+      "valores": []
+    },
     "g": {
+      "foi_declarada": false,
+      "foi_inicializada": true,
+      "foi_utilizada": false,
+      "foi_redeclarada": false,
+      "tipo_da_variavel": "",
+      "valores": [
+        "[8,3]"
+      ]
+    },
+    "u": {
       "foi_declarada": false,
       "foi_inicializada": false,
       "foi_utilizada": true,
@@ -87,36 +91,25 @@
     },
     "j": {
       "foi_declarada": false,
-      "foi_inicializada": false,
-      "foi_utilizada": true,
+      "foi_inicializada": true,
+      "foi_utilizada": false,
       "foi_redeclarada": false,
       "tipo_da_variavel": "",
       "valores": [
         "0",
-        "",
-        "",
+        "99",
         "0",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "0",
-        "",
-        "",
-        "",
-        "\"r\""
+        "0"
       ]
     },
     "a": {
       "foi_declarada": false,
-      "foi_inicializada": false,
-      "foi_utilizada": true,
+      "foi_inicializada": true,
+      "foi_utilizada": false,
       "foi_redeclarada": false,
       "tipo_da_variavel": "",
       "valores": [
-        "0",
-        ""
+        "0"
       ]
     },
     "o": {
@@ -129,36 +122,22 @@
     },
     "k": {
       "foi_declarada": false,
-      "foi_inicializada": false,
-      "foi_utilizada": true,
-      "foi_redeclarada": false,
-      "tipo_da_variavel": "",
-      "valores": []
-    },
-    "ki": {
-      "foi_declarada": false,
-      "foi_inicializada": false,
-      "foi_utilizada": true,
-      "foi_redeclarada": false,
-      "tipo_da_variavel": "",
-      "valores": []
-    },
-    "i": {
-      "foi_declarada": false,
-      "foi_inicializada": false,
-      "foi_utilizada": true,
-      "foi_redeclarada": false,
-      "tipo_da_variavel": "",
-      "valores": []
-    },
-    "k[8]": {
-      "foi_declarada": false,
       "foi_inicializada": true,
-      "foi_utilizada": false,
+      "foi_utilizada": true,
       "foi_redeclarada": false,
       "tipo_da_variavel": "",
       "valores": [
         "9+jd"
+      ]
+    },
+    "ki": {
+      "foi_declarada": false,
+      "foi_inicializada": true,
+      "foi_utilizada": true,
+      "foi_redeclarada": false,
+      "tipo_da_variavel": "",
+      "valores": [
+        "\"hihi\""
       ]
     },
     "jd": {
@@ -169,18 +148,39 @@
       "tipo_da_variavel": "",
       "valores": []
     },
-    "c": {
+    "s": {
       "foi_declarada": false,
       "foi_inicializada": false,
       "foi_utilizada": true,
       "foi_redeclarada": false,
       "tipo_da_variavel": "",
+      "valores": []
+    },
+    "c": {
+      "foi_declarada": false,
+      "foi_inicializada": true,
+      "foi_utilizada": true,
+      "foi_redeclarada": false,
+      "tipo_da_variavel": "",
       "valores": [
-        "",
-        ""
+        "[8,9,8])a,}c,[h,fun(),ui(8,\"33\"),[8,9]8,[9,8]7,7,k]"
       ]
     }
   },
-  "instrucoes": {},
-  "aninhamentos": 0
+  "instrucoes": {
+    "atribuicoes": 12,
+    "leitura e escrita": 0,
+    "condicionais": 2,
+    "ciclos": 3
+  },
+  "aninhamentos": {
+    "ciclos_dentro_de_ciclos": 0,
+    "condicionais_dentro_de_condicionais": 0,
+    "ciclos_dentro_de_condicionais": 0,
+    "condicionais_dentro_de_ciclos": 0
+  },
+  "imports": [
+    "en_i-de.lm",
+    "en_i-delm"
+  ]
 }

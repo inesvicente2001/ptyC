@@ -2,7 +2,8 @@
     <!DOCTYPE html>
     <html>
         <head>
-            <title>ptyC(MUDAR TITULO)</title>
+            <meta charset="utf-8">
+            <title>Analisador de Código Fonte</title>
         </head>
         
     <style>
@@ -14,24 +15,73 @@
             color: #FFFFFF;
         }
 
+        .normal {
+            position: relative;
+            display: inline-block;
+            border-bottom: none;
+        }
+
         .error {
             position: relative;
             display: inline-block;
-            border-bottom: 1px dotted black;
+            border-bottom: 2px dotted white;
             color: red;
         }
-        .code {
+
+
+        .warning {
             position: relative;
             display: inline-block;
+            border-bottom: 2px dotted white;
+            color: #b6e0f7;
         }
-        .error .errortext {
+        .warning .warningtext {
             visibility: hidden;
-            width: 200px;
-            background-color: #555;
+            width: fit-content;
+            background-color: #dddd2a;
+            border: solid 1.3px yellow;
             color: #fff;
             text-align: center;
             border-radius: 6px;
-            padding: 5px 0;
+            padding: 5px 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -40px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .warning .warningtext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 20%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #555 transparent transparent transparent;
+        }
+        .warning:hover .warningtext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+
+        .code {
+            position: relative;
+            display: inline-block;
+            margin: 0;
+        }
+        .error .errortext {
+            visibility: hidden;
+            width: fit-content;
+            background-color: #c587c0;
+            border: solid 1.3px red;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 5px;
             position: absolute;
             z-index: 1;
             bottom: 125%;
@@ -132,10 +182,22 @@
             display: inline-block;
             color: #569CD6;
         }
+        
+        .types {
+            position: relative;
+            display: inline-block;
+            color: #61D2D2;
+        }
+        
+        .symbols {
+            position: relative;
+            display: inline-block;
+            color: #D4D4D4;
+        }
         </style>
         
     <body>
-        <h2>Análise de código</h2>
+        <h2>Analisador de Código Fonte</h2>
         <div class="container">
             <p class="code">
             <div class="tags">IMPORTA&nbsp</div><div class="preprocessor">en_i-de.lm</div>
@@ -143,24 +205,313 @@
             <p class="code">
             <div class="tags">IMPORTA&nbsp</div><div class="preprocessor">en_i-delm</div>
             </p>
-                        <p class="code">
-                        <div class="comments">:-&nbsp</div><div class="comments">comentario </div>
-                        </p>
-                    <p class="code">
-                    <div class="comments">com multiplas linhas</div>
-                    </p>
-                    <p class="code">
-                    <div class="comments">sc</div>
-                    </p>
-                    <p class="code">
-                    <div class="comments">sss</div>
-                    </p>
-                    <p class="code">
-                    <div class="comments"></div><div class="comments">&nbsp-:</div>
-                    </p>
-                        <p class="code">
-                        <div class="comments">:-&nbsp</div><div class="comments"> ola </div><div class="comments">&nbsp-:</div>
-                        </p>
+            <p class="code">
+                <div class="comments">:-&nbsp</div><div class="comments"> comentario </div>
+                </p>
+            <p class="code">
+            <div class="comments">com multiplas linhas</div>
+                </p>
+            <p class="code">
+            <div class="comments">sc</div>
+                </p>
+            <p class="code">
+            <div class="comments">sss</div>
+                </p>
+            <p class="code">
+            <div class="comments"></div><div class="comments">&nbsp-:</div>
+                </p>
+            <p class="code">
+            <div class="keywords">SE&nbsp</div>
+            <div class="symbols">(</div><div class="variables"><div class="error">v<span class="errortext">Variável não declarada!</span></div>&nbsp</div><div class="operators">==&nbsp</div><div class="numbers">0&nbsp</div>
+                <div class="keywords"> E &nbsp</div><div class="variables"><div class="error">h<span class="errortext">Variável não declarada!</span></div>&nbsp</div><div class="operators"><&nbsp</div><div class="variables"><div class="error">p<span class="errortext">Variável não declarada!</span></div>&nbsp</div>
+                <div class="keywords"> OU &nbsp</div><div class="variables"><div class="error">z<span class="errortext">Variável não declarada!</span></div>&nbsp</div><div class="operators">>&nbsp</div><div class="variables"><div class="error">v<span class="errortext">Variável não declarada!</span></div>&nbsp</div><div class="symbols">)&nbsp{</div></p><p class="code">
+            <span style="margin-left: 1.5em;"></span>
+                <div class="variables"><div class="error">x<span class="errortext">Variável não declarada!</span></div>&nbsp</div>
+                <div class="operators">=&nbsp</div>
+                <div class="variables"><div class="error">p<span class="errortext">Variável não declarada!</span></div>&nbsp</div><div class="operators">&nbsp*&nbsp</div><div class="numbers">8&nbsp</div><div class="operators">&nbsp+&nbsp</div><div class="numbers">0&nbsp</div><div class="operators">&nbsp-&nbsp</div><div class="numbers">8&nbsp</div><div class="operators">&nbsp/&nbsp</div><div class="variables"><div class="error">y<span class="errortext">Variável não declarada!</span></div><div class="operators">[&nbsp</div><div class="numbers">9&nbsp</div><div class="operators">]</div>&nbsp</div>
+                <div class="symbols">;</div>
+                </p>
+                
+            <p class="code">
+        <span style="margin-left: 1.5em;"></span><div class="functions">funcaozinha</div>
+    <div class="symbols">(</div>
+    <div class="numbers">1&nbsp</div><div class="symbols">&nbsp,&nbsp</div><div class="strings">"hihi"</div><div class="symbols">&nbsp,&nbsp</div><div class="numbers">9&nbsp</div><div class="operators">&nbsp+&nbsp</div><div class="numbers">5&nbsp</div>
+    <div class="symbols">)</div>
+    
+            <div class="symbols">;</div>
+            </p>
+            <p class="code">
+            <div class="symbols">}</div><div class="keywords">SENAO</div><div class="symbols">&nbsp{</div></p><p class="code">
+            <span style="margin-left: 1.5em;"></span>
+                <div class="variables"><div class="error">i<span class="errortext">Variável não declarada!</span></div><div class="operators">[&nbsp</div><div class="numbers">6&nbsp</div><div class="operators">]</div>&nbsp</div>
+                <div class="operators">=&nbsp</div>
+                <div class="numbers">0&nbsp</div>
+                <div class="symbols">;</div>
+                </p>
+                
+            <p class="code">
+        <div class="symbols">}</div>
+        </p><p class="code">
+            <div class="types">Int&nbsp</div>
+            <div class="variables"><div class="warning">r<span class="warningtext">Variável não inicializada!</span></div><div class="symbols">;</div>&nbsp</div>
+    </p><p class="code">
+                <div class="variables"><div class="error">g<span class="errortext">Variável não declarada!</span></div>&nbsp</div>
+                <div class="operators">=&nbsp</div>
+                
+    <div class="symbols">[</div>
+    <div class="numbers">8&nbsp</div><div class="symbols">&nbsp,&nbsp</div><div class="numbers">3&nbsp</div>
+    <div class="symbols">]</div>
+    
+                <div class="symbols">;</div>
+                </p>
+                <p class="code">
+                <div class="variables"><div class="error">x<span class="errortext">Variável não declarada!</span></div>&nbsp</div>
+                <div class="operators">=&nbsp</div>
+                <div class="variables"><div class="error">y<span class="errortext">Variável não declarada!</span></div><div class="operators">[&nbsp</div><div class="numbers">9&nbsp</div><div class="operators">]</div>&nbsp</div>
+                <div class="symbols">;</div>
+                </p>
+                
+            <p class="code">
+            <div class="keywords">ESCOLHE&nbsp</div>
+            <div class="symbols">(</div><div class="variables"><div class="error">u<span class="errortext">Variável não declarada!</span></div>&nbsp</div><div class="symbols">){</div></p>
+            <p class="code">
+            <span style="margin-left: 1.5em;"></span>
+                <div class="keywords">CASO&nbsp</div>
+                <div class="symbols">(</div><div class="numbers">8</div><div class="symbols">)</div><div class="symbols">&nbsp{</div></p><p class="code">
+            <span style="margin-left: 3.0em;"></span>
+                <div class="variables"><div class="error">j<span class="errortext">Variável não declarada!</span></div>&nbsp</div>
+                <div class="operators">=&nbsp</div>
+                <div class="numbers">0&nbsp</div>
+                <div class="symbols">;</div>
+                </p>
+                
+                <p class="code">
+            <span style="margin-left: 1.5em;"></span>
+                <div class="symbols">}</div>
+                </p>
+            <p class="code">
+            <span style="margin-left: 1.5em;"></span>
+                <div class="keywords">CASO&nbsp</div>
+                <div class="symbols">(</div><div class="numbers">4</div><div class="symbols">)</div><div class="symbols">&nbsp{</div></p><p class="code">
+            <span style="margin-left: 3.0em;"></span>
+                <div class="variables"><div class="error">a<span class="errortext">Variável não declarada!</span></div>&nbsp</div>
+                <div class="operators">=&nbsp</div>
+                <div class="numbers">0&nbsp</div>
+                <div class="symbols">;</div>
+                </p>
+                
+                <p class="code">
+            <span style="margin-left: 1.5em;"></span>
+                <div class="symbols">}</div>
+                </p>
+            <p class="code">
+            <span style="margin-left: 1.5em;"></span>
+                <div class="keywords">CASO&nbsp</div>
+                <div class="symbols">(</div><div class="numbers">7</div><div class="symbols">)</div><div class="symbols">&nbsp{</div></p><p class="code">
+            <span style="margin-left: 3.0em;"></span>
+                <div class="variables"><div class="error">j<span class="errortext">Variável não declarada!</span></div>&nbsp</div>
+                <div class="operators">=&nbsp</div>
+                <div class="numbers">99&nbsp</div>
+                <div class="symbols">;</div>
+                </p>
+                
+                <p class="code">
+            <span style="margin-left: 1.5em;"></span>
+                <div class="symbols">}</div>
+                </p>
+            <p class="code">
+        <span style="margin-left: 1.5em;"></span>
+            <div class="keywords">CASO&nbsp</div>
+            <div class="symbols">()</div><div class="symbols">&nbsp{</div></p><p class="code">
+            <span style="margin-left: 3.0em;"></span>
+                <div class="variables"><div class="error">j<span class="errortext">Variável não declarada!</span></div>&nbsp</div>
+                <div class="operators">=&nbsp</div>
+                <div class="numbers">0&nbsp</div>
+                <div class="symbols">;</div>
+                </p>
+                
+            <p class="code">
+        <span style="margin-left: 1.5em;"></span>
+            <div class="symbols">}</div>
+            </p>
+        <p class="code">
+        <div class="symbols">}</div>
+        </p><p class="code">
+            <div class="types">Lista&nbsp</div>
+            <div class="variables"><div class="error">u<span class="errortext">Variável não declarada!</span></div><div class="symbols">;</div>&nbsp</div>
+    </p>
+            <p class="code">
+                <div class="comments">:-&nbsp</div><div class="comments"> ola </div><div class="comments">&nbsp-:</div>
+                </p>
+            <p class="code">
+            <div class="keywords">DEF&nbsp</div>
+            <div class="types">Tuplo&nbsp</div>
+            <div class="functions">headg</div>
+    <div class="symbols">(</div>
+    <div class="variables"><div class="error">o<span class="errortext">Variável não declarada!</span></div>&nbsp</div><div class="symbols">&nbsp,&nbsp</div><div class="variables"><div class="error">k<span class="errortext">Variável não declarada!</span></div>&nbsp</div><div class="symbols">&nbsp,&nbsp</div><div class="variables"><div class="error">k<span class="errortext">Variável não declarada!</span></div>&nbsp</div><div class="symbols">&nbsp,&nbsp</div><div class="variables"><div class="error">ki<span class="errortext">Variável não declarada!</span></div>&nbsp</div>
+    <div class="symbols">)</div>
+    
+            <div class="symbols">&nbsp{</div>
+            </p>
+            
+            <p class="code">
+        <span style="margin-left: 1.5em;"></span>
+            <div class="keywords">ENQ&nbsp</div>
+            <div class="symbols">(</div><div class="numbers">5&nbsp</div><div class="keywords"> EM &nbsp</div><div class="error">p<span class="errortext">Variável não declarada!</span></div><div class="symbols">)&nbsp{</div></p>
+            <p class="code">
+        <span style="margin-left: 3.0em;"></span><div class="functions">funcaozinha</div>
+    <div class="symbols">(</div>
+    <div class="numbers">1&nbsp</div><div class="symbols">&nbsp,&nbsp</div><div class="strings">"hihi"</div><div class="symbols">&nbsp,&nbsp</div><div class="numbers">9&nbsp</div><div class="operators">&nbsp+&nbsp</div><div class="numbers">5&nbsp</div>
+    <div class="symbols">)</div>
+    
+            <div class="symbols">;</div>
+            </p>
+            <p class="code">
+        <span style="margin-left: 1.5em;"></span>
+        <div class="symbols">}</div>
+        </p>
+            <p class="code">
+        <span style="margin-left: 1.5em;"></span>
+            <div class="keywords">REPETIR&nbsp</div>
+            <div class="symbols">&nbsp{</div></p><p class="code">
+            <span style="margin-left: 3.0em;"></span>
+                <div class="variables"><div class="error">j<span class="errortext">Variável não declarada!</span></div>&nbsp</div>
+                <div class="operators">=&nbsp</div>
+                <div class="numbers">0&nbsp</div>
+                <div class="symbols">;</div>
+                </p>
+                
+        <span style="margin-left: 1.5em;"></span><div class="symbols">}&nbsp<div class="keywords">ATE</div>&nbsp(</div><div class="variables"><div class="warning">r<span class="warningtext">Variável não inicializada!</span></div>&nbsp</div><div class="operators"><&nbsp</div><div class="numbers">4&nbsp</div><div class="symbols">)</div></p>
+            <p class="code">
+            <p class="code">
+        <span style="margin-left: 1.5em;"></span>
+            <div class="keywords">PARA&nbsp</div>
+            <div class="symbols">(</div><div class="variables"><div class="error">i<span class="errortext">Variável não declarada!</span></div>&nbsp</div><div class="keywords">EM&nbsp</div>
+    <div class="symbols">[</div>
+    <div class="numbers">1&nbsp</div><div class="symbols">&nbsp,&nbsp</div><div class="numbers">2&nbsp</div><div class="symbols">&nbsp,&nbsp</div><div class="strings">"r"</div>
+    <div class="symbols">]</div>
+    <div class="symbols">)&nbsp{</div></p><p class="code">
+            <span style="margin-left: 3.0em;"></span>
+                <div class="variables"><div class="error">k<span class="errortext">Variável não declarada!</span></div><div class="operators">[&nbsp</div><div class="numbers">8&nbsp</div><div class="operators">]</div>&nbsp</div>
+                <div class="operators">=&nbsp</div>
+                <div class="numbers">9&nbsp</div><div class="operators">&nbsp+&nbsp</div><div class="variables"><div class="error">jd<span class="errortext">Variável não declarada!</span></div>&nbsp</div>
+                <div class="symbols">;</div>
+                </p>
+                
+            <p class="code">
+        <span style="margin-left: 1.5em;"></span>
+        <div class="symbols">}</div>
+        </p>
+            <p class="code">
+            <div class="symbols">}</div>
+            </p>
+            <p class="code">
+            <div class="keywords">DEF&nbsp</div>
+            <div class="types">Lista&nbsp</div>
+            <div class="functions">retorno</div>
+    <div class="symbols">(</div>
+    
+    <div class="symbols">)</div>
+    
+            <div class="symbols">&nbsp{</div>
+            </p>
+            
+            <p class="code">
+            <span style="margin-left: 1.5em;"></span>
+            <div class="keywords">RETORNA&nbsp</div>
+            
+    <div class="symbols">(</div>
+    <div class="variables"><div class="error">h<span class="errortext">Variável não declarada!</span></div>&nbsp</div><div class="symbols">&nbsp,&nbsp</div>
+    <div class="symbols">[</div>
+    <div class="numbers">8&nbsp</div><div class="symbols">&nbsp,&nbsp</div><div class="numbers">9&nbsp</div><div class="symbols">&nbsp,&nbsp</div><div class="numbers">8&nbsp</div>
+    <div class="symbols">]</div>
+    
+    <div class="symbols">)</div>
+    
+            <div class="symbols">;</div>
+            </p>
+            <p class="code">
+            <div class="symbols">}</div>
+            </p>
+            <p class="code">
+    <div class="functions">head</div>
+    <div class="symbols">(&nbsp</div>
+    <div class="error">p<span class="errortext">Variável não declarada!</span></div>
+    <div class="symbols">)&nbsp</div>
+    
+            <div class="symbols">;</div>
+            </p><p class="code">
+            <div class="types">Array&nbsp</div>
+            
+                <div class="variables"><div class="error">a<span class="errortext">Variável não declarada!</span></div>&nbsp</div>
+                <div class="operators">=&nbsp</div>
+                
+    <div class="symbols">&nbsp{</div>
+    
+    <div class="symbols">}</div>
+    
+                <div class="symbols">;</div>
+                </p>
+                
+    </p>
+            <p class="code">
+    <div class="functions">tail</div>
+    <div class="symbols">(&nbsp</div>
+    <div class="error">s<span class="errortext">Variável não declarada!</span></div>
+    <div class="symbols">)&nbsp</div>
+    
+            <div class="symbols">;</div>
+            </p><p class="code">
+                <div class="variables"><div class="error">c<span class="errortext">Variável não declarada!</span></div>&nbsp</div>
+                <div class="operators">=&nbsp</div>
+                
+    <div class="symbols">[</div>
+    <div class="variables"><div class="error">h<span class="errortext">Variável não declarada!</span></div>&nbsp</div><div class="symbols">&nbsp,&nbsp</div><div class="functions">fun</div>
+    <div class="symbols">(</div>
+    
+    <div class="symbols">)</div>
+    <div class="symbols">&nbsp,&nbsp</div><div class="functions">ui</div>
+    <div class="symbols">(</div>
+    <div class="numbers">8&nbsp</div><div class="symbols">&nbsp,&nbsp</div><div class="strings">"33"</div>
+    <div class="symbols">)</div>
+    <div class="symbols">&nbsp,&nbsp</div>
+    <div class="functions">tail</div>
+    <div class="symbols">(&nbsp</div>
+    
+    <div class="symbols">[</div>
+    <div class="numbers">8&nbsp</div><div class="symbols">&nbsp,&nbsp</div><div class="numbers">9&nbsp</div>
+    <div class="symbols">]</div>
+    
+    <div class="symbols">)&nbsp</div>
+    <div class="symbols">&nbsp,&nbsp</div>
+    <div class="functions">head</div>
+    <div class="symbols">(&nbsp</div>
+    <div class="error">u<span class="errortext">Variável não declarada!</span></div>
+    <div class="symbols">)&nbsp</div>
+    <div class="symbols">&nbsp,&nbsp</div>
+    <div class="functions">cons</div>
+    <div class="symbols">(&nbsp</div>
+    <div class="numbers">8&nbsp</div>
+    <div class="symbols">&nbsp,&nbsp</div>
+    
+    <div class="symbols">[</div>
+    <div class="numbers">9&nbsp</div><div class="symbols">&nbsp,&nbsp</div><div class="numbers">8&nbsp</div>
+    <div class="symbols">]</div>
+    
+    <div class="symbols">)&nbsp</div>
+    <div class="symbols">&nbsp,&nbsp</div>
+    <div class="functions">snoc</div>
+    <div class="symbols">(&nbsp</div>
+    <div class="numbers">7&nbsp</div><div class="operators">&nbsp+&nbsp</div><div class="numbers">7&nbsp</div>
+    <div class="symbols">&nbsp,&nbsp</div>
+    <div class="error">u<span class="errortext">Variável não declarada!</span></div>
+    <div class="symbols">)&nbsp</div>
+    <div class="symbols">&nbsp,&nbsp</div><div class="variables"><div class="error">k<span class="errortext">Variável não declarada!</span></div>&nbsp</div>
+    <div class="symbols">]</div>
+    
+                <div class="symbols">;</div>
+                </p>
+                
         </div>
     </body>
     

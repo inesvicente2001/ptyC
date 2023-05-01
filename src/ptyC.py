@@ -4,6 +4,7 @@ from grammar import grammar
 import json
 from ptyCInterpreter import PtyCInterpreter
 import os
+from otimizacoes import otimizacoes
 
 APP_PATH = os.path.dirname(os.path.abspath(__file__))
 CONFIG_PATH = os.path.join(APP_PATH, "../testes/testeBig.ptyC")
@@ -25,7 +26,9 @@ data = PtyCInterpreter().visit(parse_tree)
 #print("data: ", data)
 
 # data in json file
-with open('tree.json', 'w') as outfile:
+with open('../testesFiles/tree.json', 'w') as outfile:
     json.dump(data, outfile, indent=2, ensure_ascii=False)
 
-pydot__tree_to_png(parse_tree, "tree.png")
+pydot__tree_to_png(parse_tree, "../tree.png")
+
+otimizacoes()

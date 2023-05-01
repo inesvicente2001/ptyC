@@ -1,0 +1,4 @@
+
+SE (v == 0 E b > v) {
+    SE (b == i) {h=8;}
+} SENAO {h = 0}

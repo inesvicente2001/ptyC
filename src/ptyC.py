@@ -5,6 +5,7 @@ import os
 import argparse
 from otimizacoes import otimizacoes
 from htmlGenerator import htmlGenerator
+import json
 
 
 if __name__ == '__main__':
@@ -41,10 +42,17 @@ if __name__ == '__main__':
     with open(OUTPUT_PATH, "w") as f:
         f.write(html)
 
-
-    print(info["instrucoes"])
-    print(info["imports"])
-    print(info["aninhamentos"])
+    
+    print("Instruções:")
+    print(json.dumps(info["instrucoes"], indent=2, sort_keys=True))
+    print("\n")
+    print("Imports:")
+    print(json.dumps(info["imports"], indent=2, sort_keys=True))
+    print("\n")
+    print("Aninhamentos:")
+    print(json.dumps(info["aninhamentos"], indent=2, sort_keys=True))
+    print("\n")
+    print("HTML gerado em: " + OUTPUT_PATH)
 
 
 

@@ -155,3 +155,21 @@ tem multiplas linhas -:
 ```
 IMPORTA {pacote_a_importar};
 ```
+
+
+----------------------------------------------------------------
+
+
+# Como executar o programa
+
+```bash
+python3 src/ptyC.py programas/{programa_input} {nome_HTML}
+```
+
+------------------
+
+# Exemplo de um output HTML gerado e as estatísticas do programa, colocados na linha de comandos
+
+![image](images/fibonacciHTML.png)
+
+![image](images/fibonacciTerminal.png)

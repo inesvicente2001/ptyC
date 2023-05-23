@@ -183,4 +183,4 @@ python3 src/ptyC.py programas/{programa_input} {nome_HTML}
 - Grafos(TP3)
 - Streamlit app  (se der tempo)
 
-- Adicionar nas infos se a funç
+- Adicionar nas infos se a função é recursiva, tem ciclos, stats de funçoes, etc

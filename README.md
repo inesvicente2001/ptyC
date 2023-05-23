@@ -173,3 +173,12 @@ python3 src/ptyC.py programas/{programa_input} {nome_HTML}
 ![image](images/fibonacciHTML.png)
 
 ![image](images/fibonacciTerminal.png)
+
+----------------------------------------------------------------
+
+# TO DO
+
+- Corrigir erros na parte das infos de vars
+- HYML : navbar & estatisticas Infos
+- Grafos(TP3)
+- Streamlit app  (se der tempo)

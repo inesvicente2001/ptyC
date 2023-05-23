@@ -182,3 +182,5 @@ python3 src/ptyC.py programas/{programa_input} {nome_HTML}
 - HYML : navbar & estatisticas Infos
 - Grafos(TP3)
 - Streamlit app  (se der tempo)
+
+- Adicionar nas infos se a funç

@@ -1,0 +1,23 @@
+Int v = 0;
+Int h = 2;
+Array s = {1,2,3,4,5};
+Int r;
+Int k;
+Int x = 4;
+
+
+SE (v == 0 E h < 4) {
+    SE (x > 0){
+        x = v + 9 - s[3] + k;
+    }
+} SENAO {
+    x = 0;
+}
+
+SE (v == 0 E h < 4) {
+    SE (x > 0){
+        x = v + 9 - s[3] + k;
+    }
+} 
+
+

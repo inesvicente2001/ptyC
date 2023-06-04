@@ -184,3 +184,5 @@ python3 src/ptyC.py programas/{programa_input} {nome_HTML}
 - Streamlit app  (se der tempo)
 
 - Adicionar nas infos se a função é recursiva, tem ciclos, stats de funçoes, etc
+
+- em vez de fazer a alteração diretamente nos ifs, fazer um pop-up que quando clicado diz : o if pode ser alterado para isto : sugere a otimização --- usar o dialog nativo do HTML : https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog

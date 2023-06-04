@@ -6,6 +6,7 @@ import argparse
 from otimizacoes import otimizacoes
 from htmlGenerator import htmlGenerator
 import json
+from graphsPNG import storeGraphsPNG
 
 
 if __name__ == '__main__':
@@ -35,9 +36,55 @@ if __name__ == '__main__':
 
     otimizacoes(data)
 
-    html = htmlGenerator(data["programa"],info["variaveis"])
+    cfgInfoLst = [
+        {
+            "graph" : '''
+            digraph G {
+                inicio -> "if x"
+                "if x" -> "z=2"
+                "z=2" -> "z=z+1"
+                "if x" -> "z=z+1"
+                "z=z+1" -> "fim"
+                "if x" [shape=diamond];
+            }
+            '''
+        },
+        {
+            "graph" : '''
+            digraph G {
+                inicio -> "x=1"
+                "x=1" -> "z=2"
+                "z=2" -> "fim"
+            }
+            '''   
+        }
+    ]
 
-    OUTPUT_PATH = os.path.join(PAR_PATH,"output" ,args.output_file_name[0] + ".html")
+    sdgInfo = {
+        "graph" : '''
+        digraph G {
+            inicio -> "x=3"
+            "x=3" -> "z=2"
+            "z=2" -> "fim" 
+        }
+        '''
+    }
+
+    # create folder if not exists
+    if not os.path.exists(os.path.join(PAR_PATH,"output",args.output_file_name[0])):
+        os.makedirs(os.path.join(PAR_PATH,"output",args.output_file_name[0]))
+
+    # create folder for graphs if not exists
+    if not os.path.exists(os.path.join(PAR_PATH,"output",args.output_file_name[0],"images")):
+        os.makedirs(os.path.join(PAR_PATH,"output",args.output_file_name[0],"images"))
+    
+    # create graphs PNGs and store them in the output folder inside the project folder inside the images folder
+    cfgInfoLstPath = storeGraphsPNG(PAR_PATH,cfgInfoLst,args.output_file_name[0],"cfg")
+    sdgInfoPath = storeGraphsPNG(PAR_PATH,[sdgInfo],args.output_file_name[0],"sdg")
+
+    html = htmlGenerator(data["programa"],info,cfgInfoLstPath,sdgInfoPath)
+
+    OUTPUT_PATH = os.path.join(PAR_PATH,"output",args.output_file_name[0] ,args.output_file_name[0] + ".html")
     
     with open(OUTPUT_PATH, "w") as f:
         f.write(html)
@@ -53,6 +100,7 @@ if __name__ == '__main__':
     print(json.dumps(info["aninhamentos"], indent=2, sort_keys=True))
     print("\n")
     print("HTML gerado em: " + OUTPUT_PATH)
+
 
 
 

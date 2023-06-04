@@ -5,7 +5,6 @@ APP_PATH = os.path.dirname(os.path.abspath(__file__))
 CONFIG_PATH = os.path.join(APP_PATH, "../configs/colorThemes.json")
 
 
-
 def processLanguageElementsClasses(languageElements):
     elements = """"""
     for k,v in languageElements.items():
@@ -123,6 +122,145 @@ def generateStyleCSS():
             visibility: visible;
             opacity: 1;
         }}
+
+        /* New styles for sidebar or navbar */
+        .sidebar {{
+            width: 9.5em;
+            background-color: #333;
+            color: #fff;
+            padding: 1em;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+        }}
+        
+        .sidebar ul {{
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }}
+        
+        .sidebar li {{
+            margin-bottom: 1em;
+        }}
+        
+        .sidebar a {{
+            color: #fff;
+            text-decoration: none;
+        }}
+        
+        .content {{
+            margin-left: 8em;
+            padding: 2em;
+        }}
+        
+        /* Hide all content sections except the active one */
+        .content-section {{
+            display: none;
+        }}
+        
+        .content-section.active {{
+            display: block;
+        }}
+
+        /* New styles for graphs slideshow */
+        * {{box-sizing: border-box}}
+
+        .cfg, .sdg {{
+            display: none;
+        }}
+
+        img {{vertical-align: middle;}}
+
+
+        /* Slideshow container */
+        .slideshow-container {{
+        max-width: 500px;
+        position: relative;
+        margin: auto;
+        }}
+
+        h1, h2, h3, h4,h5 {{
+            text-align: center;
+        }}
+
+        /* Next & previous buttons */
+        .prev, .next {{
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        padding: 16px;
+        margin-top: -22px;
+        color: black;
+        font-weight: bold;
+        font-size: 18px;
+        transition: 0.6s ease;
+        border-radius: 3px;
+        user-select: none;
+        border: 2px solid black;
+
+        }}
+
+        /* Position the "next button" to the right */
+        .next {{
+        right: 0;
+        border-radius: 3px;
+        border: 2px solid black;
+
+        }}
+
+        /* On hover, add a grey background color */
+        .prev:hover, .next:hover {{
+        background-color: #f1f1f1;
+        color: black;
+        }}
+
+        /* CSS for tables */
+        table {{
+            border-collapse: collapse;
+            width: fit-content;
+            margin: auto;
+        }}
+
+        th, td {{
+            border: 1px solid #dddddd;
+            text-align: center;
+            padding: 8px;
+        }}
+
+        th {{
+            background-color: #f2f2f2;
+        }}
+
+        .value-container {{
+            background-color: #f5f5f5;
+            border-radius: 4px;
+            padding: 4px 8px;
+            display: inline-block;
+            margin: 2px;
+        }}
+
+        .mcabesComp-container {{
+            background-color: #f5f5f5;
+            border-radius: 4px;
+            padding: 4px 8px;
+            color: red;
+            display: inline-block;
+            margin: 2px;
+        }}
+
+        .import-container {{
+            /* centered */
+            margin: auto;
+            margin-bottom: 1em;
+            width: fit-content;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+            color: green;
+        }}
+
     """
 
     style += processLanguageElementsClasses(stylingProperties["colorCodes"]["languageElements"])
@@ -1043,21 +1181,322 @@ def selector(variables,line,type,factor=0,insideDec=False):
 
     return body
 
-def generateHTMLBody(code,variables):
+
+def generateScriptJS():
+    javascript = """
+    <script>
+        function changeContent(sectionId) {
+            // Get all content sections
+            var sections = document.getElementsByClassName('content-section');
+            
+            // Loop through all sections and hide them
+            for (var i = 0; i < sections.length; i++) {
+                sections[i].classList.remove('active');
+            }
+            
+            // Show the selected section
+            var selectedSection = document.getElementById('content-section-' + sectionId);
+            selectedSection.classList.add('active');
+        }
+
+        let slideIndex = [1,1];
+        let slideId = ["cfg", "sdg"]
+        showSlides(1, 0);
+        showSlides(1, 1);
+
+        function plusSlides(n, no) {
+            showSlides(slideIndex[no] += n, no);
+        }
+
+        function showSlides(n, no) {
+            let i;
+            let x = document.getElementsByClassName(slideId[no]);
+            if (n > x.length) {slideIndex[no] = 1}    
+            if (n < 1) {slideIndex[no] = x.length}
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";  
+            }
+            x[slideIndex[no]-1].style.display = "block";  
+        }
+    </script>
+    """
+
+    return javascript
+
+
+def generateSideBarHTML():
+    sideBar = """
+    <div class="sidebar">
+        <ul>
+            <li><a href="#codigo" onclick="changeContent(1)">Código</a></li>
+            <li><a href="#estatisticas" onclick="changeContent(2)">Estatísticas</a></li>
+            <li><a href="#grafos" onclick="changeContent(3)">Grafos</a></li>
+        </ul>
+    </div>
+    """
+
+    return sideBar
+
+
+
+def generateVarsHTML(variables):
+    varsHTML = """
+    <h3>Variáveis</h3>
+    <table>
+        <tr>
+            <th>Variável</th>
+            <th>Declarada</th>
+            <th>Inicializada</th>
+            <th>Redeclarada</th>
+            <th>Usada</th>
+            <th>Tipo</th>
+            <th>Histórico de Valores</th>
+        </tr>
+    """
+
+    for var in variables:
+
+
+        if variables[var]["foi_declarada"] == True:
+            declared = "✅"
+        else:
+            declared = "❌"
+
+        if variables[var]["foi_inicializada"] == True:
+            initialized = "✅"
+        else:
+            initialized = "❌"
+
+        if variables[var]["foi_redeclarada"] == True:
+            redeclared = "✅"
+        else:
+            redeclared = "❌"
+
+        if variables[var]["foi_utilizada"] == True:
+            used = "✅"
+        else:
+            used = "❌"
+
+        varsHTML += f"""
+        <tr>
+            <td>{var}</td>
+            <td>{declared}</td>
+            <td>{initialized}</td>
+            <td>{redeclared}</td>
+            <td>{used}</td>
+            <td>{variables[var]["tipo_da_variavel"]}</td>
+            <td>
+        """
+
+        for varVal in variables[var]["valores"]:
+            varsHTML += f"""
+                <div class="value-container">{varVal}</div>
+            """
+
+        varsHTML += """</td>
+        </tr>"""
+
+    varsHTML += """
+    </table>
+    """
+
+    return varsHTML
+
+
+def generateOtherStatsHTML(nests,imports,instructions):
+    otherStatsHTML = """
+    <br>
+    <hr>
+    <br>
+    <h3>Instruções</h3>
+    <table>
+        <tr>
+            <th>Tipo de Instrução</th>
+            <th>Quantidade</th>
+        </tr>
+    """ 
+
+    otherStatsHTML += f"""
+    <tr>
+        <td>Atribuições</td>
+        <td>{instructions["atribuicoes"]}</td>
+    </tr>
+    <tr>
+        <td>Condicionais</td>
+        <td>{instructions["condicionais"]}</td>
+    </tr>
+    <tr>
+        <td>Ciclos</td>
+        <td>{instructions["ciclos"]}</td>
+    </tr>
+    <tr>
+        <td>Leitura e Escrita</td>
+        <td>{instructions["leitura e escrita"]}</td>
+    </tr>
+
+    </table>
+    """
+
+    otherStatsHTML += """
+    <br>
+    <hr>
+    <br>
+    <h3>Aninhamentos</h3>
+    <table>
+        <tr>
+            <th>Tipo de Aninhamento</th>
+            <th>Quantidade</th>
+        </tr>
+    """
+
+    otherStatsHTML += f"""
+    <tr>
+        <td>Ciclos dentro de ciclos</td>
+        <td>{nests["ciclos_dentro_de_ciclos"]}</td>
+    </tr>
+    <tr>
+        <td>Ciclos dentro de condicionais</td>
+        <td>{nests["ciclos_dentro_de_condicionais"]}</td>
+    </tr>
+    <tr>
+        <td>Condicionais dentro de ciclos</td>
+        <td>{nests["condicionais_dentro_de_ciclos"]}</td>
+    </tr>
+    <tr>
+        <td>Condicionais dentro de condicionais</td>
+        <td>{nests["condicionais_dentro_de_condicionais"]}</td>
+    </tr>
+
+    </table>
+    """
+
+    otherStatsHTML += """
+    <br>
+    <hr>
+    <br>
+    <h3>Pacotes Importados</h3>
+    """
+
+    for imp in imports:
+        otherStatsHTML += f"""
+        <div class="import-container">{imp}</div>
+        """
+    
+
+    return otherStatsHTML
+
+
+
+def generateStatsHTML(variablesInfo):
+    statsHTML = """"""
+
+    # process variables
+    variables = variablesInfo["variaveis"]
+    nests = variablesInfo["aninhamentos"]
+    imports = variablesInfo["imports"]
+    instructions = variablesInfo["instrucoes"]
+
+
+    statsHTML += generateVarsHTML(variables)
+    statsHTML += generateOtherStatsHTML(nests,imports,instructions)
+
+    return statsHTML
+
+def generateGraphsHTML(cfgs,sdg):
+    graphsHTML = """
+    <div class="slideshow-container">
+    <h3><i>Control Flow Graphs</i></h3>
+    """ 
+    
+    for cfg in cfgs:
+        graphsHTML += f"""
+        <div class="cfg">
+            <h4>Complexidade de <i>McCabe’s</i> : <div class="mcabesComp-container">{cfg["path"]}</div></h4>
+            <img src="{cfg["path"]}" style="width:100%">
+        </div>
+        """
+
+
+    graphsHTML += """
+        <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
+        </div>
+        <br>
+        <hr>
+        <br>
+        <div class="slideshow-container">
+        <h3><i>System Dependence Graph</i></h3>
+    """
+
+
+    graphsHTML += f"""
+        <div class="sdg">
+            <h4>Complexidade de <i>McCabe’s</i> : <div class="mcabesComp-container">{sdg[0]["path"]}</div></h4>
+            <img src="{sdg[0]["path"]}" style="width:100%">
+        </div>"""
+    
+    graphsHTML += """
+        </div>
+        """
+
+    return graphsHTML
+
+
+def generateHTMLBody(code,variablesInfo,cfgs,sdg):
 
     factor = 0
     
-    body = f"""
+    body = """
     <body>
-        <h2>Analisador de Código Fonte</h2>
+    """
+
+    body += generateSideBarHTML()
+
+    body += """
+        <div class="content">
+        <h1>Analisador de Código Fonte</h1>
+        <div id="content-section-1" class="content-section active">
+        <h2>Código</h2>
         <div class="container">"""
     
     for line in code:
         type = list(line.keys())[0]
-        body += selector(variables,line,type,factor,False)
+        body += selector(variablesInfo["variaveis"],line,type,factor,False)
             
     body += """
         </div>
+        </div>
+    """
+
+    graphsHTML = generateGraphsHTML(cfgs,sdg)
+
+    body += f"""
+        <div id="content-section-2" class="content-section">
+            <!-- Content for Element 2 -->
+            <h2>Estatísticas</h2>"""
+
+    body += generateStatsHTML(variablesInfo)
+
+    body += """
+        </div>
+        <div id="content-section-3" class="content-section">
+            <!-- Content for Element 3 -->
+            <h2>Grafos</h2>
+            """
+
+    body += graphsHTML
+
+    body += """
+        </div>
+    """
+
+    body += """
+    </div>"""
+
+
+    body += generateScriptJS()
+
+    body += """
     </body>
     """
 
@@ -1065,9 +1504,9 @@ def generateHTMLBody(code,variables):
 
 
 
-def htmlGenerator(code, variables):
+def htmlGenerator(code, variablesInfo,cfgs,sdg):
     style = generateStyleCSS()
-    body = generateHTMLBody(code,variables)
+    body = generateHTMLBody(code,variablesInfo,cfgs,sdg)
     html = generateHTML(body,style)
     return html
 

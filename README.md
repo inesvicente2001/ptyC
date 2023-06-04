@@ -163,26 +163,39 @@ IMPORTA {pacote_a_importar};
 # Como executar o programa
 
 ```bash
-python3 src/ptyC.py programas/{programa_input} {nome_HTML}
+python3 src/ptyC.py programas/{programa_input} {nome_output_diretoria}
 ```
 
 ------------------
 
-# Exemplo de um output HTML gerado e as estatísticas do programa, colocados na linha de comandos
+# Exemplo de um output HTML gerado
 
-![image](images/fibonacciHTML.png)
+O programa gera 3 componentes:
 
-![image](images/fibonacciTerminal.png)
+- Analisador léxico do código
+- Estatísticas do código
+- Grafos : *CFG* e *SDG*
 
-----------------------------------------------------------------
+## Analisador léxico do código 
 
-# TO DO
+![image](images/anCod.png)
 
-- Corrigir erros na parte das infos de vars
-- HYML : navbar & estatisticas Infos
-- Grafos(TP3)
-- Streamlit app  (se der tempo)
+## Estatísticas do código
 
-- Adicionar nas infos se a função é recursiva, tem ciclos, stats de funçoes, etc
+![image](images/stats.png)
 
-- em vez de fazer a alteração diretamente nos ifs, fazer um pop-up que quando clicado diz : o if pode ser alterado para isto : sugere a otimização --- usar o dialog nativo do HTML : https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog
+## Grafos
+
+### *CFG*
+
+![image](images/cfg.png)
+
+### *SDG*
+
+![image](images/sdg.png)
+
+![image](images/sdg2.png)
+
+
+
+

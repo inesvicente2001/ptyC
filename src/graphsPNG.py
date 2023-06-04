@@ -3,7 +3,7 @@ import os
 from PIL import Image
 from io import BytesIO
 
-def storeGraphsPNG(PAR_PATH, infoLst, programName, typeGraph):
+def storeGraphs(PAR_PATH, infoLst, programName, typeGraph):
     # store each Digraph in a png
     infoLstPath = []
 
@@ -21,7 +21,7 @@ def storeGraphsPNG(PAR_PATH, infoLst, programName, typeGraph):
         image_bytes = graph.pipe(format='png')
 
         # Set the desired size for the square image
-        max_size = 500
+        max_size = 1000
 
         # Open the image using BytesIO
         image_stream = BytesIO(image_bytes)
@@ -54,7 +54,8 @@ def storeGraphsPNG(PAR_PATH, infoLst, programName, typeGraph):
         square_image.save(savePlace + ".png")
 
         infoPath = {
-            "path": "images/" + programName + "_" + typeGraph + "_" + str(infoLst.index(info)) + ".png"
+            "path": "images/" + programName + "_" + typeGraph + "_" + str(infoLst.index(info)) + ".png",
+            "complexity" : info["complexity"]
         }
 
         infoLstPath.append(infoPath)

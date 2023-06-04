@@ -1,5 +1,4 @@
 stack = []
-#sdg = ""
 sdg = []
 
 def funcaotostring(p) :
@@ -423,8 +422,8 @@ def decs(p) :
     tipo = p[0]["TIPO"]
 
     if "atribuicao" in p[1]:
-        var = vartostring(p["declaracao"][1]["atribuicao"][0]["var"])
-        atribs(p["declaracao"][1]["atribuicao"])
+        var = vartostring(p[1]["atribuicao"][0]["var"])
+        atribs(p[1]["atribuicao"])
     else :
         var = vartostring(p[1]["var"])
     

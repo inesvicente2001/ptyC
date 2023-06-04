@@ -193,6 +193,8 @@ def generateStyleCSS():
         width: auto;
         padding: 16px;
         margin-top: -22px;
+        margin-left: -8em;
+        margin-right: -8em;
         color: black;
         font-weight: bold;
         font-size: 18px;
@@ -1411,7 +1413,7 @@ def generateGraphsHTML(cfgs,sdg):
     for cfg in cfgs:
         graphsHTML += f"""
         <div class="cfg">
-            <h4>Complexidade de <i>McCabe’s</i> : <div class="mcabesComp-container">{cfg["path"]}</div></h4>
+            <h4>Complexidade de <i>McCabe’s</i> : <div class="mcabesComp-container">{cfg["complexity"]}</div></h4>
             <img src="{cfg["path"]}" style="width:100%">
         </div>
         """
@@ -1431,7 +1433,7 @@ def generateGraphsHTML(cfgs,sdg):
 
     graphsHTML += f"""
         <div class="sdg">
-            <h4>Complexidade de <i>McCabe’s</i> : <div class="mcabesComp-container">{sdg[0]["path"]}</div></h4>
+            <h4>Complexidade de <i>McCabe’s</i> : <div class="mcabesComp-container">{sdg[0]["complexity"]}</div></h4>
             <img src="{sdg[0]["path"]}" style="width:100%">
         </div>"""
     

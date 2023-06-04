@@ -12,7 +12,7 @@ ESCOLHE (h) {
     CASO (2) {r = 0 ;}
     CASO (4) {r = s[2] + h ;}
     CASO (7) {r = h ;}
-    CASO () {r = 0 ;}
+    CASO () {r = 1 ;}
 }
 
 

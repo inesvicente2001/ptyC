@@ -14,7 +14,7 @@ def storeGraphsPNG(PAR_PATH, cfgInfoLst, programName):
         # Render the graph to a file
         graph.format = 'png'
 
-        savePlace = os.path.join(PAR_PATH, "output", programName, programName + "_cfg_" + str(cfgInfoLst.index(cfgInfo)))
+        savePlace = os.path.join(PAR_PATH, "output", programName,"images", programName + "_cfg_" + str(cfgInfoLst.index(cfgInfo)))
 
         # Render the graph to a byte stream
         graph.format = 'png'
@@ -54,7 +54,7 @@ def storeGraphsPNG(PAR_PATH, cfgInfoLst, programName):
         square_image.save(savePlace + ".png")
 
         cfgInfoPath = {
-            "path": programName + "_cfg_" + str(cfgInfoLst.index(cfgInfo)) + ".png"
+            "path": "images/" + programName + "_cfg_" + str(cfgInfoLst.index(cfgInfo)) + ".png"
         }
 
         cfgInfoLstPath.append(cfgInfoPath)

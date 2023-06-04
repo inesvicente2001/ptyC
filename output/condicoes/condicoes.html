@@ -330,13 +330,7 @@
         <h1>Analisador de Código Fonte</h1>
         <div id="content-section-1" class="content-section active">
         <h2>Código</h2>
-        <div class="container">
-            <p class="code">
-            <div class="tags">IMPORTA&nbsp</div><div class="preprocessor">pacote_a_importar</div>
-            </p>
-            <p class="code">
-                <div class="comments">:-&nbsp</div><div class="comments"> exemplo de programa </div><div class="comments">&nbsp-:</div>
-                </p><p class="code">
+        <div class="container"><p class="code">
             <div class="types">Int&nbsp</div>
             
                 <div class="variables"><div class="variables">v&nbsp</div>&nbsp</div>
@@ -373,91 +367,26 @@
     </p><p class="code">
             <div class="types">Int&nbsp</div>
             <div class="variables"><div class="warning">k<span class="warningtext">Variável não inicializada!</span></div><div class="symbols">;</div>&nbsp</div>
+    </p><p class="code">
+            <div class="types">Int&nbsp</div>
+            
+                <div class="variables"><div class="variables">x&nbsp</div>&nbsp</div>
+                <div class="operators">=&nbsp</div>
+                <div class="numbers">4&nbsp</div>
+                <div class="symbols">;</div>
+                </p>
+                
     </p>
             <p class="code">
-            <div class="keywords">ESCOLHE&nbsp</div>
-            <div class="symbols">(</div><div class="variables"><div class="variables">h&nbsp</div>&nbsp</div><div class="symbols">){</div></p>
-            <p class="code">
-            <span style="margin-left: 1.5em;"></span>
-                <div class="keywords">CASO&nbsp</div>
-                <div class="symbols">(</div><div class="numbers">2</div><div class="symbols">)</div><div class="symbols">&nbsp{</div></p><p class="code">
-            <span style="margin-left: 3.0em;"></span>
-                <div class="variables"><div class="variables">r&nbsp</div>&nbsp</div>
-                <div class="operators">=&nbsp</div>
-                <div class="numbers">0&nbsp</div>
-                <div class="symbols">;</div>
-                </p>
-                
-                <p class="code">
-            <span style="margin-left: 1.5em;"></span>
-                <div class="symbols">}</div>
-                </p>
-            <p class="code">
-            <span style="margin-left: 1.5em;"></span>
-                <div class="keywords">CASO&nbsp</div>
-                <div class="symbols">(</div><div class="numbers">4</div><div class="symbols">)</div><div class="symbols">&nbsp{</div></p><p class="code">
-            <span style="margin-left: 3.0em;"></span>
-                <div class="variables"><div class="variables">r&nbsp</div>&nbsp</div>
-                <div class="operators">=&nbsp</div>
-                <div class="variables"><div class="variables">s&nbsp</div><div class="operators">[&nbsp</div><div class="numbers">2&nbsp</div><div class="operators">]</div>&nbsp</div><div class="operators">&nbsp+&nbsp</div><div class="variables"><div class="variables">h&nbsp</div>&nbsp</div>
-                <div class="symbols">;</div>
-                </p>
-                
-                <p class="code">
-            <span style="margin-left: 1.5em;"></span>
-                <div class="symbols">}</div>
-                </p>
-            <p class="code">
-            <span style="margin-left: 1.5em;"></span>
-                <div class="keywords">CASO&nbsp</div>
-                <div class="symbols">(</div><div class="numbers">7</div><div class="symbols">)</div><div class="symbols">&nbsp{</div></p><p class="code">
-            <span style="margin-left: 3.0em;"></span>
-                <div class="variables"><div class="variables">r&nbsp</div>&nbsp</div>
-                <div class="operators">=&nbsp</div>
-                <div class="variables"><div class="variables">h&nbsp</div>&nbsp</div>
-                <div class="symbols">;</div>
-                </p>
-                
-                <p class="code">
-            <span style="margin-left: 1.5em;"></span>
-                <div class="symbols">}</div>
-                </p>
-            <p class="code">
-        <span style="margin-left: 1.5em;"></span>
-            <div class="keywords">CASO&nbsp</div>
-            <div class="symbols">()</div><div class="symbols">&nbsp{</div></p><p class="code">
-            <span style="margin-left: 3.0em;"></span>
-                <div class="variables"><div class="variables">r&nbsp</div>&nbsp</div>
-                <div class="operators">=&nbsp</div>
-                <div class="numbers">0&nbsp</div>
-                <div class="symbols">;</div>
-                </p>
-                
-            <p class="code">
-        <span style="margin-left: 1.5em;"></span>
-            <div class="symbols">}</div>
-            </p>
-        <p class="code">
-        <div class="symbols">}</div>
-        </p>
-            <p class="code">
-            <div class="keywords">DEF&nbsp</div>
-            <div class="types">Boolean&nbsp</div>
-            <div class="functions">func1</div>
-    <div class="symbols">(</div>
-    <div class="variables"><div class="variables">v&nbsp</div>&nbsp</div><div class="symbols">&nbsp,&nbsp</div><div class="variables"><div class="variables">h&nbsp</div>&nbsp</div><div class="symbols">&nbsp,&nbsp</div><div class="variables"><div class="error">x<span class="errortext">Variável não declarada!</span></div>&nbsp</div><div class="symbols">&nbsp,&nbsp</div><div class="variables"><div class="variables">s&nbsp</div>&nbsp</div>
-    <div class="symbols">)</div>
-    
-            <div class="symbols">&nbsp{</div>
-            </p>
-            
+            <div class="keywords">SE&nbsp</div>
+            <div class="symbols">(</div><div class="variables"><div class="variables">v&nbsp</div>&nbsp</div><div class="operators">==&nbsp</div><div class="numbers">0&nbsp</div>
+                <div class="keywords"> E &nbsp</div><div class="variables"><div class="variables">h&nbsp</div>&nbsp</div><div class="operators"><&nbsp</div><div class="numbers">4&nbsp</div><div class="symbols">)&nbsp{</div></p>
             <p class="code">
         <span style="margin-left: 1.5em;"></span>
             <div class="keywords">SE&nbsp</div>
-            <div class="symbols">(</div><div class="variables"><div class="variables">v&nbsp</div>&nbsp</div><div class="operators">==&nbsp</div><div class="numbers">0&nbsp</div>
-                <div class="keywords"> E &nbsp</div><div class="variables"><div class="variables">h&nbsp</div>&nbsp</div><div class="operators"><&nbsp</div><div class="numbers">4&nbsp</div><div class="symbols">)&nbsp{</div></p><p class="code">
+            <div class="symbols">(</div><div class="variables"><div class="variables">x&nbsp</div>&nbsp</div><div class="operators">>&nbsp</div><div class="numbers">0&nbsp</div><div class="symbols">)&nbsp{</div></p><p class="code">
             <span style="margin-left: 3.0em;"></span>
-                <div class="variables"><div class="error">x<span class="errortext">Variável não declarada!</span></div>&nbsp</div>
+                <div class="variables"><div class="variables">x&nbsp</div>&nbsp</div>
                 <div class="operators">=&nbsp</div>
                 <div class="variables"><div class="variables">v&nbsp</div>&nbsp</div><div class="operators">&nbsp+&nbsp</div><div class="numbers">9&nbsp</div><div class="operators">&nbsp-&nbsp</div><div class="variables"><div class="variables">s&nbsp</div><div class="operators">[&nbsp</div><div class="numbers">3&nbsp</div><div class="operators">]</div>&nbsp</div><div class="operators">&nbsp+&nbsp</div><div class="variables"><div class="warning">k<span class="warningtext">Variável não inicializada!</span></div>&nbsp</div>
                 <div class="symbols">;</div>
@@ -465,34 +394,35 @@
                 
             <p class="code">
         <span style="margin-left: 1.5em;"></span>
+        <div class="symbols">}</div>
+        </p>
+            <p class="code">
             <div class="symbols">}</div><div class="keywords">SENAO</div><div class="symbols">&nbsp{</div></p><p class="code">
-            <span style="margin-left: 3.0em;"></span>
-                <div class="variables"><div class="error">x<span class="errortext">Variável não declarada!</span></div>&nbsp</div>
+            <span style="margin-left: 1.5em;"></span>
+                <div class="variables"><div class="variables">x&nbsp</div>&nbsp</div>
                 <div class="operators">=&nbsp</div>
                 <div class="numbers">0&nbsp</div>
                 <div class="symbols">;</div>
                 </p>
                 
             <p class="code">
-            <span style="margin-left: 1.5em;"></span>
         <div class="symbols">}</div>
         </p>
             <p class="code">
+            <div class="keywords">SE&nbsp</div>
+            <div class="symbols">(</div><div class="variables"><div class="variables">v&nbsp</div>&nbsp</div><div class="operators">==&nbsp</div><div class="numbers">0&nbsp</div>
+                <div class="keywords"> E &nbsp</div><div class="variables"><div class="variables">h&nbsp</div>&nbsp</div><div class="operators"><&nbsp</div><div class="numbers">4&nbsp</div>
+                <div class="keywords"> E &nbsp</div><div class="variables"><div class="variables">x&nbsp</div>&nbsp</div><div class="operators">>&nbsp</div><div class="numbers">0&nbsp</div><div class="symbols">)&nbsp{</div></p><p class="code">
             <span style="margin-left: 1.5em;"></span>
-            <div class="keywords">RETORNA&nbsp</div>
-            <div class="variables"><div class="variables">v&nbsp</div>&nbsp</div><div class="operators">>&nbsp</div><div class="variables"><div class="variables">h&nbsp</div>&nbsp</div>
-            <div class="symbols">;</div>
-            </p>
+                <div class="variables"><div class="variables">x&nbsp</div>&nbsp</div>
+                <div class="operators">=&nbsp</div>
+                <div class="variables"><div class="variables">v&nbsp</div>&nbsp</div><div class="operators">&nbsp+&nbsp</div><div class="numbers">9&nbsp</div><div class="operators">&nbsp-&nbsp</div><div class="variables"><div class="variables">s&nbsp</div><div class="operators">[&nbsp</div><div class="numbers">3&nbsp</div><div class="operators">]</div>&nbsp</div><div class="operators">&nbsp+&nbsp</div><div class="variables"><div class="warning">k<span class="warningtext">Variável não inicializada!</span></div>&nbsp</div>
+                <div class="symbols">;</div>
+                </p>
+                
             <p class="code">
-            <div class="symbols">}</div>
-            </p>
-            <p class="code"><div class="functions">func1</div>
-    <div class="symbols">(</div>
-    <div class="variables"><div class="variables">v&nbsp</div>&nbsp</div><div class="symbols">&nbsp,&nbsp</div><div class="variables"><div class="variables">h&nbsp</div>&nbsp</div><div class="symbols">&nbsp,&nbsp</div><div class="variables"><div class="error">x<span class="errortext">Variável não declarada!</span></div>&nbsp</div><div class="symbols">&nbsp,&nbsp</div><div class="variables"><div class="variables">s&nbsp</div>&nbsp</div>
-    <div class="symbols">)</div>
-    
-            <div class="symbols">;</div>
-            </p>
+        <div class="symbols">}</div>
+        </p>
         </div>
         </div>
     
@@ -550,20 +480,12 @@
         <tr>
             <td>r</td>
             <td>✅</td>
-            <td>✅</td>
+            <td>❌</td>
             <td>❌</td>
             <td>❌</td>
             <td>Int</td>
             <td>
-        
-                <div class="value-container">0</div>
-            
-                <div class="value-container">s[2] + h</div>
-            
-                <div class="value-container">h</div>
-            
-                <div class="value-container">0</div>
-            </td>
+        </td>
         </tr>
         <tr>
             <td>k</td>
@@ -577,16 +499,20 @@
         </tr>
         <tr>
             <td>x</td>
-            <td>❌</td>
+            <td>✅</td>
             <td>✅</td>
             <td>❌</td>
             <td>✅</td>
-            <td></td>
+            <td>Int</td>
             <td>
         
+                <div class="value-container">4</div>
+            
                 <div class="value-container">v + 9 - s[3] + k</div>
             
                 <div class="value-container">0</div>
+            
+                <div class="value-container">v + 9 - s[3] + k</div>
             </td>
         </tr>
     </table>
@@ -600,13 +526,13 @@
     <h3>Control Flow Graphs</h3>
     
         <div class="cfg">
-            <h4>images/erros_cfg_0.png</h4>
-            <img src="images/erros_cfg_0.png" style="width:100%">
+            <h4>images/condicoes_cfg_0.png</h4>
+            <img src="images/condicoes_cfg_0.png" style="width:100%">
         </div>
         
         <div class="cfg">
-            <h4>images/erros_cfg_1.png</h4>
-            <img src="images/erros_cfg_1.png" style="width:100%">
+            <h4>images/condicoes_cfg_1.png</h4>
+            <img src="images/condicoes_cfg_1.png" style="width:100%">
         </div>
         
         <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>

@@ -1,4 +1,4 @@
-:- Program to display the Fibonacci sequence up to nth term -:
+:- Program to store in a list the Fibonacci sequence up to nth term -:
 
 Int nterms = 6;
 

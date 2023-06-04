@@ -104,6 +104,126 @@
             visibility: visible;
             opacity: 1;
         }
+
+        /* New styles for sidebar or navbar */
+        .sidebar {
+            width: 9.5em;
+            background-color: #333;
+            color: #fff;
+            padding: 1em;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+        }
+        
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .sidebar li {
+            margin-bottom: 1em;
+        }
+        
+        .sidebar a {
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        .content {
+            margin-left: 8em;
+            padding: 2em;
+        }
+        
+        /* Hide all content sections except the active one */
+        .content-section {
+            display: none;
+        }
+        
+        .content-section.active {
+            display: block;
+        }
+
+        /* New styles for graphs slideshow */
+        * {box-sizing: border-box}
+
+        .cfg, .sdg {
+            display: none;
+        }
+
+        img {vertical-align: middle;}
+
+
+        /* Slideshow container */
+        .slideshow-container {
+        max-width: 500px;
+        position: relative;
+        margin: auto;
+        }
+
+        h1, h2, h3, h4,h5 {
+            text-align: center;
+        }
+
+        /* Next & previous buttons */
+        .prev, .next {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        padding: 16px;
+        margin-top: -22px;
+        color: black;
+        font-weight: bold;
+        font-size: 18px;
+        transition: 0.6s ease;
+        border-radius: 3px;
+        user-select: none;
+        border: 2px solid black;
+
+        }
+
+        /* Position the "next button" to the right */
+        .next {
+        right: 0;
+        border-radius: 3px;
+        border: 2px solid black;
+
+        }
+
+        /* On hover, add a grey background color */
+        .prev:hover, .next:hover {
+        background-color: #f1f1f1;
+        color: black;
+        }
+
+        /* CSS for tables */
+        table {
+            border-collapse: collapse;
+            width: fit-content;
+            margin: auto;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: center;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .value-container {
+            background-color: #f5f5f5;
+            border-radius: 4px;
+            padding: 4px 8px;
+            display: inline-block;
+            margin: 2px;
+        }
+
     
         .comments {
             position: relative;
@@ -197,7 +317,19 @@
         </style>
         
     <body>
-        <h2>Analisador de Código Fonte</h2>
+    
+    <div class="sidebar">
+        <ul>
+            <li><a href="#codigo" onclick="changeContent(1)">Código</a></li>
+            <li><a href="#estatisticas" onclick="changeContent(2)">Estatísticas</a></li>
+            <li><a href="#grafos" onclick="changeContent(3)">Grafos</a></li>
+        </ul>
+    </div>
+    
+        <div class="content">
+        <h1>Analisador de Código Fonte</h1>
+        <div id="content-section-1" class="content-section active">
+        <h2>Código</h2>
         <div class="container">
             <p class="code">
             <div class="tags">IMPORTA&nbsp</div><div class="preprocessor">pacote_a_importar</div>
@@ -362,6 +494,153 @@
             <div class="symbols">;</div>
             </p>
         </div>
+        </div>
+    
+        <div id="content-section-2" class="content-section">
+            <!-- Content for Element 2 -->
+            <h2>Estatísticas</h2>
+    <h3>Variáveis</h3>
+    <table>
+        <tr>
+            <th>Variável</th>
+            <th>Declarada</th>
+            <th>Inicializada</th>
+            <th>Redeclarada</th>
+            <th>Usada</th>
+            <th>Tipo</th>
+            <th>Histórico de Valores</th>
+        </tr>
+    
+        <tr>
+            <td>v</td>
+            <td>✅</td>
+            <td>✅</td>
+            <td>❌</td>
+            <td>✅</td>
+            <td>Int</td>
+            <td>
+        
+                <div class="value-container">0</div>
+            </td>
+        </tr>
+        <tr>
+            <td>h</td>
+            <td>✅</td>
+            <td>✅</td>
+            <td>❌</td>
+            <td>✅</td>
+            <td>Int</td>
+            <td>
+        
+                <div class="value-container">2</div>
+            </td>
+        </tr>
+        <tr>
+            <td>x</td>
+            <td>✅</td>
+            <td>✅</td>
+            <td>❌</td>
+            <td>✅</td>
+            <td>Int</td>
+            <td>
+        
+                <div class="value-container">v + 9 - s[3]</div>
+            
+                <div class="value-container">0</div>
+            </td>
+        </tr>
+        <tr>
+            <td>s</td>
+            <td>✅</td>
+            <td>✅</td>
+            <td>❌</td>
+            <td>✅</td>
+            <td>Array</td>
+            <td>
+        
+                <div class="value-container">{1, 2, 3, 4, 5}</div>
+            </td>
+        </tr>
+        <tr>
+            <td>r</td>
+            <td>✅</td>
+            <td>✅</td>
+            <td>❌</td>
+            <td>❌</td>
+            <td>Int</td>
+            <td>
+        
+                <div class="value-container">0</div>
+            
+                <div class="value-container">s[2] + h</div>
+            
+                <div class="value-container">h</div>
+            
+                <div class="value-container">0</div>
+            </td>
+        </tr>
+    </table>
+    
+        </div>
+        <div id="content-section-3" class="content-section">
+            <!-- Content for Element 3 -->
+            <h2>Grafos</h2>
+            
+    <div class="slideshow-container">
+    <h3>Control Flow Graphs</h3>
+    
+        <div class="cfg">
+            <h4>images/programa_cfg_0.png</h4>
+            <img src="images/programa_cfg_0.png" style="width:100%">
+        </div>
+        
+        <div class="cfg">
+            <h4>images/programa_cfg_1.png</h4>
+            <img src="images/programa_cfg_1.png" style="width:100%">
+        </div>
+        
+        <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
+    </div>
+        </div>
+    
+    </div>
+    <script>
+        function changeContent(sectionId) {
+            // Get all content sections
+            var sections = document.getElementsByClassName('content-section');
+            
+            // Loop through all sections and hide them
+            for (var i = 0; i < sections.length; i++) {
+                sections[i].classList.remove('active');
+            }
+            
+            // Show the selected section
+            var selectedSection = document.getElementById('content-section-' + sectionId);
+            selectedSection.classList.add('active');
+        }
+
+        let slideIndex = [1,1];
+        let slideId = ["cfg", "sdg"]
+        showSlides(1, 0);
+        showSlides(1, 1);
+
+        function plusSlides(n, no) {
+            showSlides(slideIndex[no] += n, no);
+        }
+
+        function showSlides(n, no) {
+            let i;
+            let x = document.getElementsByClassName(slideId[no]);
+            if (n > x.length) {slideIndex[no] = 1}    
+            if (n < 1) {slideIndex[no] = x.length}
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";  
+            }
+            x[slideIndex[no]-1].style.display = "block";  
+        }
+    </script>
+    
     </body>
     
     </html>

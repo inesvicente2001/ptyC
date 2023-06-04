@@ -258,7 +258,6 @@ class PtyCInterpreter(Interpreter):
         # var: VAR ("[" (expressao) "]")?
         self.is_var = True
         variable = []
-        print(len(var.children))
         for v in var.children:
 
             if(type(v) == Tree):
@@ -325,7 +324,6 @@ class PtyCInterpreter(Interpreter):
                     
             else:
                 if (type(o) == Token):
-                    print(o.type)
                     if self.lista_counter > 0 or self.array_counter > 0 or self.tuplo_counter > 0:
                         self.atribuicao_expression += o.value
                     else :
@@ -385,7 +383,6 @@ class PtyCInterpreter(Interpreter):
         arr = []
         self.atribuicao_expression += "{"
         for a in array.children:
-            print(a)
             if(type(a) == Tree):
 
                 arr.append({a.data: self.visit(a)})

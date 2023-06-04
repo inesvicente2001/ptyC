@@ -125,7 +125,7 @@ def generateStyleCSS():
 
         /* New styles for sidebar or navbar */
         .sidebar {{
-            width: 11.5em;
+            width: 9.5em;
             background-color: #333;
             color: #fff;
             padding: 1em;
@@ -151,7 +151,7 @@ def generateStyleCSS():
         }}
         
         .content {{
-            margin-left: 10em;
+            margin-left: 8em;
             padding: 2em;
         }}
         
@@ -178,10 +178,10 @@ def generateStyleCSS():
         .slideshow-container {{
         max-width: 500px;
         position: relative;
-        margin: 2em;
+        margin: auto;
         }}
 
-        h4,h5 {{
+        h1, h2, h3, h4,h5 {{
             text-align: center;
         }}
 
@@ -215,6 +215,31 @@ def generateStyleCSS():
         .prev:hover, .next:hover {{
         background-color: #f1f1f1;
         color: black;
+        }}
+
+        /* CSS for tables */
+        table {{
+            border-collapse: collapse;
+            width: fit-content;
+            margin: auto;
+        }}
+
+        th, td {{
+            border: 1px solid #dddddd;
+            text-align: center;
+            padding: 8px;
+        }}
+
+        th {{
+            background-color: #f2f2f2;
+        }}
+
+        .value-container {{
+            background-color: #f5f5f5;
+            border-radius: 4px;
+            padding: 4px 8px;
+            display: inline-block;
+            margin: 2px;
         }}
 
     """
@@ -1161,18 +1186,18 @@ def generateScriptJS():
         showSlides(1, 1);
 
         function plusSlides(n, no) {
-        showSlides(slideIndex[no] += n, no);
+            showSlides(slideIndex[no] += n, no);
         }
 
         function showSlides(n, no) {
-        let i;
-        let x = document.getElementsByClassName(slideId[no]);
-        if (n > x.length) {slideIndex[no] = 1}    
-        if (n < 1) {slideIndex[no] = x.length}
-        for (i = 0; i < x.length; i++) {
-            x[i].style.display = "none";  
-        }
-        x[slideIndex[no]-1].style.display = "block";  
+            let i;
+            let x = document.getElementsByClassName(slideId[no]);
+            if (n > x.length) {slideIndex[no] = 1}    
+            if (n < 1) {slideIndex[no] = x.length}
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";  
+            }
+            x[slideIndex[no]-1].style.display = "block";  
         }
     </script>
     """
@@ -1194,16 +1219,92 @@ def generateSideBarHTML():
     return sideBar
 
 
+
+def generateVarsHTML(variables):
+    varsHTML = """
+    <h3>Variáveis</h3>
+    <table>
+        <tr>
+            <th>Variável</th>
+            <th>Declarada</th>
+            <th>Inicializada</th>
+            <th>Redeclarada</th>
+            <th>Usada</th>
+            <th>Tipo</th>
+            <th>Histórico de Valores</th>
+        </tr>
+    """
+
+    for var in variables:
+
+
+        if variables[var]["foi_declarada"] == True:
+            declared = "✅"
+        else:
+            declared = "❌"
+
+        if variables[var]["foi_inicializada"] == True:
+            initialized = "✅"
+        else:
+            initialized = "❌"
+
+        if variables[var]["foi_redeclarada"] == True:
+            redeclared = "✅"
+        else:
+            redeclared = "❌"
+
+        if variables[var]["foi_utilizada"] == True:
+            used = "✅"
+        else:
+            used = "❌"
+
+        varsHTML += f"""
+        <tr>
+            <td>{var}</td>
+            <td>{declared}</td>
+            <td>{initialized}</td>
+            <td>{redeclared}</td>
+            <td>{used}</td>
+            <td>{variables[var]["tipo_da_variavel"]}</td>
+            <td>
+        """
+
+        for varVal in variables[var]["valores"]:
+            varsHTML += f"""
+                <div class="value-container">{varVal}</div>
+            """
+
+        varsHTML += """</td>
+        </tr>"""
+
+    varsHTML += """
+    </table>
+    """
+
+    return varsHTML
+
+
+
+def generateStatsHTML(variablesInfo):
+    statsHTML = """"""
+
+    # process variables
+    variables = variablesInfo["variaveis"]
+
+    statsHTML += generateVarsHTML(variables)
+
+    return statsHTML
+
 def generateGraphsHTML(cfgs,sdg):
     graphsHTML = """
     <div class="slideshow-container">
-    <h4>Control Flow Graphs</h4>
+    <h3>Control Flow Graphs</h3>
     """ 
     
     for cfg in cfgs:
         graphsHTML += f"""
         <div class="cfg">
-            <h5>{cfg["path"]}</h5>
+            <h4>{cfg["path"]}</h4>
             <img src="{cfg["path"]}" style="width:100%">
         </div>
         """
@@ -1217,7 +1318,7 @@ def generateGraphsHTML(cfgs,sdg):
     return graphsHTML
 
 
-def generateHTMLBody(code,variables,cfgs,sdg):
+def generateHTMLBody(code,variablesInfo,cfgs,sdg):
 
     factor = 0
     
@@ -1229,14 +1330,14 @@ def generateHTMLBody(code,variables,cfgs,sdg):
 
     body += """
         <div class="content">
-        <h2>Analisador de Código Fonte</h2>
+        <h1>Analisador de Código Fonte</h1>
         <div id="content-section-1" class="content-section active">
-        <h3>Código</h3>
+        <h2>Código</h2>
         <div class="container">"""
     
     for line in code:
         type = list(line.keys())[0]
-        body += selector(variables,line,type,factor,False)
+        body += selector(variablesInfo["variaveis"],line,type,factor,False)
             
     body += """
         </div>
@@ -1248,13 +1349,15 @@ def generateHTMLBody(code,variables,cfgs,sdg):
     body += f"""
         <div id="content-section-2" class="content-section">
             <!-- Content for Element 2 -->
-            <h3>Estatísticas</h3>
+            <h2>Estatísticas</h2>"""
 
+    body += generateStatsHTML(variablesInfo)
+
+    body += """
         </div>
-        
         <div id="content-section-3" class="content-section">
             <!-- Content for Element 3 -->
-            <h3>Grafos</h3>
+            <h2>Grafos</h2>
             """
 
     body += graphsHTML
@@ -1277,9 +1380,9 @@ def generateHTMLBody(code,variables,cfgs,sdg):
 
 
 
-def htmlGenerator(code, variables,cfgs,sdg):
+def htmlGenerator(code, variablesInfo,cfgs,sdg):
     style = generateStyleCSS()
-    body = generateHTMLBody(code,variables,cfgs,sdg)
+    body = generateHTMLBody(code,variablesInfo,cfgs,sdg)
     html = generateHTML(body,style)
     return html
 

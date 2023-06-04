@@ -66,12 +66,15 @@ if __name__ == '__main__':
     # create folder if not exists
     if not os.path.exists(os.path.join(PAR_PATH,"output",args.output_file_name[0])):
         os.makedirs(os.path.join(PAR_PATH,"output",args.output_file_name[0]))
-    
 
-    # create graphs PNGs and store them in the output folder inside the project folder
+    # create folder for graphs if not exists
+    if not os.path.exists(os.path.join(PAR_PATH,"output",args.output_file_name[0],"images")):
+        os.makedirs(os.path.join(PAR_PATH,"output",args.output_file_name[0],"images"))
+    
+    # create graphs PNGs and store them in the output folder inside the project folder inside the images folder
     cfgInfoLstPath = storeGraphsPNG(PAR_PATH,cfgInfoLst,args.output_file_name[0])
 
-    html = htmlGenerator(data["programa"],info["variaveis"],cfgInfoLstPath,[])
+    html = htmlGenerator(data["programa"],info,cfgInfoLstPath,[])
 
     OUTPUT_PATH = os.path.join(PAR_PATH,"output",args.output_file_name[0] ,args.output_file_name[0] + ".html")
     
@@ -89,6 +92,9 @@ if __name__ == '__main__':
     print(json.dumps(info["aninhamentos"], indent=2, sort_keys=True))
     print("\n")
     print("HTML gerado em: " + OUTPUT_PATH)
+
+    print("\n")
+    print(json.dumps(info, indent=2, sort_keys=True))
 
 
 

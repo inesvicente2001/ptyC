@@ -3,18 +3,18 @@ import os
 from PIL import Image
 from io import BytesIO
 
-def storeGraphsPNG(PAR_PATH, cfgInfoLst, programName):
+def storeGraphsPNG(PAR_PATH, infoLst, programName, typeGraph):
     # store each Digraph in a png
-    cfgInfoLstPath = []
+    infoLstPath = []
 
-    for cfgInfo in cfgInfoLst:
+    for info in infoLst:
         # Create a Graphviz object
-        graph = graphviz.Source(cfgInfo["graph"])
+        graph = graphviz.Source(info["graph"])
 
         # Render the graph to a file
         graph.format = 'png'
 
-        savePlace = os.path.join(PAR_PATH, "output", programName,"images", programName + "_cfg_" + str(cfgInfoLst.index(cfgInfo)))
+        savePlace = os.path.join(PAR_PATH, "output", programName,"images", programName + "_" + typeGraph + "_" + str(infoLst.index(info)))
 
         # Render the graph to a byte stream
         graph.format = 'png'
@@ -53,10 +53,10 @@ def storeGraphsPNG(PAR_PATH, cfgInfoLst, programName):
         # Save the resized square image to a file
         square_image.save(savePlace + ".png")
 
-        cfgInfoPath = {
-            "path": "images/" + programName + "_cfg_" + str(cfgInfoLst.index(cfgInfo)) + ".png"
+        infoPath = {
+            "path": "images/" + programName + "_" + typeGraph + "_" + str(infoLst.index(info)) + ".png"
         }
 
-        cfgInfoLstPath.append(cfgInfoPath)
+        infoLstPath.append(infoPath)
 
-    return cfgInfoLstPath
+    return infoLstPath

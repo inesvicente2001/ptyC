@@ -224,6 +224,25 @@
             margin: 2px;
         }
 
+        .mcabesComp-container {
+            background-color: #f5f5f5;
+            border-radius: 4px;
+            padding: 4px 8px;
+            color: red;
+            display: inline-block;
+            margin: 2px;
+        }
+
+        .import-container {
+            /* centered */
+            margin: auto;
+            margin-bottom: 1em;
+            width: fit-content;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+            color: green;
+        }
+
     
         .comments {
             position: relative;
@@ -517,27 +536,102 @@
         </tr>
     </table>
     
+    <br>
+    <hr>
+    <br>
+    <h3>Instruções</h3>
+    <table>
+        <tr>
+            <th>Tipo de Instrução</th>
+            <th>Quantidade</th>
+        </tr>
+    
+    <tr>
+        <td>Atribuições</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>Condicionais</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>Ciclos</td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>Leitura e Escrita</td>
+        <td>0</td>
+    </tr>
+
+    </table>
+    
+    <br>
+    <hr>
+    <br>
+    <h3>Aninhamentos</h3>
+    <table>
+        <tr>
+            <th>Tipo de Aninhamento</th>
+            <th>Quantidade</th>
+        </tr>
+    
+    <tr>
+        <td>Ciclos dentro de ciclos</td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>Ciclos dentro de condicionais</td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>Condicionais dentro de ciclos</td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>Condicionais dentro de condicionais</td>
+        <td>2</td>
+    </tr>
+
+    </table>
+    
+    <br>
+    <hr>
+    <br>
+    <h3>Pacotes Importados</h3>
+    
         </div>
         <div id="content-section-3" class="content-section">
             <!-- Content for Element 3 -->
             <h2>Grafos</h2>
             
     <div class="slideshow-container">
-    <h3>Control Flow Graphs</h3>
+    <h3><i>Control Flow Graphs</i></h3>
     
         <div class="cfg">
-            <h4>images/condicoes_cfg_0.png</h4>
+            <h4>Complexidade de <i>McCabe’s</i> : <div class="mcabesComp-container">images/condicoes_cfg_0.png</div></h4>
             <img src="images/condicoes_cfg_0.png" style="width:100%">
         </div>
         
         <div class="cfg">
-            <h4>images/condicoes_cfg_1.png</h4>
+            <h4>Complexidade de <i>McCabe’s</i> : <div class="mcabesComp-container">images/condicoes_cfg_1.png</div></h4>
             <img src="images/condicoes_cfg_1.png" style="width:100%">
         </div>
         
         <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
         <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
-    </div>
+        </div>
+        <br>
+        <hr>
+        <br>
+        <div class="slideshow-container">
+        <h3><i>System Dependence Graph</i></h3>
+    
+        <div class="sdg">
+            <h4>Complexidade de <i>McCabe’s</i> : <div class="mcabesComp-container">images/condicoes_sdg_0.png</div></h4>
+            <img src="images/condicoes_sdg_0.png" style="width:100%">
+        </div>
+        </div>
+        
         </div>
     
     </div>

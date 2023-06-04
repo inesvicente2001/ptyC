@@ -242,6 +242,25 @@ def generateStyleCSS():
             margin: 2px;
         }}
 
+        .mcabesComp-container {{
+            background-color: #f5f5f5;
+            border-radius: 4px;
+            padding: 4px 8px;
+            color: red;
+            display: inline-block;
+            margin: 2px;
+        }}
+
+        .import-container {{
+            /* centered */
+            margin: auto;
+            margin-bottom: 1em;
+            width: fit-content;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+            color: green;
+        }}
+
     """
 
     style += processLanguageElementsClasses(stylingProperties["colorCodes"]["languageElements"])
@@ -1284,27 +1303,115 @@ def generateVarsHTML(variables):
     return varsHTML
 
 
+def generateOtherStatsHTML(nests,imports,instructions):
+    otherStatsHTML = """
+    <br>
+    <hr>
+    <br>
+    <h3>Instruções</h3>
+    <table>
+        <tr>
+            <th>Tipo de Instrução</th>
+            <th>Quantidade</th>
+        </tr>
+    """ 
+
+    otherStatsHTML += f"""
+    <tr>
+        <td>Atribuições</td>
+        <td>{instructions["atribuicoes"]}</td>
+    </tr>
+    <tr>
+        <td>Condicionais</td>
+        <td>{instructions["condicionais"]}</td>
+    </tr>
+    <tr>
+        <td>Ciclos</td>
+        <td>{instructions["ciclos"]}</td>
+    </tr>
+    <tr>
+        <td>Leitura e Escrita</td>
+        <td>{instructions["leitura e escrita"]}</td>
+    </tr>
+
+    </table>
+    """
+
+    otherStatsHTML += """
+    <br>
+    <hr>
+    <br>
+    <h3>Aninhamentos</h3>
+    <table>
+        <tr>
+            <th>Tipo de Aninhamento</th>
+            <th>Quantidade</th>
+        </tr>
+    """
+
+    otherStatsHTML += f"""
+    <tr>
+        <td>Ciclos dentro de ciclos</td>
+        <td>{nests["ciclos_dentro_de_ciclos"]}</td>
+    </tr>
+    <tr>
+        <td>Ciclos dentro de condicionais</td>
+        <td>{nests["ciclos_dentro_de_condicionais"]}</td>
+    </tr>
+    <tr>
+        <td>Condicionais dentro de ciclos</td>
+        <td>{nests["condicionais_dentro_de_ciclos"]}</td>
+    </tr>
+    <tr>
+        <td>Condicionais dentro de condicionais</td>
+        <td>{nests["condicionais_dentro_de_condicionais"]}</td>
+    </tr>
+
+    </table>
+    """
+
+    otherStatsHTML += """
+    <br>
+    <hr>
+    <br>
+    <h3>Pacotes Importados</h3>
+    """
+
+    for imp in imports:
+        otherStatsHTML += f"""
+        <div class="import-container">{imp}</div>
+        """
+    
+
+    return otherStatsHTML
+
+
 
 def generateStatsHTML(variablesInfo):
     statsHTML = """"""
 
     # process variables
     variables = variablesInfo["variaveis"]
+    nests = variablesInfo["aninhamentos"]
+    imports = variablesInfo["imports"]
+    instructions = variablesInfo["instrucoes"]
+
 
     statsHTML += generateVarsHTML(variables)
+    statsHTML += generateOtherStatsHTML(nests,imports,instructions)
 
     return statsHTML
 
 def generateGraphsHTML(cfgs,sdg):
     graphsHTML = """
     <div class="slideshow-container">
-    <h3>Control Flow Graphs</h3>
+    <h3><i>Control Flow Graphs</i></h3>
     """ 
     
     for cfg in cfgs:
         graphsHTML += f"""
         <div class="cfg">
-            <h4>{cfg["path"]}</h4>
+            <h4>Complexidade de <i>McCabe’s</i> : <div class="mcabesComp-container">{cfg["path"]}</div></h4>
             <img src="{cfg["path"]}" style="width:100%">
         </div>
         """
@@ -1313,7 +1420,24 @@ def generateGraphsHTML(cfgs,sdg):
     graphsHTML += """
         <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
         <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
-    </div>"""
+        </div>
+        <br>
+        <hr>
+        <br>
+        <div class="slideshow-container">
+        <h3><i>System Dependence Graph</i></h3>
+    """
+
+
+    graphsHTML += f"""
+        <div class="sdg">
+            <h4>Complexidade de <i>McCabe’s</i> : <div class="mcabesComp-container">{sdg[0]["path"]}</div></h4>
+            <img src="{sdg[0]["path"]}" style="width:100%">
+        </div>"""
+    
+    graphsHTML += """
+        </div>
+        """
 
     return graphsHTML
 

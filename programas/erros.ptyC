@@ -1,5 +1,5 @@
 IMPORTA {pacote_a_importar}
-
+IMPORTA {pacote_erros}
 :- exemplo de programa -:
 
 Int v = 0;

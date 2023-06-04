@@ -52,16 +52,23 @@ if __name__ == '__main__':
         {
             "graph" : '''
             digraph G {
-                inicio -> "if x"
-                "if x" -> "z=2"
-                "z=2" -> "z=z+3"
-                "if x" -> "z=z+3"
-                "z=z+3" -> "fim"
-                "if x" [shape=diamond];
+                inicio -> "x=1"
+                "x=1" -> "z=2"
+                "z=2" -> "fim"
             }
             '''   
         }
     ]
+
+    sdgInfo = {
+        "graph" : '''
+        digraph G {
+            inicio -> "x=3"
+            "x=3" -> "z=2"
+            "z=2" -> "fim" 
+        }
+        '''
+    }
 
     # create folder if not exists
     if not os.path.exists(os.path.join(PAR_PATH,"output",args.output_file_name[0])):
@@ -72,9 +79,10 @@ if __name__ == '__main__':
         os.makedirs(os.path.join(PAR_PATH,"output",args.output_file_name[0],"images"))
     
     # create graphs PNGs and store them in the output folder inside the project folder inside the images folder
-    cfgInfoLstPath = storeGraphsPNG(PAR_PATH,cfgInfoLst,args.output_file_name[0])
+    cfgInfoLstPath = storeGraphsPNG(PAR_PATH,cfgInfoLst,args.output_file_name[0],"cfg")
+    sdgInfoPath = storeGraphsPNG(PAR_PATH,[sdgInfo],args.output_file_name[0],"sdg")
 
-    html = htmlGenerator(data["programa"],info,cfgInfoLstPath,[])
+    html = htmlGenerator(data["programa"],info,cfgInfoLstPath,sdgInfoPath)
 
     OUTPUT_PATH = os.path.join(PAR_PATH,"output",args.output_file_name[0] ,args.output_file_name[0] + ".html")
     
@@ -93,8 +101,6 @@ if __name__ == '__main__':
     print("\n")
     print("HTML gerado em: " + OUTPUT_PATH)
 
-    print("\n")
-    print(json.dumps(info, indent=2, sort_keys=True))
 
 
 

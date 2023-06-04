@@ -1,0 +1,12 @@
+DEF Int fun(a){
+ Int b;
+ b = a*2;
+ SE (b<10) { b = a+1; }
+ RETORNA b;
+}
+DEF Int main(){
+ Int a;
+ a= fun ( 5 );
+ RETORNA a;
+}
+main();

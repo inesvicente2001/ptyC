@@ -5,7 +5,6 @@ APP_PATH = os.path.dirname(os.path.abspath(__file__))
 CONFIG_PATH = os.path.join(APP_PATH, "../configs/colorThemes.json")
 
 
-
 def processLanguageElementsClasses(languageElements):
     elements = """"""
     for k,v in languageElements.items():
@@ -123,6 +122,101 @@ def generateStyleCSS():
             visibility: visible;
             opacity: 1;
         }}
+
+        /* New styles for sidebar or navbar */
+        .sidebar {{
+            width: 11.5em;
+            background-color: #333;
+            color: #fff;
+            padding: 1em;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+        }}
+        
+        .sidebar ul {{
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }}
+        
+        .sidebar li {{
+            margin-bottom: 1em;
+        }}
+        
+        .sidebar a {{
+            color: #fff;
+            text-decoration: none;
+        }}
+        
+        .content {{
+            margin-left: 10em;
+            padding: 2em;
+        }}
+        
+        /* Hide all content sections except the active one */
+        .content-section {{
+            display: none;
+        }}
+        
+        .content-section.active {{
+            display: block;
+        }}
+
+        /* New styles for graphs slideshow */
+        * {{box-sizing: border-box}}
+
+        .cfg, .sdg {{
+            display: none;
+        }}
+
+        img {{vertical-align: middle;}}
+
+
+        /* Slideshow container */
+        .slideshow-container {{
+        max-width: 500px;
+        position: relative;
+        margin: 2em;
+        }}
+
+        h4,h5 {{
+            text-align: center;
+        }}
+
+        /* Next & previous buttons */
+        .prev, .next {{
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        padding: 16px;
+        margin-top: -22px;
+        color: black;
+        font-weight: bold;
+        font-size: 18px;
+        transition: 0.6s ease;
+        border-radius: 3px;
+        user-select: none;
+        border: 2px solid black;
+
+        }}
+
+        /* Position the "next button" to the right */
+        .next {{
+        right: 0;
+        border-radius: 3px;
+        border: 2px solid black;
+
+        }}
+
+        /* On hover, add a grey background color */
+        .prev:hover, .next:hover {{
+        background-color: #f1f1f1;
+        color: black;
+        }}
+
     """
 
     style += processLanguageElementsClasses(stylingProperties["colorCodes"]["languageElements"])
@@ -1043,13 +1137,101 @@ def selector(variables,line,type,factor=0,insideDec=False):
 
     return body
 
-def generateHTMLBody(code,variables):
+
+def generateScriptJS():
+    javascript = """
+    <script>
+        function changeContent(sectionId) {
+            // Get all content sections
+            var sections = document.getElementsByClassName('content-section');
+            
+            // Loop through all sections and hide them
+            for (var i = 0; i < sections.length; i++) {
+                sections[i].classList.remove('active');
+            }
+            
+            // Show the selected section
+            var selectedSection = document.getElementById('content-section-' + sectionId);
+            selectedSection.classList.add('active');
+        }
+
+        let slideIndex = [1,1];
+        let slideId = ["cfg", "sdg"]
+        showSlides(1, 0);
+        showSlides(1, 1);
+
+        function plusSlides(n, no) {
+        showSlides(slideIndex[no] += n, no);
+        }
+
+        function showSlides(n, no) {
+        let i;
+        let x = document.getElementsByClassName(slideId[no]);
+        if (n > x.length) {slideIndex[no] = 1}    
+        if (n < 1) {slideIndex[no] = x.length}
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";  
+        }
+        x[slideIndex[no]-1].style.display = "block";  
+        }
+    </script>
+    """
+
+    return javascript
+
+
+def generateSideBarHTML():
+    sideBar = """
+    <div class="sidebar">
+        <ul>
+            <li><a href="#codigo" onclick="changeContent(1)">Código</a></li>
+            <li><a href="#estatisticas" onclick="changeContent(2)">Estatísticas</a></li>
+            <li><a href="#grafos" onclick="changeContent(3)">Grafos</a></li>
+        </ul>
+    </div>
+    """
+
+    return sideBar
+
+
+def generateGraphsHTML(cfgs,sdg):
+    graphsHTML = """
+    <div class="slideshow-container">
+    <h4>Control Flow Graphs</h4>
+    """ 
+    
+    for cfg in cfgs:
+        graphsHTML += f"""
+        <div class="cfg">
+            <h5>{cfg["path"]}</h5>
+            <img src="{cfg["path"]}" style="width:100%">
+        </div>
+        """
+
+
+    graphsHTML += """
+        <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
+    </div>"""
+
+    return graphsHTML
+
+
+def generateHTMLBody(code,variables,cfgs,sdg):
 
     factor = 0
     
-    body = f"""
+    body = """
     <body>
+    """
+
+    body += generateSideBarHTML()
+
+    body += """
+        <div class="content">
         <h2>Analisador de Código Fonte</h2>
+        <div id="content-section-1" class="content-section active">
+        <h3>Código</h3>
         <div class="container">"""
     
     for line in code:
@@ -1058,6 +1240,36 @@ def generateHTMLBody(code,variables):
             
     body += """
         </div>
+        </div>
+    """
+
+    graphsHTML = generateGraphsHTML(cfgs,sdg)
+
+    body += f"""
+        <div id="content-section-2" class="content-section">
+            <!-- Content for Element 2 -->
+            <h3>Estatísticas</h3>
+
+        </div>
+        
+        <div id="content-section-3" class="content-section">
+            <!-- Content for Element 3 -->
+            <h3>Grafos</h3>
+            """
+
+    body += graphsHTML
+
+    body += """
+        </div>
+    """
+
+    body += """
+    </div>"""
+
+
+    body += generateScriptJS()
+
+    body += """
     </body>
     """
 
@@ -1065,9 +1277,9 @@ def generateHTMLBody(code,variables):
 
 
 
-def htmlGenerator(code, variables):
+def htmlGenerator(code, variables,cfgs,sdg):
     style = generateStyleCSS()
-    body = generateHTMLBody(code,variables)
+    body = generateHTMLBody(code,variables,cfgs,sdg)
     html = generateHTML(body,style)
     return html
 
